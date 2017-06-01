@@ -45,3 +45,8 @@ View official GNU site <http://www.gnu.org/licenses/gpl.html>.
 
 [View the Open Source Initiative site.](http://opensource.org/licenses/mit-license.php)
 
+
+| Branch              | Build status  |
+|:------------------- |:------------- |
+| master              | [![Build status](https://travis-ci.org/Levitics/levitics-arkhe-gcs.svg?branch=master "Build status of branch master")](https://travis-ci.org/Levitics/levitics-arkhe-gcs) |
+| develop             | [![Build status](https://travis-ci.org/Levitics/levitics-arkhe-gcs.svg?branch=develop "Build status of branch develop")](https://travis-ci.org/tsandmann/ct-bot) |
