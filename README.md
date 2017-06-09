@@ -1,5 +1,7 @@
 ## Welcome to GitHub Pages
 
+[![codecov](https://codecov.io/gh/Levitics/levitics-arkhe-gcs/branch/master/graph/badge.svg)](https://codecov.io/gh/Levitics/levitics-arkhe-gcs)
+
 ## Status ##
 
 | Branch              | Build status  |
