@@ -1,7 +1,9 @@
 ## Welcome to GitHub Pages
 
 [![codecov](https://codecov.io/gh/Levitics/levitics-arkhe-gcs/branch/master/graph/badge.svg)](https://codecov.io/gh/Levitics/levitics-arkhe-gcs)
-
+[![Coverage Status](https://img.shields.io/coveralls/bfontaine/badges2svg.svg)](https://coveralls.io/r/bfontaine/badges2svg)
+[![Inline docs](https://inch-ci.org/github/bfontaine/badges2svg.svg)](https://inch-ci.org/github/bfontaine/badges2svg)
+[![Dependency Status](https://img.shields.io/gemnasium/bfontaine/badges2svg.svg)](https://gemnasium.com/bfontaine/badges2svg)
 ## Status ##
 
 | Branch              | Build status  |
