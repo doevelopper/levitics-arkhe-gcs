@@ -1,5 +1,16 @@
 ## Welcome to GitHub Pages
 
+
+### Semantic Versioning (via Shields.io)
+[![Semver](http://img.shields.io/SemVer/2.0.0.png)](http://semver.org/spec/v2.0.0.html)
+
+[![Code Style Guide: Google c++](https://img.shields.io/badge/code%20style-goodparts-brightgreen.svg?style=flat)](https://github.com/google/styleguide "Google C++ Style Guide")
+
+
+| iOS | OSX | iOS/OSX | WP    | Android | W7/10 | Linux |
+|-----|-----|---------|-------|---------|-------|-------|
+| ![ios](https://cocoapod-badges.herokuapp.com/p/AKLocationManager/badge.png) | ![osx](https://cocoapod-badges.herokuapp.com/p/DDQuicklookAdditionalViews/badge.png) | ![ios/osx](https://cocoapod-badges.herokuapp.com/p/AFNetworking/badge.png) | ![error](https://cocoapod-badges.herokuapp.com/p/error/badge.png) |
+
 [![codecov](https://codecov.io/gh/Levitics/levitics-arkhe-gcs/branch/master/graph/badge.svg)](https://codecov.io/gh/Levitics/levitics-arkhe-gcs)
 
 [![Coverage Status](https://coveralls.io/repos/github/Levitics/levitics-arkhe-gcs/badge.svg?branch=master)](https://coveralls.io/github/Levitics/levitics-arkhe-gcs?branch=master)
@@ -57,4 +68,14 @@ Having trouble with Pages? Check out our [documentation](https://help.github.com
 
 [![OSI](http://opensource.org/trademarks/opensource/OSI-Approved-License-100x137.png)](http://opensource.org/licenses/mit-license.php) 
 [![GNU GPL v3.0](http://www.gnu.org/graphics/gplv3-127x51.png)](http://www.gnu.org/licenses/gpl.html)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![License: LGPL v3](https://img.shields.io/badge/License-LGPL%20v3-blue.svg)](http://www.gnu.org/licenses/lgpl-3.0)
 
+
+| Version/Architecture | Build Status |
+| --------------------------- | ------------ |
+| Debian 7 - x86_64           | [![Build Status](https://ci.centos.org/buildStatus/icon?job=CentOS-Core-QA-t_functional-c7-64)](https://ci.centos.org/job/CentOS-Core-QA-t_functional-c7-64/) |
+| Windows - x86_64           | [![Build Status](https://ci.centos.org/job/CentOS-Core-QA-t_functional-c6-64/badge/icon)](https://ci.centos.org/job/CentOS-Core-QA-t_functional-c6-64/) |
+| Ubuntu core - x86_64             | [![Build Status](https://ci.centos.org/job/CentOS-Core-QA-t_functional-c6-32/badge/icon)](https://ci.centos.org/job/CentOS-Core-QA-t_functional-c6-32/) |
+| IOS/MacOS - x86_64           | [![Build Status](https://ci.centos.org/job/CentOS-Core-QA-t_functional-c5-64/badge/icon)](https://ci.centos.org/job/CentOS-Core-QA-t_functional-c5-64/) |
+| Android - x86_64             | [![Build Status](https://ci.centos.org/job/CentOS-Core-QA-t_functional-c5-32/badge/icon)](https://ci.centos.org/job/CentOS-Core-QA-t_functional-c5-32/) |
