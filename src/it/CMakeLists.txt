@@ -1,0 +1,1 @@
+#set_target_properties(${PROJECT_NAME}Test.bin PROPERTIES DEBUG_POSTFIX ${CMAKE_DEBUG_POSTFIX})

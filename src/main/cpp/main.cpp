@@ -23,26 +23,14 @@ int main (int argc ,
  #endif
 
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+    QCoreApplication::setAttribute(Qt::AA_ShareOpenGLContexts , true);
+    QCoreApplication::setAttribute(Qt::AA_DontCreateNativeWidgetSiblings , true);
     QLocale::setDefault(QLocale::C);
     setlocale(LC_ALL , "C");
 
-    GCSApplication * app = Q_NULLPTR;
-    quint8 applicationStatus = 0;
-
-    if ( app )
-    {
-        delete app;
-    }
-    else
-    {
-        QApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
-        QPixmapCache::setCacheLimit(819200);
-        app = new GCSApplication(argc , argv);
-    }
-
-    applicationStatus = app->exec ();
-    // app->applicationShutdown();
-    delete app;
-
-    return (EXIT_SUCCESS);
+    QApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
+    QPixmapCache::setCacheLimit(819200);
+    GCSApplication app (argc , argv);
+    app.init();
+    return (app.exec ());
 }

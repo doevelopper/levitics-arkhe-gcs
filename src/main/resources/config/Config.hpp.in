@@ -1,0 +1,48 @@
+
+/*!
+ * @file Export.hpp
+ *
+ * This header defines several compiler-independent macros which are used
+ * throughout project. Most of these macros make use of GCC extensions; on other
+ * compilers, they don't have any effect.
+ */
+
+#ifndef @NAMESPACE@EXPORT_HPP
+#define @NAMESPACE@EXPORT_HPP
+
+#include <QtGlobal>
+
+
+#if defined _WIN32 || defined __CYGWIN__
+  # define HELPER_DLL_IMPORT __declspec(dllimport)
+  # define HELPER_DLL_EXPORT __declspec(dllexport)
+  # define HELPER_DLL_LOCAL
+#else
+  # if __GNUC__ >= 4
+    #  define HELPER_DLL_IMPORT Q_DECL_IMPORT
+    #  define HELPER_DLL_EXPORT Q_DECL_EXPORT
+    #  define HELPER_DLL_LOCAL  Q_DECL_HIDDEN
+  # else
+    #  define HELPER_DLL_IMPORT
+    #  define HELPER_DLL_EXPORT
+    #  define HELPER_DLL_LOCAL
+  # endif
+#endif
+
+// EXPORT_COMPONENT_API is used for the public API symbols. It either DLL imports or DLL exports (or does nothing for static build)
+// EXPORT_API_LOCAL is used for non-api symbols.
+// @see https://gcc.gnu.org/wiki/Visibility
+
+#ifdef MAKE_DLL_LIBRARY                   // defined if is compiled as a DLL
+  # ifdef DLL_EXPORTS                     // defined if we are building the FOX DLL (instead of using it)
+    #  define EXPORT_COMPONENT_API HELPER_DLL_EXPORT
+  # else
+    #  define EXPORT_COMPONENT_API HELPER_DLL_IMPORT   /* We are using this library */
+  # endif
+  # define EXPORT_API_LOCAL HELPER_DLL_LOCAL
+#else                                     // MAKE_DLL_LIBRARY is not defined: this means it is a static lib.
+  # define EXPORT_COMPONENT_API
+  # define EXPORT_API_LOCAL
+#endif
+
+#endif

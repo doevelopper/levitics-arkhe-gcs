@@ -11,58 +11,45 @@ macro (TODAY RESULT)
     endif (WIN32)
 endmacro (TODAY)
 
-function(getGitInfo GIT_REVISION GIT_STATE GIT_DATE REL)
+function(getGitInfo)
     if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/.git)
         set(GIT_EXECUTABLE "git")
-        # the commit's SHA1, and whether the building workspace was dirty or not
-        # execute_process(COMMAND
-            # "${GIT_EXECUTABLE}" describe --match=NeVeRmAtCh --always --abbrev=40 --dirty
-            # WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
-            # OUTPUT_VARIABLE GIT_SHA1
-            # ERROR_QUIET OUTPUT_STRIP_TRAILING_WHITESPACE)
+
         execute_process( COMMAND ${GIT_EXECUTABLE} rev-parse --short HEAD
             WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
             OUTPUT_VARIABLE GIT_REVISION 
             ERROR_QUIET
             OUTPUT_STRIP_TRAILING_WHITESPACE)
-        execute_process( COMMAND ${GIT_EXECUTABLE} describe --long --tags --dirty
-            WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
-            OUTPUT_VARIABLE GIT_STATE 
-            OUTPUT_STRIP_TRAILING_WHITESPACE 
-            ERROR_QUIET)
-        execute_process( COMMAND "${GIT_EXECUTABLE}" describe --long --tags --dirty --always
-            WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
-            OUTPUT_VARIABLE GIT_STATE_ALWAYS
-            OUTPUT_STRIP_TRAILING_WHITESPACE
-            ERROR_QUIET)
 
         execute_process( COMMAND ${GIT_EXECUTABLE} config --get remote.origin.url
             OUTPUT_VARIABLE GIT_ORIGIN_URL 
             OUTPUT_STRIP_TRAILING_WHITESPACE
             WORKING_DIRECTORY ${PROJECT_SOURCE_DIR})
+
         execute_process( COMMAND ${GIT_EXECUTABLE} config --get remote.root.url
             OUTPUT_VARIABLE GIT_ROOT_URL 
             OUTPUT_STRIP_TRAILING_WHITESPACE
             WORKING_DIRECTORY ${PROJECT_SOURCE_DIR})
+
         execute_process( COMMAND ${GIT_EXECUTABLE} branch --contains HEAD
             OUTPUT_VARIABLE GIT_BRANCH 
             OUTPUT_STRIP_TRAILING_WHITESPACE
             WORKING_DIRECTORY ${PROJECT_SOURCE_DIR})
-        execute_process(COMMAND
-            "${GIT_EXECUTABLE}" log -1 --format=%ad --date=local
+
+        execute_process(COMMAND  "${GIT_EXECUTABLE}" log -1 --format=%ad --date=local
             WORKING_DIRECTORY "${PROJECT_SOURCE_DIR}"
             OUTPUT_VARIABLE GIT_DATE
             ERROR_QUIET 
             OUTPUT_STRIP_TRAILING_WHITESPACE)
-        execute_process(COMMAND
-            "${GIT_EXECUTABLE}" log -1 --format=%s
+
+        execute_process(COMMAND  "${GIT_EXECUTABLE}" log -1 --format=%s
             WORKING_DIRECTORY "${PROJECT_SOURCE_DIR}"
             OUTPUT_VARIABLE GIT_COMMIT_SUBJECT
             ERROR_QUIET 
             OUTPUT_STRIP_TRAILING_WHITESPACE)
-        execute_process(
-            COMMAND "${GIT_EXECUTABLE}" diff-index --quiet HEAD --
-            WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
+
+        execute_process( COMMAND "${GIT_EXECUTABLE}" diff-index --quiet HEAD --
+            WORKING_DIRECTORY "${PROJECT_SOURCE_DIR}"
             RESULT_VARIABLE res
             OUTPUT_VARIABLE out
             ERROR_QUIET 
@@ -98,9 +85,20 @@ function(getGitInfo GIT_REVISION GIT_STATE GIT_DATE REL)
         list(REMOVE_DUPLICATES GIT_AUTHORS)
         file(WRITE ${PROJECT_BINARY_DIR}/Authors.txt "${GIT_AUTHORS}")
     endif(EXISTS ${PROJECT_BINARY_DIR}/Authors.txt)
-endfunction()  
+endfunction(getGitInfo)  
 
   
+function(generateGitInfo)
+    if(EXISTS ${CMAKE_SOURCE_DIR}/.git)
+        set(GIT_EXECUTABLE "git")
+        add_custom_command(OUTPUT ${SRCDIR}/gitrevision.hh
+            COMMAND ${CMAKE_COMMAND} -E echo_append "#define GITREVISION " > ${SRCDIR}/gitrevision.hh
+            COMMAND ${GIT_SCM} log -1 "--pretty=format:%h %ai" >> ${SRCDIR}/gitrevision.hh
+            DEPENDS ${GITDIR}/logs/HEAD
+            VERBATIM
+        )
+    endif(EXISTS ${CMAKE_SOURCE_DIR}/.git)
+endfunction(generateGitInfo)
 
 function(targetName flag)
     if(${flag})
@@ -110,6 +108,6 @@ function(targetName flag)
             )
         endif()
     endif(${flag})
-endfunction()
+endfunction(targetName)
 
 

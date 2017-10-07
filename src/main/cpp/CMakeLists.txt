@@ -5,6 +5,7 @@ add_subdirectory(levitics/osgi)
 
 set(SOURCE_FILES
     levitics/app/GCSApplication
+    levitics/app/Version
     levitics/app/View
     levitics/app/mainwindow
     levitics/app/MultiScreenManagement
@@ -29,6 +30,6 @@ add_library(${PROJECT_NAME} ${SOURCE_FILES})
 add_executable(${PROJECT_NAME}.bin
     main.cpp
 )
-
+set_target_properties(${PROJECT_NAME}.bin PROPERTIES DEBUG_POSTFIX ${CMAKE_DEBUG_POSTFIX})
 target_link_libraries(${PROJECT_NAME} osgi )
 target_link_libraries(${PROJECT_NAME}.bin ${PROJECT_NAME} )
