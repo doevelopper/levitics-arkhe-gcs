@@ -1,6 +1,6 @@
 
-#include <core/workflow/WorkflowInterstepTransition.hpp>
-#include <core/workflow/WorkflowInterstepTransitionEvent.hpp>
+#include <levitics/arkhe/gcs/osgi/core/workflow/WorkflowInterstepTransition.hpp>
+#include <levitics/arkhe/gcs/osgi/core/workflow/WorkflowInterstepTransitionEvent.hpp>
 log4cxx::LoggerPtr WorkflowInterstepTransition::logger =
     log4cxx::Logger::getLogger(std::string("core.workflow.WorkflowInterstepTransition"));
 

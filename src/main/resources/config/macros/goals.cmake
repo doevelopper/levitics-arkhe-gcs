@@ -74,42 +74,6 @@ else(ENABLE_QA_CHECK)
     )
 endif(ENABLE_QA_CHECK)
 
-
-# 32 bits build
-add_custom_target(i386
-    COMMAND ${CMAKE_COMMAND}
-    --build ${IA32_BINARY_DIR}
-    --config ${CMAKE_BUILD_TYPE}
-    COMMENT "Building for i386"
-    VERBATIM
-)
-
-# x86_64 version
-add_custom_target(x64
-    COMMAND ${CMAKE_COMMAND}
-    --clean-first
-    --build ${X64_BINARY_DIR}
-    --config ${CMAKE_BUILD_TYPE}
-    COMMENT "Building for x86_64"
-VERBATIM
-)
-
-#ARM build 
-add_custom_target(arm
-    COMMAND ${CMAKE_COMMAND}
-    --build ${ARM_BINARY_DIR}
-    --config ${CMAKE_BUILD_TYPE}
-    COMMENT "Building for armv7, armv7s,armv8-a, arm64"
-    VERBATIM
-)
-#ARM build 
-add_custom_target(cleanall
-    COMMAND ${CMAKE_COMMAND}
-    --target clean
-    COMMENT "Cleaning target"
-    VERBATIM
-)
-
 add_custom_target (distclean
     COMMAND rm -vf ${CMAKE_SOURCE_DIR}/*.log
     COMMAND rm -vf ${CMAKE_SOURCE_DIR}/Makefile

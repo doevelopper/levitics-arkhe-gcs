@@ -1,6 +1,6 @@
 
-#include <core/workflow/WorkflowStep.hpp>
-#include <core/workflow/private/WorkflowStepPrivate.hpp>
+#include <levitics/arkhe/gcs/osgi/core/workflow/WorkflowStep.hpp>
+#include <levitics/arkhe/gcs/osgi/core/workflow/private/WorkflowStepPrivate.hpp>
 
 log4cxx::LoggerPtr WorkflowStep::logger =
     log4cxx::Logger::getLogger(std::string("core.workflow.WorkflowStep"));

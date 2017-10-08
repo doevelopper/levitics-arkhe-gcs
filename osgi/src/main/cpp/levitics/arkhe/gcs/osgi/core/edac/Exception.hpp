@@ -13,13 +13,12 @@ public:
 
     class TraceManipulator
     {
-public:
+	public:
 
         TraceManipulator(const Exception * e);
-
         QDebug print (QDebug dbg) const;
 
-private:
+	private:
 
         const Exception * Exc;
     };
@@ -33,16 +32,17 @@ private:
     Exception & operator = (const Exception & o);
     virtual ~Exception () throw ();
 
-    const Exception * cause () const throw ();
-    void setCause (const Exception & cause);
     // virtual const char * name () const throw ();
     // virtual const char * className () const throw ();
     // virtual const char * what () const throw ();
-    QString message () const throw ();
 
     TraceManipulator printStackTrace () const;
+
+    const Exception * cause () const throw ();
+    void setCause (const Exception & cause);
     virtual Exception * clone () const;
     virtual void rethrow () const;
+    QString message () const throw ();
     std::system_error make_syserr (int e , const char * msg);
     std::system_error make_syserr (int e , const std::string & msg);
     std::system_error make_syserr (const std::string & msg);
@@ -63,49 +63,49 @@ private:
                                   QSet<const Exception *> & dejaVu);
 };
 
-#define DECLARE_EXCEPTION(API , CLS , BASE)             \
-    class API CLS : public BASE                         \
-    {                                                   \
-public:                                             \
-        explicit CLS(const QString &msg);                 \
-        CLS(const QString &msg , const Exception &exc); \
-        CLS(const CLS &exc);                              \
-        ~CLS() throw ();                                   \
+#define DECLARE_EXCEPTION(API , CLS , BASE)             	\
+    class API CLS : public BASE                         	\
+    {                                                   	\
+public:                                             		\
+        explicit CLS(const QString &msg);                 	\
+        CLS(const QString &msg , const Exception &exc); 	\
+        CLS(const CLS &exc);                              	\
+        ~CLS() throw ();                                   	\
         CLS & operator = (const CLS & exc);                 \
         const char * name() const throw ();                 \
-        CLS * clone() const;                               \
-        void rethrow() const;                            \
+        CLS * clone() const;                               	\
+        void rethrow() const;                            	\
     };
 
-#define IMPLEMENT_EXCEPTION(CLS , BASE , NAME)                             \
-    CLS::CLS(const QString & msg)                                         \
-        : BASE(msg)                                                          \
-    { }                                                                  \
-    CLS::CLS(const QString & msg , \
-             const Exception & exc)                   \
-        : BASE(msg , exc)                                                     \
-    { }                                                                  \
-    CLS::CLS(const CLS & exc)                                             \
-        : BASE(exc)                                                          \
-    { }                                                                  \
-    CLS::~CLS() throw ()                                                  \
-    { }                                                                  \
-    CLS & CLS::operator = (const CLS & exc)                                \
-    {                                                                    \
-        BASE::operator = (exc);                                          \
-        return *this;                                                    \
-    }                                                                    \
-    const char * CLS::name() const throw ()                                \
-          {                                                                    \
-              return NAME;                                                     \
-          }                                                                    \
-          CLS * CLS::clone() const                                              \
-          {                                                                    \
-              return new CLS(*this);                                           \
-          }                                                                    \
-          void CLS::rethrow() const                                            \
-          {                                                                    \
-              throw *this;                                                     \
+#define IMPLEMENT_EXCEPTION(CLS , BASE , NAME)              \
+    CLS::CLS(const QString & msg)                           \
+        : BASE(msg)                                         \
+    { }                                                     \
+    CLS::CLS(const QString & msg , 							\
+             const Exception & exc)                   		\
+        : BASE(msg , exc)                                   \
+    { }                                                     \
+    CLS::CLS(const CLS & exc)                              	\
+        : BASE(exc)                                         \
+    { }                                                     \
+    CLS::~CLS() throw ()                                    \
+    { }                                                     \
+    CLS & CLS::operator = (const CLS & exc)                 \
+    {                                                       \
+        BASE::operator = (exc);                             \
+        return *this;                                       \
+    }                                                       \
+    const char * CLS::name() const throw ()                 \
+          {                                                 \
+              return NAME;                                  \
+          }                                                 \
+          CLS * CLS::clone() const                          \
+          {                                                 \
+              return new CLS(*this);                        \
+          }                                                 \
+          void CLS::rethrow() const                         \
+          {                                                 \
+              throw *this;                                  \
           }
 
 // DECLARE_EXCEPTION(GCS_CORE_EXPORT, UnsupportedOperationException, Exception)

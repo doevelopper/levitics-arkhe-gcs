@@ -35,7 +35,15 @@ option(ANALYZE_THREAD                   "Dynamic analyzer: tool that detects dat
 option(ANALYZE_UNDEFINED                "Dynamic analyzer: undefined behavior checker. "            OFF)
 option(ANALYZE_DATAFLOW                 "Dynamic analyzer: general dynamic dataflow analysis."      OFF)
 option(WARNINGS_ARE_ERRORS              "Treat warnings as errors"                                  OFF)
-option(WARNINGS_ANSI_ISO 				"Issue all the mandatory diagnostics Listed in C standard" 	ON)
+option(WARNINGS_ANSI_ISO                "Issue all the mandatory diagnostics Listed in C standard"  ON)
+option(ENABLE_SANITIZE                  "Sanitize build"                                            OFF)
+option(ENABLE_TIDY                      "Use clang-tidy"                                            OFF)
+option(ENABLE_STATIC                    "Make a static build"                                       OFF)
+option(ENABLE_COVERAGE                  "Run code coverage"                                         OFF)
+option(ENABLE_EXAMPLES                  "Build examples"                                            OFF)
+option(ENABLE_CI                        "Continuous integration run"                                OFF)
+option(ENABLE_LTO                       "Link-time optimizations. Fails on Windows."                OFF)
+
 
 list(APPEND CMAKE_MODULE_PATH
     "${CMAKE_SOURCE_DIR}/src/main/resources/config/modules"
@@ -99,7 +107,12 @@ configure_file("${PROJECT_SOURCE_DIR}/src/main/resources/config/GitRevision.hpp.
                "${CMAKE_CURRENT_BINARY_DIR}/levitics/app/GitRevision.hpp"
                @ONLY)
 
-add_subdirectory(osgi)
+if(BUILD_MUDULE_LIKE)
+
+else(BUILD_MUDULE_LIKE)
+	add_subdirectory(osgi)
+endif(BUILD_MUDULE_LIKE)
+
 # add_subdirectory(src/main/cpp)
 # add_subdirectory(src/test/cpp)
 # add_subdirectory(src/it)

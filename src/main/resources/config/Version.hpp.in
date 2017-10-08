@@ -35,7 +35,7 @@ enum ReleaseLevel
  * @brief Version as a single 4-byte hex number, e.g. 0x010502B2 == 1.5.2b2.
  *        Use this for numeric comparisons, e.g. #if VERSION_HEX >= ...
  */
-#define VERSION_HEX (                                                           \
+#define VERSION_HEX (                                                           	\
         (@PROJECT_VERSION_MAJOR@ << 24)     |                                       \
         (@PROJECT_VERSION_MINOR@ << 16)     |                                       \
         (@PROJECT_VERSION_PATCH@ <<  8)     |                                       \
@@ -43,40 +43,40 @@ enum ReleaseLevel
         (RELEASE_SERIAL << 0)                                                       \
         )
 
-#define EQ_VERSION_GT( MAJOR , MINOR , PATCH )                                    \
+#define EQ_VERSION_GT( MAJOR , MINOR , PATCH )                                    	\
     (                                                                               \
-        (@PROJECT_VERSION_MAJOR@ > MAJOR) ||                                          \
-        (@PROJECT_VERSION_MAJOR@ == MAJOR &&                                          \
-         (@PROJECT_VERSION_MINOR@ > MINOR ||                                           \
-          (@PROJECT_VERSION_MINOR@ == MINOR &&                                          \
-           @PROJECT_VERSION_PATCH@ > PATCH)))                                            \
+        (@PROJECT_VERSION_MAJOR@ > MAJOR) ||                                        \
+        (@PROJECT_VERSION_MAJOR@ == MAJOR &&                                        \
+         (@PROJECT_VERSION_MINOR@ > MINOR ||                                        \
+          (@PROJECT_VERSION_MINOR@ == MINOR &&                                      \
+           @PROJECT_VERSION_PATCH@ > PATCH)))                                       \
     )
 
-#define EQ_VERSION_GE( MAJOR , MINOR , PATCH )                                    \
+#define EQ_VERSION_GE( MAJOR , MINOR , PATCH )                                    	\
     (                                                                               \
-        (@PROJECT_VERSION_MAJOR@ > MAJOR) ||                                          \
-        (@PROJECT_VERSION_MAJOR@ == MAJOR &&                                          \
-         (@PROJECT_VERSION_MINOR@ > MINOR ||                                           \
-          (@PROJECT_VERSION_MINOR@ == MINOR &&                                          \
-           @PROJECT_VERSION_PATCH@ >= PATCH)))                                           \
+        (@PROJECT_VERSION_MAJOR@ > MAJOR) ||                                        \
+        (@PROJECT_VERSION_MAJOR@ == MAJOR &&                                        \
+         (@PROJECT_VERSION_MINOR@ > MINOR ||                                        \
+          (@PROJECT_VERSION_MINOR@ == MINOR &&                                      \
+           @PROJECT_VERSION_PATCH@ >= PATCH)))                                      \
     )
 
-#define EQ_VERSION_LT( MAJOR , MINOR , PATCH )                                    \
+#define EQ_VERSION_LT( MAJOR , MINOR , PATCH )                                    	\
     (                                                                               \
-        (@PROJECT_VERSION_MAJOR@ < MAJOR) ||                                          \
-        (@PROJECT_VERSION_MAJOR@ == MAJOR &&                                          \
-         (@PROJECT_VERSION_MINOR@ < MINOR ||                                           \
-          (@PROJECT_VERSION_MINOR@ == MINOR &&                                          \
-           @PROJECT_VERSION_PATCH@ < PATCH)))                                            \
+        (@PROJECT_VERSION_MAJOR@ < MAJOR) ||                                        \
+        (@PROJECT_VERSION_MAJOR@ == MAJOR &&                                        \
+         (@PROJECT_VERSION_MINOR@ < MINOR ||                                        \
+          (@PROJECT_VERSION_MINOR@ == MINOR &&                                      \
+           @PROJECT_VERSION_PATCH@ < PATCH)))                                       \
     )
 
-#define EQ_VERSION_LE( MAJOR , MINOR , PATCH )                                    \
+#define EQ_VERSION_LE( MAJOR , MINOR , PATCH )                                    	\
     (                                                                               \
-        (@PROJECT_VERSION_MAJOR@ < MAJOR) ||                                          \
-        (@PROJECT_VERSION_MAJOR@ == MAJOR &&                                          \
-         (@PROJECT_VERSION_MINOR@ < MINOR ||                                           \
-          (@PROJECT_VERSION_MINOR@ == MINOR &&                                          \
-           @PROJECT_VERSION_PATCH@ = PATCH)))                                            \
+        (@PROJECT_VERSION_MAJOR@ < MAJOR) ||                                        \
+        (@PROJECT_VERSION_MAJOR@ == MAJOR &&                                        \
+         (@PROJECT_VERSION_MINOR@ < MINOR ||                                        \
+          (@PROJECT_VERSION_MINOR@ == MINOR &&                                      \
+           @PROJECT_VERSION_PATCH@ = PATCH)))                                       \
     )
 
 /*!

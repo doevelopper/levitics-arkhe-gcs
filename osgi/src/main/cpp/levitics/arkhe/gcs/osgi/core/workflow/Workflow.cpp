@@ -6,9 +6,9 @@
 
 #include <iostream>
 
-#include <core/workflow/private/WorkflowStepPrivate.hpp>
-#include <core/workflow/private/WorkflowPrivate.hpp>
-#include <core/workflow/Workflow.hpp>
+#include <levitics/arkhe/gcs/osgi/core/workflow/private/WorkflowStepPrivate.hpp>
+#include <levitics/arkhe/gcs/osgi/core/workflow/private/WorkflowPrivate.hpp>
+#include <levitics/arkhe/gcs/osgi/core/workflow/Workflow.hpp>
 
 log4cxx::LoggerPtr Workflow::logger =
     log4cxx::Logger::getLogger(std::string("core.workflow.Workflow"));

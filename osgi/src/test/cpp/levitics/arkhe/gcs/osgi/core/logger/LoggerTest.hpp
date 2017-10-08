@@ -8,8 +8,6 @@
 
 #include <levitics/arkhe/gcs/osgi/core/logger/Logger.hpp>
 
-// #include <levitics/osgi/core/logger/private/LoggerPrivate.hpp>
-// levitics/arkhe/gcs/osgi/core/logger
 namespace levitics::arkhe::gcs::osgi::core::logger::test
 {
 	class LoggerTest : public ::testing::Test
@@ -27,6 +25,7 @@ namespace levitics::arkhe::gcs::osgi::core::logger::test
 
 	private:
 		static log4cxx::LoggerPtr logger;
+		Logger * objectToTest;
 	};
 }
 

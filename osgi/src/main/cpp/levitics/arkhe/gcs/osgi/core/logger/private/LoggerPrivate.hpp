@@ -37,50 +37,49 @@
 
 class LoggerPrivate
 {
+    public:
 
-public:
+        LoggerPrivate(unsigned long delay = 5000L);
+        ~LoggerPrivate();
 
-    LoggerPrivate(unsigned long delay = 5000L);
-    ~LoggerPrivate();
-    //    LoggerPrivate(const LoggerPrivate & rsh);
+        //    LoggerPrivate(const LoggerPrivate & rsh);
 
-    unsigned long periodicalCheck () const;
-    void loggerReset ();
-    log4cxx::LoggerPtr getLoggerByName (const char * loggerName);
-    void loadConfig (const std::string & configFilename);
-    void loadConfigAndWatch (const std::string & configFilename);
-    void loggerNames (std::vector<std::string> & names);
-    log4cxx::LoggerPtr operator -> (void)
-    {
-        return this->m_logger;
-    }
+        unsigned long periodicalCheck () const;
+        void loggerReset ();
+        log4cxx::LoggerPtr getLoggerByName (const char * loggerName);
+        void loadConfig (const std::string & configFilename);
+        void loadConfigAndWatch (const std::string & configFilename);
+        void loggerNames (std::vector<std::string> & names);
+        log4cxx::LoggerPtr operator -> (void)
+        {
+            return this->m_logger;
+        }
+        //    log4cxx::LoggerPtr operator = (const LoggerPrivate &logger)
+        //    {
+        //        return this->m_logger;
+        //    }
 
-    //    log4cxx::LoggerPtr operator = (const LoggerPrivate &logger)
-    //    {
-    //        return this->m_logger;
-    //    }
+        log4cxx::Logger * loggerSvce;
 
-    log4cxx::Logger * loggerSvce;
+        Q_DISABLE_COPY(LoggerPrivate);
 
-    Q_DISABLE_COPY(LoggerPrivate);
+    private:
 
-private:
-
-    bool checkLogManagerStatus ();
-    std::string getFileExtension (const std::string & s);
-    /*!
-     *  @brief Value for periodical check if configFilename has been created or modified!
-     */
-    unsigned long m_watchPeriod;
-    /*!
-     *  @brief Value for periodical check if configFilename has been created or modified!
-     */
-    static const char * configEnv;
-    /*!
-     *  @brief Value for periodical check if configFilename has been created or modified!
-     */
-    log4cxx::LoggerPtr m_logger;
-    static std::string m_loggerConfigLocation;
+        bool checkLogManagerStatus ();
+        std::string getFileExtension (const std::string & s);
+        /*!
+         *  @brief Value for periodical check if configFilename has been created or modified!
+         */
+        unsigned long m_watchPeriod;
+        /*!
+         *  @brief Value for periodical check if configFilename has been created or modified!
+         */
+        static const char * configEnv;
+        /*!
+         *  @brief Value for periodical check if configFilename has been created or modified!
+         */
+        log4cxx::LoggerPtr m_logger;
+        static std::string m_loggerConfigLocation;
 };
 
 #endif

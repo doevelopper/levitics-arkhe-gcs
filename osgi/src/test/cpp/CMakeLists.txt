@@ -24,3 +24,9 @@ target_link_libraries( ${PROJECT_NAME}-osgiTest ${PROJECT_NAME}-osgi ${THIRD_PAR
 # add_executable(${PROJECT_NAME}-osgiTest.bin 	tests/fareweller_test.cpp)
 # target_link_libraries(${PROJECT_NAME}-osgiTest.bin ${PROJECT_NAME}-osgiTest)
 # add_test(${PROJECT_NAME}-osgiTest.bin ${PROJECT_NAME}-osgiTest.bin)
+
+#ADD_EXECUTABLE(${LIBNAME}.Tests ${TESTS_SOURCES})
+#TARGET_LINK_LIBRARIES(${LIBNAME}.Tests ${TARGET_DEPENDENCIES} ${TARGET_3RDPARTY_DEPENDENCIES} ${LIBNAME})
+#ADD_TEST(   NAME ${LIBNAME}.Tests
+#            COMMAND ${LIBNAME}.Tests
+#            WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR})

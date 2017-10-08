@@ -1,6 +1,6 @@
 
 #include <QState>
-#include <core/workflow/private/WorkflowStepPrivate.hpp>
+#include <levitics/arkhe/gcs/osgi/core/workflow/private/WorkflowStepPrivate.hpp>
 
 log4cxx::LoggerPtr WorkflowStepPrivate::logger =
     log4cxx::Logger::getLogger(std::string("core.workflow.private.WorkflowStepPrivate"));

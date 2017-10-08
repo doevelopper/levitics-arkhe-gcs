@@ -1,5 +1,5 @@
 
-#include <core/workflow/WorkflowIntrastepTransitionEvent.hpp>
+#include <levitics/arkhe/gcs/osgi/core/workflow/WorkflowIntrastepTransitionEvent.hpp>
 
 log4cxx::LoggerPtr WorkflowIntrastepTransitionEvent::logger =
     log4cxx::Logger::getLogger(std::string("core.workflow.WorkflowIntrastepTransitionEvent"));

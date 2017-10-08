@@ -1,11 +1,11 @@
 
-#ifndef LEVITICS_OSGI_CORE_WORKFLOW_WORKFLOWINTRASTEPTRANSITION_HPP
-#define LEVITICS_OSGI_CORE_WORKFLOW_WORKFLOWINTRASTEPTRANSITION_HPP
+#ifndef LEVITICS_ARKHE_GCS_OSGI_CORE_WORKFLOW_WORKFLOWINTRASTEPTRANSITION_HPP
+#define LEVITICS_ARKHE_GCS_OSGI_CORE_WORKFLOW_WORKFLOWINTRASTEPTRANSITION_HPP
 
 #include <QAbstractTransition>
 #include <QString>
 
-#include <levitics/osgi/core/logger/Logger.hpp>
+#include <levitics/arkhe/gcs/osgi/core/logger/Logger.hpp>
 
 class WorkflowIntrastepTransition
     : public QAbstractTransition

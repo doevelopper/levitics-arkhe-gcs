@@ -1,15 +1,15 @@
 
-#ifndef LEVITICS_OSGI_CORE_WORKFLOW_WORKFLOWSTEP_HPP
-#define LEVITICS_OSGI_CORE_WORKFLOW_WORKFLOWSTEP_HPP
+#ifndef LEVITICS_ARKHE_GCS_OSGI_CORE_WORKFLOW_WORKFLOWSTEP_HPP
+#define LEVITICS_ARKHE_GCS_OSGI_CORE_WORKFLOW_WORKFLOWSTEP_HPP
 
 #include <QEvent>
 #include <QAbstractTransition>
 #include <QString>
 #include <QScopedPointer>
 
-#include <levitics/osgi/core/logger/Logger.hpp>
-#include <core/workflow/WorkflowIntrastepTransition.hpp>
-#include <core/workflow/WorkflowInterstepTransition.hpp>
+#include <levitics/arkhe/gcs/osgi/core/logger/Logger.hpp>
+#include <levitics/arkhe/gcs/osgi/core/workflow/WorkflowIntrastepTransition.hpp>
+#include <levitics/arkhe/gcs/osgi/core/workflow/WorkflowInterstepTransition.hpp>
 
 class QObject;
 class QState;

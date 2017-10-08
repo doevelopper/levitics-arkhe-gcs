@@ -1,5 +1,5 @@
 
-#include <core/workflow/private/WorkflowPrivate.hpp>
+#include <levitics/arkhe/gcs/osgi/core/workflow/private/WorkflowPrivate.hpp>
 log4cxx::LoggerPtr WorkflowPrivate::logger =
     log4cxx::Logger::getLogger(std::string("core.workflow.private.WorkflowPrivate"));
 

@@ -2,8 +2,8 @@
 #include <QDebug>
 #include <iostream>
 
-#include <core/workflow/ForwardAndBackwardSteps.hpp>
-#include <core/workflow/WorkflowStep.hpp>
+#include <levitics/arkhe/gcs/osgi/core/workflow/ForwardAndBackwardSteps.hpp>
+#include <levitics/arkhe/gcs/osgi/core/workflow/WorkflowStep.hpp>
 
 log4cxx::LoggerPtr ForwardAndBackwardSteps::logger =
     log4cxx::Logger::getLogger(std::string("core.workflow.ForwardAndBackwardSteps"));
