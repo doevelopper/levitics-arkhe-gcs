@@ -1,6 +1,6 @@
 
-#ifndef LEVITICS_APP_GCSAPPLICATIONPRIVATE_HPP
-#define LEVITICS_APP_GCSAPPLICATIONPRIVATE_HPP
+#ifndef LEVITICS_ARKHE_GCS_APP_PRIVATE_GCSAPPLICATIONPRIVATE_HPP
+#define LEVITICS_ARKHE_GCS_APP_PRIVATE_GCSAPPLICATIONPRIVATE_HPP
 
 #include <QCommandLineParser>
 #include <QtCore/QObject>
@@ -13,7 +13,7 @@
 #include <QtNetwork/QLocalServer>
 
 #include <levitics/osgi/core/logger/Logger.hpp>
-#include <levitics/app/GCSApplication.hpp>
+#include <levitics/arkhe/gcs/app/GCSApplication.hpp>
 
 class GCSApplicationPrivate : public QObject
 {

@@ -1,6 +1,11 @@
 
 set(cppsrc
     levitics/arkhe/gcs/osgi/core/logger/LoggerTest
+    levitics/arkhe/gcs/osgi/core/workflow/private/WorkflowStepMockPrivate
+    levitics/arkhe/gcs/osgi/core/workflow/private/WorkflowStepSignalsPrivate
+    levitics/arkhe/gcs/osgi/core/workflow/WorkflowStepMock
+    levitics/arkhe/gcs/osgi/core/workflow/WorkflowStepSignals
+    levitics/arkhe/gcs/osgi/core/workflow/WorkflowTest
  )
 
 add_library(${PROJECT_NAME}-osgiTest STATIC ${cppsrc})

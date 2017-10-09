@@ -1,12 +1,12 @@
-#ifndef TEST_LEVITICS_OSGI_CORE_WORKFLOW_PRIVATE_WORKFLOWSTEPSIGNALS_HPP
-#define TEST_LEVITICS_OSGI_CORE_WORKFLOW_PRIVATE_WORKFLOWSTEPSIGNALS_HPP
+#ifndef LEVITICS_ARKHE_GCS_OSGI_CORE_WORKFLOW_WORKFLOWSTEPSIGNALS_HPP
+#define LEVITICS_ARKHE_GCS_OSGI_CORE_WORKFLOW_WORKFLOWSTEPSIGNALS_HPP
 #include <QObject>
 #include <QString>
 #include <QList>
 #include <QMap>
 
-#include <levitics/osgi/core/logger/Logger.hpp>
-#include <core/workflow/WorkflowStep.hpp>
+#include <levitics/arkhe/gcs/osgi/core/logger/Logger.hpp>
+#include <levitics/arkhe/gcs/osgi/core/workflow/WorkflowStep.hpp>
 
 class WorkflowStepSignalsPrivate;
 

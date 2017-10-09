@@ -14,10 +14,10 @@
   # include <QCtrlSignals>
 #endif
 
-#include <levitics/app/private/GCSApplicationPrivate.hpp>
+#include <levitics/arkhe/gcs/app/private/GCSApplicationPrivate.hpp>
 
 log4cxx::LoggerPtr GCSApplicationPrivate::logger =
-    log4cxx::Logger::getLogger(std::string("levitics.app.private.GCSApplicationPrivate"));
+    log4cxx::Logger::getLogger(std::string("levitics.arkhe.gcs.app.private.GCSApplicationPrivate"));
 
 
 GCSApplicationPrivate::GCSApplicationPrivate(GCSApplication * q_ptr)

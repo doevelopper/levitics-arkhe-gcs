@@ -1,9 +1,9 @@
 
-#include <levitics/osgi/core/workflow/private/WorkflowStepMockPrivate.hpp>
-#include <levitics/osgi/core/workflow/WorkflowStepMock.hpp>
+#include <levitics/arkhe/gcs/osgi/core/workflow/private/WorkflowStepMockPrivate.hpp>
+#include <levitics/arkhe/gcs/osgi/core/workflow/WorkflowStepMock.hpp>
 
 log4cxx::LoggerPtr WorkflowStepMock::logger =
-    log4cxx::Logger::getLogger(std::string("core.workflow.WorkflowStepMock.Test"));
+    log4cxx::Logger::getLogger(std::string("levitics.arkhe.gcs.osgi.core.workflow.WorkflowStepMock.Test"));
 
 WorkflowStepMock::WorkflowStepMock()
 {
@@ -23,7 +23,7 @@ WorkflowStepMock::~WorkflowStepMock()
 }
 
 void WorkflowStepMock::onEntry (
-    const WorkflowStep *                                       comingFrom,
+    const WorkflowStep * comingFrom,
     const WorkflowInterstepTransition::InterstepTransitionType transitionType)
 {
     LOG4CXX_TRACE(logger, __LOG4CXX_FUNC__);

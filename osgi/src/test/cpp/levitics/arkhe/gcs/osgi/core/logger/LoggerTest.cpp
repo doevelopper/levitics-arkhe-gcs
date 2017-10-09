@@ -8,26 +8,27 @@ log4cxx::LoggerPtr LoggerTest::logger = \
 LoggerTest::LoggerTest()
 : objectToTest()
 {
-
+    LOG4CXX_TRACE(logger, __LOG4CXX_FUNC__);
 }
 
 LoggerTest::~LoggerTest()
 {
-
+    LOG4CXX_TRACE(logger, __LOG4CXX_FUNC__);
 }
 
 void LoggerTest::SetUp ()
 {
-
+    LOG4CXX_TRACE(logger, __LOG4CXX_FUNC__);
 }
 
 void LoggerTest::TearDown ()
 {
-
+    LOG4CXX_TRACE(logger, __LOG4CXX_FUNC__);
 }
 
 TEST_F(LoggerTest, TestLoggerSettings) 
 {
+    LOG4CXX_TRACE(logger, __LOG4CXX_FUNC__);
 	EXPECT_TRUE(Q_NULLPTR == NULL);
 }
 

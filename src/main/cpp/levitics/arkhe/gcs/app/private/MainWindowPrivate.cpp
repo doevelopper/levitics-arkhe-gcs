@@ -2,7 +2,8 @@
 #include <QApplication>
 #include <QLayout>
 #include <QMenu>
-#include <levitics/app/private/MainWindowPrivate.hpp>
+
+#include <levitics/arkhe/gcs/app/private/MainWindowPrivate.hpp>
 
 log4cxx::LoggerPtr MainWindowPrivate::logger =
     log4cxx::Logger::getLogger(std::string("levitics.app.private.MainWindowPrivate"));

@@ -1,8 +1,8 @@
 
-#include <levitics/osgi/core/workflow/private/WorkflowStepMockPrivate.hpp>
+#include <levitics/arkhe/gcs/osgi/core/workflow/private/WorkflowStepMockPrivate.hpp>
 
 log4cxx::LoggerPtr WorkflowStepMockPrivate::logger =
-    log4cxx::Logger::getLogger(std::string("core.workflow.private.WorkflowStepMockPrivate"));
+    log4cxx::Logger::getLogger(std::string("levitics.arkhe.gcs.osgi.core.workflow.private.WorkflowStepMockPrivate.Test"));
 
 WorkflowStepMockPrivate::WorkflowStepMockPrivate()
     :  m_numberOfTimesRanOnEntry (0)

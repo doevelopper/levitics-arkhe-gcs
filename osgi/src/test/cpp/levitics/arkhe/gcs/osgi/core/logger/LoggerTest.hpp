@@ -21,10 +21,10 @@ namespace levitics::arkhe::gcs::osgi::core::logger::test
 		virtual void TearDown ();
 
 	protected:
-
+		static log4cxx::LoggerPtr logger;
 
 	private:
-		static log4cxx::LoggerPtr logger;
+
 		Logger * objectToTest;
 	};
 }

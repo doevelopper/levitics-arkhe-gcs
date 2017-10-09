@@ -110,7 +110,7 @@ configure_file("${PROJECT_SOURCE_DIR}/src/main/resources/config/GitRevision.hpp.
 if(BUILD_MUDULE_LIKE)
 
 else(BUILD_MUDULE_LIKE)
-	add_subdirectory(osgi)
+    add_subdirectory(osgi)
 endif(BUILD_MUDULE_LIKE)
 
 # add_subdirectory(src/main/cpp)

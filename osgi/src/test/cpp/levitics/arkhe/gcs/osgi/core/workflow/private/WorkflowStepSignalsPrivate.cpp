@@ -1,8 +1,8 @@
 
-#include <levitics/osgi/core/workflow/private/WorkflowStepSignalsPrivate.hpp>
+#include <levitics/arkhe/gcs/osgi/core/workflow/private/WorkflowStepSignalsPrivate.hpp>
 
 log4cxx::LoggerPtr WorkflowStepSignalsPrivate::logger =
-    log4cxx::Logger::getLogger(std::string("core.workflow.private.WorkflowStepSignalsPrivate.Test"));
+    log4cxx::Logger::getLogger(std::string("levitics.arkhe.gcs.osgi.core.workflow.private.WorkflowStepSignalsPrivate.Test"));
 
 WorkflowStepSignalsPrivate::WorkflowStepSignalsPrivate()
     : m_numberOfTimesRanOnEntry(0)

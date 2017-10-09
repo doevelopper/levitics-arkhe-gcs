@@ -1,6 +1,6 @@
 
-#include <levitics/osgi/core/workflow/WorkflowStepSignals.hpp>
-#include <levitics/osgi/core/workflow/private/WorkflowStepSignalsPrivate.hpp>
+#include <levitics/arkhe/gcs/osgi/core/workflow/WorkflowStepSignals.hpp>
+#include <levitics/arkhe/gcs/osgi/core/workflow/private/WorkflowStepSignalsPrivate.hpp>
 
 log4cxx::LoggerPtr WorkflowStepSignals::logger =
     log4cxx::Logger::getLogger(std::string("core.workflow.WorkflowStepSignals.Test"));
