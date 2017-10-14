@@ -13,12 +13,13 @@ class QAbstractState;
 
 class Workflow : public QObject
 {
-        Q_OBJECT
-        Q_ENUMS(TransitionDirectionality)
-        Q_PROPERTY(bool isRunning READ isRunning DESIGNABLE false)
-        Q_PROPERTY(bool goBackToOriginStepUponSuccess READ goBackToOriginStepUponSuccess WRITE setGoBackToOriginStepUponSuccess)
-        Q_PROPERTY(bool verbose READ verbose WRITE setVerbose)
-    public:
+    Q_OBJECT
+    Q_ENUMS(TransitionDirectionality)
+    Q_PROPERTY(bool isRunning READ isRunning DESIGNABLE false)
+    Q_PROPERTY(bool goBackToOriginStepUponSuccess READ goBackToOriginStepUponSuccess WRITE setGoBackToOriginStepUponSuccess)
+    Q_PROPERTY(bool verbose READ verbose WRITE setVerbose)
+
+public:
     using Superclass = QObject ;
     enum TransitionDirectionality
     {
@@ -26,12 +27,13 @@ class Workflow : public QObject
         Forward,
         Backward
     };
-        explicit Workflow(QObject* parent = 0);
+
+    explicit Workflow(QObject* parent = Q_NULLPTR);
 //        Workflow(const Workflow &) Q_DECL_EQ_DEFAULT;
 //        Workflow(Workflow &&) Q_DECL_EQ_DEFAULT;
 //        Workflow & operator=(const Workflow &) & = default;
 //        Workflow & operator=(Workflow &&) & = default;
-        virtual ~Workflow();
+    virtual ~Workflow();
 
         Q_INVOKABLE virtual void start();
         bool isRunning()const;
@@ -72,6 +74,9 @@ class Workflow : public QObject
         virtual void goToStep(const QString& targetId);
         virtual void evaluateValidationResults(bool validationSucceeded, const QString& branchId);
 
+    Q_SIGNALS:
+        void currentStepChanged(WorkflowStep* currentStep);
+        void stepRegistered(WorkflowStep* step);
     protected:
 
         void goToNextStepAfterSuccessfulValidation(const QString& branchId);

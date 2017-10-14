@@ -19,8 +19,7 @@ Workflow::Workflow(QObject * parent)
 {
     LOG4CXX_TRACE(logger, __LOG4CXX_FUNC__);
     Q_D(Workflow);
-
-    // d->StateMachine = new QStateMachine(this);
+//    d->stateMachine() = new QStateMachine(this);
 }
 
 Workflow::~Workflow()

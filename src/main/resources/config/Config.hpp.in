@@ -11,7 +11,7 @@
 #define @NAMESPACE@EXPORT_HPP
 
 #include <QtGlobal>
-
+#include <QtCore/QtGlobal>
 
 #if defined _WIN32 || defined __CYGWIN__
   # define HELPER_DLL_IMPORT __declspec(dllimport)
@@ -44,5 +44,22 @@
   # define EXPORT_COMPONENT_API
   # define EXPORT_API_LOCAL
 #endif
+
+#if defined ${STATIC}  // static lib
+	#define EXPORT_API
+#elif defined(SHARED)
+	#define EXPORT_API Q_DECL_EXPORT
+#else
+	#define EXPORT_API Q_DECL_IMPORT
+#endif
+
+#if defined (SHARED)
+	#define DECL Q_DECL_EXPORT
+#elif defined (IMPORT)
+	#define DECL Q_DECL_IMPORT
+#else
+	#define DECL
+#endif
+
 
 #endif
