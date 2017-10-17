@@ -37,12 +37,24 @@
 
 class LoggerPrivate
 {
+    enum Level
+    {
+        EMERGENCY = (1 << 0),    /* system is unusable. A panic condition was reported to all processes. */
+        CRITICAL  = (1 << 1),    /* critical conditions */
+        FATAL =     (1 << 2),
+        ALERT =     (1 << 3),    /* action must be taken immediately. A condition that should be corrected immediately.  */
+        ERROR =     (1 << 4),     /* error conditions */
+        WARNING =   (1 << 5),    /* warning conditions */
+        INFO =      (1 << 6),     /* informational */
+        TRACE =     (1 << 7),    /* normal but significant condition. A condition requiring special handling.  */
+        DEBUG =     (1 << 8)     /* debug-level messages. A message useful for debugging programs.  */
+
+    };
+
     public:
 
         LoggerPrivate(unsigned long delay = 5000L);
         ~LoggerPrivate();
-
-        //    LoggerPrivate(const LoggerPrivate & rsh);
 
         unsigned long periodicalCheck () const;
         void loggerReset ();

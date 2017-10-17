@@ -107,6 +107,8 @@ configure_file("${PROJECT_SOURCE_DIR}/src/main/resources/config/GitRevision.hpp.
                "${CMAKE_CURRENT_BINARY_DIR}/levitics/app/GitRevision.hpp"
                @ONLY)
 
+include_directories(${CMAKE_CURRENT_BINARY_DIR})
+
 if(BUILD_MUDULE_LIKE)
 
 else(BUILD_MUDULE_LIKE)

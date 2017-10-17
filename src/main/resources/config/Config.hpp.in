@@ -46,19 +46,19 @@
 #endif
 
 #if defined ${STATIC}  // static lib
-	#define EXPORT_API
+    #define EXPORT_API
 #elif defined(SHARED)
-	#define EXPORT_API Q_DECL_EXPORT
+    #define EXPORT_API Q_DECL_EXPORT
 #else
-	#define EXPORT_API Q_DECL_IMPORT
+    #define EXPORT_API Q_DECL_IMPORT
 #endif
 
 #if defined (SHARED)
-	#define DECL Q_DECL_EXPORT
+    #define DECL Q_DECL_EXPORT
 #elif defined (IMPORT)
-	#define DECL Q_DECL_IMPORT
+    #define DECL Q_DECL_IMPORT
 #else
-	#define DECL
+    #define DECL
 #endif
 
 

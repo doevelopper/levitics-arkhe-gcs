@@ -1,6 +1,16 @@
 #set(platform_dir ${CMAKE_SYSTEM_NAME}${platform_bits}-${CMAKE_CXX_COMPILER_ID}${CMAKE_CXX_COMPILER_VERSION})
 # set(AOL "${CMAKE_SYSTEM_PROCESSOR}-${CMAKE_CXX_COMPILER_ID}_${CMAKE_HOST_SYSTEM_NAME}-GCC_${CMAKE_CXX_COMPILER_VERSION}")
 
+# if ("${UNAME}")
+    # getuname(osname -s)
+    # getuname(osrel -r)
+    # getuname(cpu -m)
+# else ("${UNAME}")
+    # set(osname "${CMAKE_HOST_SYSTEM_NAME}")
+    # set(osrel  "${CMAKE_HOST_SYSTEM_VERSION}")
+    # set(cpu    "${CMAKE_HOST_SYSTEM_PROCESSOR}")
+# endif("${UNAME}")
+
 set(AOL "${CMAKE_HOST_SYSTEM_NAME}-${CMAKE_CXX_COMPILER_ID}_GCC_${CMAKE_CXX_COMPILER_VERSION}-${CMAKE_SYSTEM_PROCESSOR}")
 
 #set(platform_dir ${CMAKE_SYSTEM_PROCESSOR}-${CMAKE_CXX_COMPILER_ID}_${CMAKE_HOST_SYSTEM_NAME}-GCC_${CMAKE_CXX_COMPILER_VERSION}-${CMAKE_BUILD_TYPE})

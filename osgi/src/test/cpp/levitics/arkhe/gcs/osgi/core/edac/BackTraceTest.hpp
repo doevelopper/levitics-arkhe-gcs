@@ -1,29 +1,20 @@
-#ifndef LEVITICS_OSGI_CORE_ERRORHANDLING_BACKTRACE_HPP
-#define LEVITICS_OSGI_CORE_ERRORHANDLING_BACKTRACE_HPP
+#ifndef LEVITICS_ARKHE_GCS_OSGI_CORE_EDAC_BACKTRACETEST_HPP
+#define LEVITICS_ARKHE_GCS_OSGI_CORE_EDAC_BACKTRACETEST_HPP
 
-#include <QScopedPointer>
-#include <QString>
+#include <levitics/arkhe/gcs/osgi/core/edac/BackTrace.hpp>
 
-class BackTracePrivate;
-
-class BackTrace
+class BackTraceTest
 {
 public:
 
-    BackTrace ();
-    BackTrace(const BackTrace& other);
-    virtual ~BackTrace() throw();
+    BackTraceTest ();
+    BackTraceTest(const BackTraceTest& other);
+    ~BackTraceTest ();
 
-    BackTrace(size_t framesNumber = DEFAULT_STACK_SIZE);
-    size_t stackSize() const;
-    void* returnAddress(unsigned frameNumber) const;
-    QString stackFrame(unsigned frameNumber) const;
-    QList<QString> stackTrace() const;
 protected:
 
 private:
-  QScopedPointer<BackTracePrivate> d;
-  static size_t const DEFAULT_STACK_SIZE;
+
 };
 
 #endif

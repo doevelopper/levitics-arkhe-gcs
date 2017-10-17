@@ -1,22 +1,19 @@
 
 set(cppsrc
     levitics/arkhe/gcs/osgi/core/logger/private/LoggerPrivate
+    levitics/arkhe/gcs/osgi/core/logger/private/LogViewPrivate
+    levitics/arkhe/gcs/osgi/core/logger/LogView
+    levitics/arkhe/gcs/osgi/core/logger/LogModel
+    levitics/arkhe/gcs/osgi/core/logger/LogViewBar
+    levitics/arkhe/gcs/osgi/core/logger/LogViewList
     levitics/arkhe/gcs/osgi/core/logger/Logger
     levitics/arkhe/gcs/osgi/core/edac/private/BackTracePrivate
     levitics/arkhe/gcs/osgi/core/edac/Exception
     levitics/arkhe/gcs/osgi/core/edac/Demangler
     levitics/arkhe/gcs/osgi/core/edac/BackTrace
-	
-    # levitics/arkhe/gcs/osgi/core/workflow/ForwardAndBackwardSteps
-    # levitics/arkhe/gcs/osgi/core/workflow/Workflow
-    # levitics/arkhe/gcs/osgi/core/workflow/WorkflowStep
-    # levitics/arkhe/gcs/osgi/core/workflow/private/WorkflowPrivate
-    # levitics/arkhe/gcs/osgi/core/workflow/private/WorkflowStepPrivate
-    # levitics/arkhe/gcs/osgi/core/workflow/WorkflowIntrastepTransitionEvent
-    # levitics/arkhe/gcs/osgi/core/workflow/WorkflowIntrastepTransition
-    # levitics/arkhe/gcs/osgi/core/workflow/WorkflowInterstepTransitionEvent
-    # levitics/arkhe/gcs/osgi/core/workflow/WorkflowInterstepTransition
-	
+
+    levitics/arkhe/gcs/osgi/core/private/AbstractObjectPrivate
+    levitics/arkhe/gcs/osgi/core/AbstractObject
     levitics/arkhe/gcs/osgi/core/Settings
  )
 

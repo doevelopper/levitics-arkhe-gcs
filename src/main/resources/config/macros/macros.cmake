@@ -11,6 +11,11 @@ macro (TODAY RESULT)
     endif (WIN32)
 endmacro (TODAY)
 
+macro(getuname name flag)
+	find_program(UNAME NAMES uname)
+    exec_program("${UNAME}" ARGS "${flag}" OUTPUT_VARIABLE "${name}")
+endmacro(getuname)
+
 function(getGitInfo)
     if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/.git)
         set(GIT_EXECUTABLE "git")

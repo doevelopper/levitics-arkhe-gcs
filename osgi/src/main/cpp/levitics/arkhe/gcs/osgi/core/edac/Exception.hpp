@@ -4,6 +4,7 @@
 
 #include <QObject>
 #include <QException>
+// #include <expected>
 
 #include <levitics/arkhe/gcs/osgi/core/edac/BackTrace.hpp>
 
@@ -21,6 +22,7 @@ public:
 	private:
 
         const Exception * Exc;
+
     };
 
     using Superclass = QException;
@@ -47,6 +49,7 @@ public:
     std::system_error make_syserr (int e , const std::string & msg);
     std::system_error make_syserr (const std::string & msg);
     std::system_error make_syserr (const char * msg);
+	// std::expected<void*, std::error_code> createErrc();
 
 protected:
 

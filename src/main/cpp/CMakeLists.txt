@@ -33,4 +33,4 @@ add_executable(${PROJECT_NAME}.bin
 set_target_properties(${PROJECT_NAME}.bin PROPERTIES DEBUG_POSTFIX ${CMAKE_DEBUG_POSTFIX})
 target_link_libraries(${PROJECT_NAME} osgi )
 target_link_libraries(${PROJECT_NAME}.bin ${PROJECT_NAME} )
-target_compile_definitions(${PROJECT_NAME}.bin PRIVATE "EXPORT_API=Q_DECL_EXPORT")
+# target_compile_definitions(${PROJECT_NAME}.bin PRIVATE "EXPORT_API=Q_DECL_EXPORT")
