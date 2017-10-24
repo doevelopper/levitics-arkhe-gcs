@@ -26,6 +26,12 @@ function(getGitInfo)
             ERROR_QUIET
             OUTPUT_STRIP_TRAILING_WHITESPACE)
 
+        execute_process( COMMAND ${GIT_EXECUTABLE} rev-parse HEAD
+            WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
+            OUTPUT_VARIABLE GIT_HASH
+            ERROR_QUIET
+            OUTPUT_STRIP_TRAILING_WHITESPACE)
+
         execute_process( COMMAND ${GIT_EXECUTABLE} config --get remote.origin.url
             OUTPUT_VARIABLE GIT_ORIGIN_URL 
             OUTPUT_STRIP_TRAILING_WHITESPACE
@@ -47,6 +53,18 @@ function(getGitInfo)
             ERROR_QUIET 
             OUTPUT_STRIP_TRAILING_WHITESPACE)
 
+        execute_process(COMMAND  "${GIT_EXECUTABLE}" rev-list HEAD --count
+            WORKING_DIRECTORY "${PROJECT_SOURCE_DIR}"
+            OUTPUT_VARIABLE NB_GIT_COMMIT
+            ERROR_QUIET
+            OUTPUT_STRIP_TRAILING_WHITESPACE)
+
+        execute_process(COMMAND  "${GIT_EXECUTABLE}" rev-list --all --count
+            WORKING_DIRECTORY "${PROJECT_SOURCE_DIR}"
+            OUTPUT_VARIABLE ALL_GIT_COMMIT_COUNT
+            ERROR_QUIET
+            OUTPUT_STRIP_TRAILING_WHITESPACE)
+
         execute_process(COMMAND  "${GIT_EXECUTABLE}" log -1 --format=%s
             WORKING_DIRECTORY "${PROJECT_SOURCE_DIR}"
             OUTPUT_VARIABLE GIT_COMMIT_SUBJECT
@@ -65,6 +83,16 @@ function(getGitInfo)
             else()
                 set(${REL} "-SNAPSHOOT")
             endif()
+
+            set(GIT_REVISION ${GIT_REVISION} PARENT_SCOPE)
+            set(VERSION_COMMIT ${GIT_STATE_ALWAYS} PARENT_SCOPE)
+            set(GIT_ORIGIN_URL ${GIT_ORIGIN_URL} PARENT_SCOPE)
+            set(GIT_COMMIT_SUBJECT ${GIT_COMMIT_SUBJECT} PARENT_SCOPE)
+            set(GIT_DATE ${GIT_DATE} PARENT_SCOPE)
+            set(GIT_BRANCH ${GIT_BRANCH} PARENT_SCOPE)
+            set(NB_COMMIT ${NB_GIT_COMMIT} PARENT_SCOPE)
+            set(HASH ${GIT_HASH} PARENT_SCOPE)
+            set(ALL_GIT_COMMIT_COUNT ${ALL_GIT_COMMIT_COUNT} PARENT_SCOPE)
 
     endif(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/.git)
 

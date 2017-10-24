@@ -12,13 +12,20 @@ set(cppsrc
     levitics/arkhe/gcs/osgi/core/edac/Demangler
     levitics/arkhe/gcs/osgi/core/edac/BackTrace
 
+    levitics/arkhe/gcs/osgi/core/private/ApplicationPrivate
+    levitics/arkhe/gcs/osgi/core/private/CpuidPrivate
     levitics/arkhe/gcs/osgi/core/private/AbstractObjectPrivate
+    levitics/arkhe/gcs/osgi/core/Cpuid
     levitics/arkhe/gcs/osgi/core/AbstractObject
     levitics/arkhe/gcs/osgi/core/Settings
+#    levitics/app/Version
  )
 
 add_library(${PROJECT_NAME}-osgi STATIC ${cppsrc})
-target_link_libraries( ${PROJECT_NAME}-osgi ${THIRD_PARTY_LIB}  Qt5::Widgets Qt5::Svg )
+target_link_libraries( ${PROJECT_NAME}-osgi ${THIRD_PARTY_LIB}
+    Qt5::Network Qt5::Core Qt5::Widgets Qt5::Svg
+    Qt5::Quick Qt5::Xml Qt5::OpenGL Qt5::WebKit Qt5::WebKitWidgets
+)
 target_include_directories(${PROJECT_NAME}-osgi PUBLIC ${CMAKE_CURRENT_SOURCE_DIR} )
 
 # target_include_directories(${PROJECT_NAME}-osgi PUBLIC 

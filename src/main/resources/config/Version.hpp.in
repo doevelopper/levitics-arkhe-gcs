@@ -21,14 +21,14 @@
  */
 enum ReleaseLevel
 {
-    RELEASE_LEVEL_SNAPSHOOT    = 0xD , /**< API is not tested, work in progress. */
-    RELEASE_LEVEL_ALPHA        = 0xA , /**< API is in alpha state, i.e. work in progress. */
-    RELEASE_LEVEL_BETA         = 0xB , /**< API is in beta state, i.e. close to be finished. */
-    RELEASE_LEVEL_CANDIDATE    = 0xC , /**< API is in release candidate state. */
-    RELEASE_LEVEL_FINAL        = 0xF , /**< API is in final state, i.e. officially approved. */
+    SNAPSHOOT    = 0xD , /**< API is not tested, work in progress. */
+    ALPHA        = 0xA , /**< API is in alpha state, i.e. work in progress. */
+    BETA         = 0xB , /**< API is in beta state, i.e. close to be finished. */
+    CANDIDATE    = 0xC , /**< API is in release candidate state. */
+    FINAL        = 0xF , /**< API is in final state, i.e. officially approved. */
 };
 
-#define RELEASE_LEVEL   ReleaseLevel::RELEASE_LEVEL_ALPHA
+#define RELEASE_LEVEL   ReleaseLevel::@RELEASE_LEVEL@
 #define RELEASE_SERIAL  0
 
 /*!
@@ -213,6 +213,47 @@ public:
      *  @return JSON-encoded data for this object.
      */
     static std::string toJSON ();
+    /*!
+     * @brief Compare  plugin version against version of his layer.
+     * @return true if .
+     */
+    bool checkVersion(const QString ref_version, const QString elem_version)
+    {
+        QStringList ve_ref_list = ref_version.split(".");
+        QStringList ve_elem_list = elem_version.split(".");
+
+        //if major level different return false
+        if (ve_ref_list.at(0).toInt() != ve_elem_list.at(0).toInt())
+        {
+            return false;
+        }
+
+        //if minor level of ref < elem return false
+        if (ve_ref_list.at(1).toInt() < ve_elem_list.at(1).toInt())
+        {
+            return false;
+        }
+        else
+        {
+            // no patch level specified in ref
+            if (ve_ref_list.size() < 3 || ve_elem_list.size() < 3) {
+            {
+                return true;
+            }
+        }
+
+            //if same minor level, compare patch level
+        if ((ve_ref_list.at(1).toInt() == ve_elem_list.at(1).toInt()) &&
+                    (ve_ref_list.at(2).toInt() < ve_elem_list.at(2).toInt()))
+        {
+            return false;
+        }
+
+            //else minor level of elem < ref , then don't compare patch level
+        }
+
+        return true;
+    }
 
 protected:
 

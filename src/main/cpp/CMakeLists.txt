@@ -1,21 +1,18 @@
 include_directories(.)
 
-add_subdirectory(levitics/osgi)
-
-
 set(SOURCE_FILES
-    levitics/app/GCSApplication
-    levitics/app/Version
-    levitics/app/View
-    levitics/app/mainwindow
-    levitics/app/MultiScreenManagement
-    levitics/app/private/MainWindowPrivate
-    levitics/app/private/GCSApplicationPrivate
-    levitics/arkhe/gcs/EnvironmentVariablesManager
+    # levitics/app/GCSApplication
+    # levitics/app/Version
+    # levitics/app/View
+    # levitics/app/mainwindow
+    # levitics/app/MultiScreenManagement
+    # levitics/app/private/MainWindowPrivate
+    # levitics/app/private/GCSApplicationPrivate
+    # levitics/arkhe/gcs/EnvironmentVariablesManager
 )
 
-add_library(${PROJECT_NAME} ${SOURCE_FILES})
-
+add_library(${PROJECT_NAME} STATIC ${SOURCE_FILES})
+target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME}-osgi ${THIRD_PARTY_LIB} )
 #https://cmake.org/Wiki/CMake/Tutorials/Object_Library
 ## A/CMakeLists.txt
 # add_library(A OBJECT ${A_srcs})
@@ -27,10 +24,10 @@ add_library(${PROJECT_NAME} ${SOURCE_FILES})
 # add_library(big ${other_srcs} $<TARGET_OBJECTS:A> $<TARGET_OBJECTS:B>)
 
 
-add_executable(${PROJECT_NAME}.bin
-    main.cpp
-)
-set_target_properties(${PROJECT_NAME}.bin PROPERTIES DEBUG_POSTFIX ${CMAKE_DEBUG_POSTFIX})
-target_link_libraries(${PROJECT_NAME} osgi )
-target_link_libraries(${PROJECT_NAME}.bin ${PROJECT_NAME} )
+# add_executable(${PROJECT_NAME}.bin
+    # main.cpp
+# )
+# set_target_properties(${PROJECT_NAME}.bin PROPERTIES DEBUG_POSTFIX ${CMAKE_DEBUG_POSTFIX})
+# target_link_libraries(${PROJECT_NAME}.bin ${PROJECT_NAME} ${TEST_THIRD_PARTY_LIB})
+# target_link_libraries(${PROJECT_NAME}.bin ${PROJECT_NAME} )
 # target_compile_definitions(${PROJECT_NAME}.bin PRIVATE "EXPORT_API=Q_DECL_EXPORT")

@@ -24,69 +24,89 @@ void LogModel::append(const QString& message)
 int LogModel::rowCount(const QModelIndex &parent) const
 {
     if (parent.isValid())
-        return 0;
+    {
+        return (0);
+    }
 
-    return d->logs.count();
+    return (d->logs.count());
 }
 
 QVariant LogModel::data(const QModelIndex &index, int role) const
 {
     if (index.row() < 0 || index.row() >= d->logs.size())
-        return QVariant();
+    {
+        return (QVariant());
+    }
 
     if (role == Qt::DisplayRole || role == Qt::EditRole)
-        return d->logs.at(index.row());
+    {
+        return (d->logs.at(index.row()));
+    }
 
-    return QVariant();
+    return (QVariant());
 }
 
 Qt::ItemFlags LogModel::flags(const QModelIndex &index) const
 {
     if (!index.isValid())
-        return QAbstractItemModel::flags(index) | Qt::ItemIsDropEnabled;
+    {
+        return (QAbstractItemModel::flags(index) | Qt::ItemIsDropEnabled);
+    }
 
-    return QAbstractItemModel::flags(index) | Qt::ItemIsEditable | Qt::ItemIsDragEnabled | Qt::ItemIsDropEnabled;
+    return (QAbstractItemModel::flags(index)
+            | Qt::ItemIsEditable
+            | Qt::ItemIsDragEnabled
+            | Qt::ItemIsDropEnabled);
 }
 
 bool LogModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
     if (index.row() >= 0 && index.row() < d->logs.size()
-        && (role == Qt::EditRole || role == Qt::DisplayRole)) {
+        && (role == Qt::EditRole || role == Qt::DisplayRole))
+    {
         d->logs.replace(index.row(), value.toString());
         emit dataChanged(index, index);
-        return true;
+        return (true);
     }
-    return false;
+    return (false);
 }
 
 bool LogModel::insertRows(int row, int count, const QModelIndex &parent)
 {
     if (count < 1 || row < 0 || row > rowCount(parent))
-        return false;
+    {
+        return (false);
+    }
 
     beginInsertRows(QModelIndex(), row, row + count - 1);
 
     for (int r = 0; r < count; ++r)
+    {
         d->logs.insert(row, QString());
+    }
 
     endInsertRows();
 
-    return true;
+    return (true);
 }
 
 bool LogModel::removeRows(int row, int count, const QModelIndex &parent)
 {
     if (count <= 0 || row < 0 || (row + count) > rowCount(parent))
-        return false;
+    {
+        return (false);
+    }
 
     beginRemoveRows(QModelIndex(), row, row + count - 1);
 
     for (int r = 0; r < count; ++r)
+    {
         d->logs.removeAt(row);
+    }
 
     endRemoveRows();
 
-    return true;
+    return (true);
 }
 
 void LogModel::sort(int, Qt::SortOrder order)
@@ -95,25 +115,25 @@ void LogModel::sort(int, Qt::SortOrder order)
 
     QList<QPair<QString, int> > list;
     for (int i = 0; i < d->logs.count(); ++i)
-	{
+    {
         list.append(QPair<QString, int>(d->logs.at(i), i));
-	}
+    }
 
     if (order == Qt::AscendingOrder)
-	{
+    {
         qSort(list.begin(), list.end(), ascendingLessThan);
-	}
+    }
     else
-	{
+    {
         qSort(list.begin(), list.end(), decendingLessThan);
-	}
+    }
 
     d->logs.clear();
 
     QVector<int> forwarding(list.count());
 
-    for (int i = 0; i < list.count(); ++i) 
-	{
+    for (int i = 0; i < list.count(); ++i)
+    {
         d->logs.append(list.at(i).first);
         forwarding[list.at(i).second] = i;
     }
@@ -122,9 +142,9 @@ void LogModel::sort(int, Qt::SortOrder order)
     QModelIndexList newList;
 
     for (int i = 0; i < oldList.count(); ++i)
-	{
+    {
         newList.append(index(forwarding.at(oldList.at(i).row()), 0));
-	}
+    }
 
     changePersistentIndexList(oldList, newList);
 

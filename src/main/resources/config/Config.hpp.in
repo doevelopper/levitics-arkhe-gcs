@@ -7,59 +7,187 @@
  * compilers, they don't have any effect.
  */
 
-#ifndef @NAMESPACE@EXPORT_HPP
-#define @NAMESPACE@EXPORT_HPP
+#ifndef @NAMESPACE@CONFIG_HPP
+#define @NAMESPACE@CONFIG_HPP
 
+#include <QtCore>
 #include <QtGlobal>
 #include <QtCore/QtGlobal>
 
-#if defined _WIN32 || defined __CYGWIN__
-  # define HELPER_DLL_IMPORT __declspec(dllimport)
-  # define HELPER_DLL_EXPORT __declspec(dllexport)
-  # define HELPER_DLL_LOCAL
-#else
-  # if __GNUC__ >= 4
-    #  define HELPER_DLL_IMPORT Q_DECL_IMPORT
-    #  define HELPER_DLL_EXPORT Q_DECL_EXPORT
-    #  define HELPER_DLL_LOCAL  Q_DECL_HIDDEN
-  # else
-    #  define HELPER_DLL_IMPORT
-    #  define HELPER_DLL_EXPORT
-    #  define HELPER_DLL_LOCAL
-  # endif
-#endif
+#include <complex>
+#include <deque>
+#include <functional>
+#include <list>
+#include <map>
+#include <set>
+#include <utility>
+#include <vector>
 
-// EXPORT_COMPONENT_API is used for the public API symbols. It either DLL imports or DLL exports (or does nothing for static build)
+//EXPORT_COMPONENT_API is used for the public API symbols. It either DLL imports or DLL exports (or does nothing for static build)
 // EXPORT_API_LOCAL is used for non-api symbols.
 // @see https://gcc.gnu.org/wiki/Visibility
 
-#ifdef MAKE_DLL_LIBRARY                   // defined if is compiled as a DLL
-  # ifdef DLL_EXPORTS                     // defined if we are building the FOX DLL (instead of using it)
-    #  define EXPORT_COMPONENT_API HELPER_DLL_EXPORT
+
+#ifdef MAKE_DLL_LIBRARY                  // defined if is compiled as a DLL
+  # ifdef DLL_EXPORTS                    // defined if we are building the DLL (instead of using it)
+    #  define EXPORT_API Q_DECL_EXPORT
   # else
-    #  define EXPORT_COMPONENT_API HELPER_DLL_IMPORT   /* We are using this library */
+    #  define EXPORT_API Q_DECL_IMPORT   // We are using this library
   # endif
-  # define EXPORT_API_LOCAL HELPER_DLL_LOCAL
-#else                                     // MAKE_DLL_LIBRARY is not defined: this means it is a static lib.
-  # define EXPORT_COMPONENT_API
-  # define EXPORT_API_LOCAL
+  # define HIDE_EXPORT_API Q_DECL_HIDDEN
+#else                                    // MAKE_DLL_LIBRARY is not defined: this means it is a static lib.
+  # define EXPORT_API
+  # define HIDE_EXPORT_API
 #endif
+namespace levitics
+{
+template<typename T>
+struct IsObjectSerializable
+{
+    enum
+    {
+        Value = false
+    };
+};
 
-#if defined ${STATIC}  // static lib
-    #define EXPORT_API
-#elif defined(SHARED)
-    #define EXPORT_API Q_DECL_EXPORT
-#else
-    #define EXPORT_API Q_DECL_IMPORT
-#endif
+template<>
+struct IsObjectSerializable<void *>
+{
+    enum
+    {
+        Value = false
+    };
+};
 
-#if defined (SHARED)
-    #define DECL Q_DECL_EXPORT
-#elif defined (IMPORT)
-    #define DECL Q_DECL_IMPORT
-#else
-    #define DECL
-#endif
+class ObjectSerializable;
+
+template<>
+struct IsObjectSerializable<ObjectSerializable *>
+{
+    enum
+    {
+        Value = true
+    };
+};
+
+template<typename T>
+struct IsObjectSerializable<T *>
+{
+
+    using yes = qint8;
+    using no = qint64;
+
+    static yes checkType(ObjectSerializable *);
+    static no checkType(...);
+
+public:
+    enum
+    {
+        Value = sizeof(checkType(static_cast<T *>(0))) == sizeof(yes)
+    };
+};
+
+template <typename T>
+inline void hash(T& seed, T value)
+{
+    seed ^= value + 0x9e3779b9 + (seed << 6) + (seed >> 2);
+}
+
+template < typename T >
+inline void hashCombine(std::size_t& seed, const T& v)
+{
+    std::hash<T> hasher;
+    hash(seed, hasher(v));
+}
+
+template < typename I >
+inline std::size_t hashRange(I first, I last)
+{
+    std::size_t seed = 0;
+
+    for (; first != last; ++first)
+    {
+        hash(seed, *first);
+    }
+
+    return seed;
+}
+
+struct GcsHash
+{
+public:
+    template < typename T, typename U > std::size_t operator()(const std::pair<T, U>& c) const;
+    template < typename T, typename A > std::size_t operator()(const std::vector<T, A>& c) const;
+    template < typename T, typename A > std::size_t operator()(const std::list<T, A>& c) const;
+    template < typename T, typename A > std::size_t operator()(const std::deque<T, A>& c) const;
+    template < typename K, typename C, typename A > std::size_t operator()(const std::set<K, C, A>& c) const;
+    template < typename K, typename C, typename A > std::size_t operator()(const std::multiset<K, C, A>& c) const;
+    template < typename K, typename T, typename C, typename A > std::size_t operator()(const std::map<K, T, C, A>& c) const;
+    template < typename K, typename T, typename C, typename A > std::size_t operator()(const std::multimap<K, T, C, A>& c) const;
+    template < typename T > std::size_t operator()(const std::complex<T>& c) const;
+};
 
 
+template < typename T, typename U >
+inline std::size_t GcsHash::operator()(const std::pair<T, U>& c) const
+{
+    std::size_t seed = 0;
+    levitics::hash(seed, c.first);
+    levitics::hash(seed, c.second);
+    return seed;
+}
+
+template < typename T, typename A >
+inline std::size_t GcsHash::operator()(const std::vector<T, A>& c) const
+{
+    return hashRange(c.begin(), c.end());
+}
+
+template < typename T, typename A >
+inline std::size_t GcsHash::operator()(const std::list<T, A>& c) const
+{
+    return hashRange(c.begin(), c.end());
+}
+
+template < typename T, typename A >
+inline std::size_t GcsHash::operator()(const std::deque<T, A>& c) const
+{
+    return hashRange(c.begin(), c.end());
+}
+
+template < typename K, typename C, typename A >
+inline std::size_t GcsHash::operator()(const std::set<K, C, A>& c) const
+{
+    return hashRange(c.begin(), c.end());
+}
+
+template < typename K, typename C, typename A >
+inline std::size_t GcsHash::operator()(const std::multiset<K, C, A>& c) const
+{
+    return hashRange(c.begin(), c.end());
+}
+
+template < typename K, typename T, typename C, typename A>
+inline std::size_t GcsHash::operator()(const std::map<K, T, C, A>& c) const
+{
+    return hashRange(c.begin(), c.end());
+}
+
+template < typename K, typename T, typename C, typename A >
+inline std::size_t GcsHash::operator()(const std::multimap<K, T, C, A>& c) const
+{
+    return hashRange(c.begin(), c.end());
+}
+
+template < typename T >
+inline std::size_t GcsHash::operator()(const std::complex<T>& c) const
+{
+    std::size_t seed = 0;
+    levitics::hash(seed, c.imag());
+    levitics::hash(seed, c.real());
+    return seed;
+}
+
+
+}
 #endif

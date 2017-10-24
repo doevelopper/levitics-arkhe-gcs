@@ -20,7 +20,9 @@ add_definitions(-DPROJECT_VERSION_MINOR=0)
 add_definitions(-DPROJECT_VERSION_MICRO=0)
 add_definitions(-DPROJECT_VERSION_PATCH=${PROJECT_NAME})
 
-add_definitions(-DAPPLICATIONNAME=${PROJECT_VERSION_PATCH})
+add_definitions(-DRELEASE_LEVEL="SNAPSHOOT") # SNAPSHOOT ,ALPHA , BETA , CANDIDATE , FINAL.
+
+add_definitions(-DAPPLICATIONNAME="${PROJECT_NAME} ${PROJECT_VERSION_PATCH}")
 add_definitions(-DAPP_VERSION_STR="${${PROJECT_NAME}_MAJOR_VERSION}.${${PROJECT_NAME}_MINOR_VERSION}.${${PROJECT_NAME}_MICRO_VERSION}")
 
 option(ENABLE_QA_CHECK                  "Software quality. Conformance to one or more standards"    OFF)
@@ -63,7 +65,7 @@ include(CMakeSettings)
 include(qt)
 include(macros)
 include(PreventInSourceBuilds)
-include(DocumentationTargets)
+#include(DocumentationTargets)
 # include(PrintVariables)
 getGitInfo()
 TODAY(APP_BUILD_DATE)
@@ -74,40 +76,37 @@ set(TEST_THIRD_PARTY_LIB_MAIN ${TEST_THIRD_PARTY_LIB} gmock_main)
 set(INTEG_TEST_THIRD_PARTY_LIB ${TEST_THIRD_PARTY_LIB} cucumber-cpp-nomain)
 set(INTEG_TEST_THIRD_PARTY_LIB_MAIN ${TEST_THIRD_PARTY_LIB} cucumber-cpp)
 
-add_definitions(-DCOPYRIGHT_YEAR=${APP_BUILD_DATE})
-add_definitions(-DGIT_REVISION=${GIT_REVISION})
-add_definitions(-DVERSION_COMMIT=${GIT_STATE_ALWAYS})
-add_definitions(-DGIT_REVISION=${GIT_REVISION})
+set(COPYRIGHT_YEAR ${APP_BUILD_DATE})
 
 configure_file("${PROJECT_SOURCE_DIR}/src/main/resources/config/Config.hpp.in"
-               "${CMAKE_CURRENT_BINARY_DIR}/levitics/Config.hpp"
+               "${CMAKE_BINARY_DIR}/levitics/Config.hpp"
                 @ONLY)
 
 configure_file("${PROJECT_SOURCE_DIR}/src/main/resources/config/Api.hpp.in"
-               "${CMAKE_CURRENT_BINARY_DIR}/levitics/app/Api.hpp"
+               "${CMAKE_BINARY_DIR}/levitics/app/Api.hpp"
                 @ONLY)
 
 configure_file("${PROJECT_SOURCE_DIR}/src/main/resources/config/Defines.hpp.in"
-               "${CMAKE_CURRENT_BINARY_DIR}/levitics/Defines.hpp"
+               "${CMAKE_BINARY_DIR}/levitics/Defines.hpp"
                 @ONLY)
 
 configure_file("${PROJECT_SOURCE_DIR}/src/main/resources/config/AppInfo.hpp.in"
-               "${CMAKE_CURRENT_BINARY_DIR}/levitics/app/AppInfo.hpp"
+               "${CMAKE_BINARY_DIR}/levitics/app/AppInfo.hpp"
                 @ONLY)
 
 configure_file("${PROJECT_SOURCE_DIR}/src/main/resources/config/Version.hpp.in"
-               "${CMAKE_CURRENT_BINARY_DIR}/levitics/app/Version.hpp"
+               "${CMAKE_BINARY_DIR}/levitics/app/Version.hpp"
                 @ONLY)
 
 configure_file("${PROJECT_SOURCE_DIR}/src/main/resources/config/Version.cpp.in"
-                "${CMAKE_CURRENT_BINARY_DIR}/levitics/app/Version.cpp"
+                "${CMAKE_BINARY_DIR}/levitics/app/Version.cpp"
                 @ONLY)
 
 configure_file("${PROJECT_SOURCE_DIR}/src/main/resources/config/GitRevision.hpp.in"
-               "${CMAKE_CURRENT_BINARY_DIR}/levitics/app/GitRevision.hpp"
+               "${CMAKE_BINARY_DIR}/levitics/app/GitRevision.hpp"
                @ONLY)
 
-include_directories(${CMAKE_CURRENT_BINARY_DIR})
+include_directories(${CMAKE_BINARY_DIR})
 
 if(BUILD_MUDULE_LIKE)
 
@@ -115,6 +114,6 @@ else(BUILD_MUDULE_LIKE)
     add_subdirectory(osgi)
 endif(BUILD_MUDULE_LIKE)
 
-# add_subdirectory(src/main/cpp)
+add_subdirectory(src/main/cpp)
 # add_subdirectory(src/test/cpp)
 # add_subdirectory(src/it)

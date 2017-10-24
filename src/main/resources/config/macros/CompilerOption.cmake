@@ -8,9 +8,9 @@ set(CMAKE_CXX_FLAGS                                "${CMAKE_CXX_FLAGS} -std=c++1
 set(CMAKE_CXX_FLAGS_DEBUG                          "${CMAKE_CXX_FLAGS} -O0 -g")
 set(CMAKE_CXX_FLAGS_DEBUG                          "${CMAKE_CXX_FLAGS_DEBUG} -D_DEBUG -D_FORTIFY_SOURCE=2 ")
 set(CMAKE_CXX_FLAGS_DEBUG                          "${CMAKE_CXX_FLAGS_DEBUG} -fno-strict-aliasing -fno-omit-frame-pointer ")
-#set(CMAKE_CXX_FLAGS_MINSIZEREL                     "${CMAKE_CXX_FLAGS} -Os -DNDEBUG")
-#set(CMAKE_CXX_FLAGS_RELEASE                        "${CMAKE_CXX_FLAGS} -O4 -DNDEBUG")
-#set(CMAKE_CXX_FLAGS_RELWITHDEBINFO                 "${CMAKE_CXX_FLAGS} -O2 -g")
+set(CMAKE_CXX_FLAGS_MINSIZEREL                     "${CMAKE_CXX_FLAGS} -Os -DNDEBUG")
+set(CMAKE_CXX_FLAGS_RELEASE                        "${CMAKE_CXX_FLAGS} -O4 -DNDEBUG")
+set(CMAKE_CXX_FLAGS_RELWITHDEBINFO                 "${CMAKE_CXX_FLAGS} -O2 -g")
 
 set(EXTRA_CXX_FLAGS "${EXTRA_CXX_FLAGS} -Wabi")
 set(EXTRA_CXX_FLAGS "${EXTRA_CXX_FLAGS} -Wcast-qual")                # Cast for removing type qualifiers
@@ -52,15 +52,23 @@ endif()
 
 set(EFFECTIVE_CPP_FLAGS "-Weffc++ -Wpedantic")
 
-#set(COMMON_CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
+set(PARANO_CMAKE_CXX_FLAGS )
+if(WERROR_LEVEL_1)
+	set(PARANO_CMAKE_CXX_FLAGS "${PARANO_CMAKE_CXX_FLAGS} -Werror=format-security -Wformat")
+	# set(PARANO_CMAKE_CXX_FLAGS "${PARANO_CMAKE_CXX_FLAGS} -Werror=old-style-cast")
+	# set(PARANO_CMAKE_CXX_FLAGS "${PARANO_CMAKE_CXX_FLAGS} -Werror=shadow")
+elseif(WERROR_LEVEL_2)
+	set(PARANO_CMAKE_CXX_FLAGS "${PARANO_CMAKE_CXX_FLAGS} -Werror=return-type")
+	set(PARANO_CMAKE_CXX_FLAGS "${PARANO_CMAKE_CXX_FLAGS} -Werror=format-security -Wformat")
+	set(PARANO_CMAKE_CXX_FLAGS "${PARANO_CMAKE_CXX_FLAGS} -Werror=old-style-cast")
+	set(PARANO_CMAKE_CXX_FLAGS "${PARANO_CMAKE_CXX_FLAGS} -Werror=return-type -Werror=shadow")
+	set(PARANO_CMAKE_CXX_FLAGS "${COMMON_CMAKE_CXX_FLAGS} -Werror -pedantic")
+	set(PARANO_CMAKE_CXX_FLAGS "${COMMON_CMAKE_CXX_FLAGS} -Werror=switch-default -Werror=unused-result")
+	set(PARANO_CMAKE_CXX_FLAGS "${PARANO_CMAKE_CXX_FLAGS} -Werror=implicit-function-declaration")
+	set(PARANO_CMAKE_CXX_FLAGS "${PARANO_CMAKE_CXX_FLAGS} -Werror=non-virtual-dtor -Werror=address -Werror=sequence-point")
+	set(PARANO_CMAKE_CXX_FLAGS "${PARANO_CMAKE_CXX_FLAGS} -Werror=unused-result")
+endif()
 
-set(PARANO_CMAKE_CXX_FLAGS "${COMMON_CMAKE_CXX_FLAGS} -Werror -pedantic")
-set(PARANO_CMAKE_CXX_FLAGS "${COMMON_CMAKE_CXX_FLAGS} -Werror=switch-default -Werror=unused-result")
-set(PARANO_CMAKE_CXX_FLAGS "${PARANO_CMAKE_CXX_FLAGS} -Werror=return-type -Werror=shadow")
-set(PARANO_CMAKE_CXX_FLAGS "${PARANO_CMAKE_CXX_FLAGS} -Werror=implicit-function-declaration")
-set(PARANO_CMAKE_CXX_FLAGS "${PARANO_CMAKE_CXX_FLAGS} -Werror=non-virtual-dtor -Werror=address -Werror=sequence-point")
-set(PARANO_CMAKE_CXX_FLAGS "${PARANO_CMAKE_CXX_FLAGS} -Werror=unused-result")
-set(PARANO_CMAKE_CXX_FLAGS "${PARANO_CMAKE_CXX_FLAGS} -Werror=format-security -Wformat")
 
 
 #if(CMAKE_C_COMPILER_ID STREQUAL "GNU" OR CMAKE_C_COMPILER_ID STREQUAL "Clang")
@@ -88,7 +96,7 @@ if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU" OR CMAKE_CXX_COMPILER_ID STREQUAL "Clang
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${GCC_COMMON_WARNING_FLAGS} -Wnon-virtual-dtor -Woverloaded-virtual")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${GCC_COMMON_WARNING_FLAGS} -Wno-long-long -Wformat")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${GCC_COMMON_WARNING_FLAGS} -Wfloat-equal -Wdisabled-optimization")
-    #set(CMAKE_CXX_FLAGS "${PARANO_CMAKE_CXX_FLAGS}")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${PARANO_CMAKE_CXX_FLAGS}")
 endif()
 
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG}                        ${COMMON_CMAKE_CXX_FLAGS}")

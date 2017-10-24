@@ -10,21 +10,21 @@ if(WIN32)
     if(MSVS OR MSYS OR MINGW)
         # set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} $ENV{QT5_DIR} )
         set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} 
-			"D:/Qt/Qt5.8.0/5.8/mingw53_32" 
-			"${CMAKE_ARCHIVE_OUTPUT_DIRECTORY}/lib"
-			"${CMAKE_LIBRARY_OUTPUT_DIRECTORY}/lib"
-			"${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/bin"
-			# "H:/levitics/Arkhe/amd64-windows-Debug/Windows-GNU_GCC_5.3.0-AMD64-Debug/include/gtest"
-			# "H:/levitics/Arkhe/amd64-windows-Debug/Windows-GNU_GCC_5.3.0-AMD64-Debug/include/gmock"
-		) # remember to add D:\Qt\Qt5.8.0\5.8\mingw53_32\bin to %PATH%
-        # SET(CMAKE_FIND_ROOT_PATH 
-			# "D:/Qt/Qt5.8.0/5.8/mingw53_32" 
-			# "D:/Qt/Qt5.8.0/Tools/mingw530_32" 
-			# "D:/Qt/Qt5.8.0/Tools/mingw530_32/include"
-			# "${CMAKE_ARCHIVE_OUTPUT_DIRECTORY}"
-			# "${CMAKE_LIBRARY_OUTPUT_DIRECTORY}"
-			# "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}"
-		# )
+            "D:/Qt/Qt5.8.0/5.8/mingw53_32"
+            "${CMAKE_ARCHIVE_OUTPUT_DIRECTORY}/lib"
+            "${CMAKE_LIBRARY_OUTPUT_DIRECTORY}/lib"
+            "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/bin"
+            # "H:/levitics/Arkhe/amd64-windows-Debug/Windows-GNU_GCC_5.3.0-AMD64-Debug/include/gtest"
+            # "H:/levitics/Arkhe/amd64-windows-Debug/Windows-GNU_GCC_5.3.0-AMD64-Debug/include/gmock"
+            ) # remember to add D:\Qt\Qt5.8.0\5.8\mingw53_32\bin to %PATH%
+        # SET(CMAKE_FIND_ROOT_PATH
+        # "D:/Qt/Qt5.8.0/5.8/mingw53_32"
+        # "D:/Qt/Qt5.8.0/Tools/mingw530_32"
+        # "D:/Qt/Qt5.8.0/Tools/mingw530_32/include"
+        # "${CMAKE_ARCHIVE_OUTPUT_DIRECTORY}"
+        # "${CMAKE_LIBRARY_OUTPUT_DIRECTORY}"
+        # "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}"
+        # )
 
         # set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
         # set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM BOTH)
@@ -74,12 +74,22 @@ find_package( Qt5Gui REQUIRED )
 find_package( Qt5Location REQUIRED )
 find_package( Qt5DataVisualization REQUIRED )
 find_package( Qt5Network REQUIRED )
+find_package( Qt5Multimedia REQUIRED)
 find_package( Qt5OpenGL REQUIRED )
 find_package( Qt5Purchasing REQUIRED )
-find_package( Qt5Xml REQUIRED )
 find_package( Qt5Svg REQUIRED )
+find_package( Qt5Xml REQUIRED )
 find_package( Qt5XmlPatterns REQUIRED )
 find_package( Qt5Scxml REQUIRED )
 find_package( Qt5Positioning REQUIRED )
-
+find_package( Qt5WebKit REQUIRED )
+find_package( Qt5WebKitWidgets REQUIRED )
+find_package( Qt5UiTools REQUIRED )
+find_package( Qt5Script REQUIRED )
+find_package( Qt5Sql REQUIRED )
+find_package( Qt5Qml REQUIRED )
+find_package( Qt53DCore REQUIRED )
+find_package( Qt53DExtras REQUIRED )
+find_package( Qt53DRender REQUIRED )
+find_package( Qt53DInput REQUIRED )
 
