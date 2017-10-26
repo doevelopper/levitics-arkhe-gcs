@@ -1,4 +1,3 @@
-
 #ifndef LEVITICS_OSGI_CORE_LOGGER_PRIVATE_LOGGERPRIVATE_HPP
 #define LEVITICS_OSGI_CORE_LOGGER_PRIVATE_LOGGERPRIVATE_HPP
 
@@ -39,59 +38,75 @@ class LoggerPrivate
 {
     enum Level
     {
-        EMERGENCY = (1 << 0),    /* system is unusable. A panic condition was reported to all processes. */
-        CRITICAL  = (1 << 1),    /* critical conditions */
-        FATAL =     (1 << 2),
-        ALERT =     (1 << 3),    /* action must be taken immediately. A condition that should be corrected immediately.  */
-        ERROR =     (1 << 4),     /* error conditions */
-        WARNING =   (1 << 5),    /* warning conditions */
-        INFO =      (1 << 6),     /* informational */
-        TRACE =     (1 << 7),    /* normal but significant condition. A condition requiring special handling.  */
-        DEBUG =     (1 << 8)     /* debug-level messages. A message useful for debugging programs.  */
+        EMERGENCY = (1 << 0),
+
+        /* system is unusable. A panic condition was reported to all processes. */
+        CRITICAL = (1 << 1),
+
+        /* critical conditions */
+        FATAL = (1 << 2),
+        ALERT = (1 << 3),
+
+        /* action must be taken immediately. A condition that should be corrected immediately.  */
+        ERROR = (1 << 4),
+
+        /* error conditions */
+        WARNING = (1 << 5),
+
+        /* warning conditions */
+        INFO = (1 << 6),
+
+        /* informational */
+        TRACE = (1 << 7),
+
+        /* normal but significant condition. A condition requiring special handling.  */
+        DEBUG = (1 << 8)         /* debug-level messages. A message useful for debugging programs.  */
 
     };
 
-    public:
+public:
 
-        LoggerPrivate(unsigned long delay = 5000L);
-        ~LoggerPrivate();
+    LoggerPrivate( unsigned long delay = 5000L );
+    ~LoggerPrivate( );
 
-        unsigned long periodicalCheck () const;
-        void loggerReset ();
-        log4cxx::LoggerPtr getLoggerByName (const char * loggerName);
-        void loadConfig (const std::string & configFilename);
-        void loadConfigAndWatch (const std::string & configFilename);
-        void loggerNames (std::vector<std::string> & names);
-        log4cxx::LoggerPtr operator -> (void)
-        {
-            return this->m_logger;
-        }
-        //    log4cxx::LoggerPtr operator = (const LoggerPrivate &logger)
-        //    {
-        //        return this->m_logger;
-        //    }
+    unsigned long periodicalCheck ( ) const;
+    void loggerReset ( );
+    log4cxx::LoggerPtr getLoggerByName ( const char * loggerName );
+    void loadConfig ( const std::string & configFilename );
+    void loadConfigAndWatch ( const std::string & configFilename );
+    void loggerNames ( std::vector<std::string> & names );
+    log4cxx::LoggerPtr
+    operator ->( void )
+    {
+        return this->m_logger;
+    }
 
-        log4cxx::Logger * loggerSvce;
+// log4cxx::LoggerPtr operator = (const LoggerPrivate &logger)
+// {
+// return this->m_logger;
+// }
 
-        Q_DISABLE_COPY(LoggerPrivate);
+    log4cxx::Logger * loggerSvce;
 
-    private:
+    Q_DISABLE_COPY( LoggerPrivate );
 
-        bool checkLogManagerStatus ();
-        std::string getFileExtension (const std::string & s);
-        /*!
-         *  @brief Value for periodical check if configFilename has been created or modified!
-         */
-        unsigned long m_watchPeriod;
-        /*!
-         *  @brief Value for periodical check if configFilename has been created or modified!
-         */
-        static const char * configEnv;
-        /*!
-         *  @brief Value for periodical check if configFilename has been created or modified!
-         */
-        log4cxx::LoggerPtr m_logger;
-        static std::string m_loggerConfigLocation;
+private:
+
+    bool checkLogManagerStatus ( );
+    std::string getFileExtension ( const std::string & s );
+/*!
+ *  @brief Value for periodical check if configFilename has been created or modified!
+ */
+    unsigned long m_watchPeriod;
+/*!
+ *  @brief Value for periodical check if configFilename has been created or modified!
+ */
+    static const char * configEnv;
+/*!
+ *  @brief Value for periodical check if configFilename has been created or modified!
+ */
+    log4cxx::LoggerPtr m_logger;
+    static std::string m_loggerConfigLocation;
 };
 
 #endif

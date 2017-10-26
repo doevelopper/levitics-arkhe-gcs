@@ -8,14 +8,17 @@ class AbstractObject;
 class AbstractObjectPrivate
 {
 public:
-    AbstractObjectPrivate();
-    AbstractObjectPrivate(AbstractObject *q = Q_NULLPTR);
-    AbstractObjectPrivate(const AbstractObjectPrivate& other, AbstractObject *q = Q_NULLPTR);
-    virtual ~AbstractObjectPrivate();
+
+    AbstractObjectPrivate( );
+    AbstractObjectPrivate( AbstractObject * q = Q_NULLPTR );
+    AbstractObjectPrivate( const AbstractObjectPrivate & other,
+        AbstractObject * q = Q_NULLPTR );
+    virtual
+    ~AbstractObjectPrivate( );
 
     friend class AbstractObject;
 
-    AbstractObject *q_ptr;
+    AbstractObject * q_ptr;
     QAtomicInt count;
     QHash<QString, QStringList> values;
     QHash<QString, QString> properties;

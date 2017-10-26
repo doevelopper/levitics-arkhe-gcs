@@ -1,29 +1,31 @@
 #include <levitics/arkhe/gcs/osgi/core/logger/LogViewTree.hpp>
 
-LogViewTree::LogViewTree(QWidget *parent)
-: QTreeWidget(parent)
+LogViewTree::LogViewTree( QWidget * parent )
+    :   QTreeWidget( parent )
 {
 
 }
 
-LogViewTree::~LogViewTree(void)
+LogViewTree::~LogViewTree( void )
 {
 
 }
 
-void LogViewTree::onItemClicked(QTreeWidgetItem *item, int)
+void
+LogViewTree::onItemClicked( QTreeWidgetItem * item,
+    int )
 {
-    if (item == this->runtime)
+    if( item == this->runtime )
     {
-        emit runtimeClicked();
+        emit runtimeClicked( );
     }
-    else if (item == this->file)
+    else
+    if( item == this->file )
     {
         ;
     }
     else
     {
-        emit fileClicked(item->text(0));
+        emit fileClicked( item->text( 0 ) );
     }
 }
-

@@ -1,4 +1,3 @@
-
 #ifndef LEVITICS_ARKHE_GCS_OSGI_CORE_EDAC_DEMANGLERTEST_HPP
 #define LEVITICS_ARKHE_GCS_OSGI_CORE_EDAC_DEMANGLERTEST_HPP
 
@@ -7,10 +6,11 @@ class DemanglerTest
 {
 public:
 
-    DemanglerTest();
-    virtual ~DemanglerTest();
+    DemanglerTest( );
+    virtual
+    ~DemanglerTest( );
 
-	private:
+private:
 
 };
 

@@ -1,4 +1,3 @@
-
 #ifndef LEVITICS_OSGI_CORE_LOGGER_LOGGER_HPP
 #define LEVITICS_OSGI_CORE_LOGGER_LOGGER_HPP
 
@@ -8,25 +7,33 @@
 
 #include <levitics/arkhe/gcs/osgi/core/logger/Logger.hpp>
 
+namespace a { namespace b { namespace c {
+}                         }}
+
 namespace levitics::arkhe::gcs::osgi::core::logger::test
 {
-	class LoggerTest : public ::testing::Test
-	{
-	public:
 
-		explicit LoggerTest ();
-		virtual ~LoggerTest ();
+    class LoggerTest : public ::testing::Test
+    {
+public:
 
-		virtual void SetUp ();
-		virtual void TearDown ();
+        explicit
+        LoggerTest ( );
+        virtual
+        ~LoggerTest ( );
 
-	protected:
-		static log4cxx::LoggerPtr logger;
+        virtual void SetUp ( );
+        virtual void TearDown ( );
 
-	private:
+protected:
 
-		Logger * objectToTest;
-	};
+        static log4cxx::LoggerPtr logger;
+
+private:
+
+        Logger * objectToTest;
+    };
+
 }
 
 #endif

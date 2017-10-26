@@ -1,4 +1,3 @@
-
 #include <typeinfo>
 #include <QDebug>
 #include <type_traits>
@@ -7,35 +6,35 @@
 #include <system_error>
 #include <levitics/arkhe/gcs/osgi/core/edac/Exception.hpp>
 
-Exception::TraceManipulator::TraceManipulator(const Exception * e)
-    : Exc(e)
+Exception::TraceManipulator::TraceManipulator( const Exception * e )
+    :   Exc( e )
 {
 }
 
 QDebug
-Exception::TraceManipulator::print (QDebug dbg) const
+Exception::TraceManipulator::print( QDebug dbg ) const
 {
-    if (Exc)
-        Exc->printStackTrace(dbg);
+    if( Exc )
+        Exc->printStackTrace( dbg );
 
-    return dbg.maybeSpace();
+    return dbg.maybeSpace( );
 }
 
-Exception::Exception(Exception const &)
+Exception::Exception( Exception const & )
 {
 
 }
 
-Exception::~Exception()
+Exception::~Exception( )
 {
 
 }
 
 QDebug
-Exception::printStackTrace (QDebug dbg) const
+Exception::printStackTrace( QDebug dbg ) const
 {
     QSet<const Exception *> dejaVu;
-    dejaVu.insert(this);
+    dejaVu.insert( this );
     /*
        // Print our stack trace
        dbg.nospace() << this->what() << '\n';
@@ -58,47 +57,51 @@ Exception::printStackTrace (QDebug dbg) const
 }
 
 QString
-Exception::message () const throw ()
+Exception::message( ) const throw ()
 {
     return m_msg;
 }
 
 Exception::TraceManipulator
-Exception::printStackTrace () const
+Exception::printStackTrace( ) const
 {
-    return TraceManipulator(this);
+    return TraceManipulator( this );
 }
 
 Exception *
-Exception::clone () const
+Exception::clone( ) const
 {
-    return new Exception(*this);
+    return new Exception( *this );
 }
 
 void
-Exception::rethrow () const
+Exception::rethrow( ) const
 {
     throw *this;
 }
 
-std::system_error Exception::make_syserr (int e ,
-                                          const char * msg)
+std::system_error
+Exception::make_syserr( int e,
+    const char * msg )
 {
-    return std::system_error(std::error_code(e , std::system_category()) , msg);
+    return std::system_error( std::error_code( e, std::system_category( ) ), msg );
 }
 
-std::system_error Exception::make_syserr (int e ,
-                                          const std::string & msg)
+std::system_error
+Exception::make_syserr( int e,
+    const std::string & msg )
 {
-    return make_syserr(e , msg.c_str());
+    return make_syserr( e, msg.c_str( ) );
 }
 
-std::system_error Exception::make_syserr (const std::string & msg)
+std::system_error
+Exception::make_syserr( const std::string & msg )
 {
-    return make_syserr(errno , msg);
+    return make_syserr( errno, msg );
 }
 
-std::system_error Exception::make_syserr (const char * msg)
+std::system_error
+Exception::make_syserr( const char * msg )
 {
-    return make_syserr(errno , msg);
+    return make_syserr( errno, msg );
 }

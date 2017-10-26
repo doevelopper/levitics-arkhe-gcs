@@ -1,25 +1,27 @@
-##  http://code-weblog.com/analyse-statique-de-code-c-avec-cppcheck/
-
-set(CPPCHECK_HTMLREPORT_GENERATOR "${PROJECT_SOURCE_DIR}/src/main/resources/scripts/cppcheck-htmlreport")
+set(CPPCHECK_HTMLREPORT_GENERATOR "${PROJECT_SOURCE_DIR}/src/main/resources/scripts/cppcheck-htmlreport.py")
 set(CONTROVERSIAL "–inconclusive")
 set(CPPCHECK_TEMPLATE_ARG --template gcc) # --template="[{severity}][{id}] {message} {callstack} \(On {file}:{line}\)" 
 
 set(CPPCHECK_OPTIONS
     ${CONTROVERSIAL}
     --report-progress
-    --platform=native
-#    --enable=warning,performance,portability,information,missingInclude,unusedFunction,style
-    --enable=all
-    --std=c++11 
+#    --platform=native
+    --platform=unix64
+    --enable=warning,performance,portability,information,missingInclude,style
+#    --project=/home/happyman/Documents/levitics-arkhe-cfs/build/Debug/compile_commands.json
+#    --enable=all
+    --std=c++14
     --std=c11
     --std=posix
     --inline-suppr
+#    --language=c, c++
 #    --suppress=missingIncludeSystem
 #    --library=qt.cfg 
     --verbose 
 #    --quiet
     --xml-version=2
-    -j${Ncpu}
+    -j4
+#    -j${Ncpu}
 #    --error-exitcode=25000
 #    -I${INC_DIR}
 )
@@ -32,17 +34,19 @@ if(ENABLE_CPPCHECK)
     endif(PYTHONINTERP_FOUND)
 
     find_program(CPPCHECK cppcheck
-#        NAMES cppcheck
-#        PATHS  
+        NAMES cppcheck
+        PATHS  /usr/local/bin
 #        NO_DEFAULT_PATH
     )
+
     if(CPPCHECK)
-        execute_process(
-            COMMAND ${CPPCHECK} --version OUTPUT_VARIABLE CPPCHECK_VERSION
-            OUTPUT_STRIP_TRAILING_WHITESPACE)
-            string(REGEX REPLACE ".+([0-9]+\\.[0-9]+)" "\\1" CPPCHECK_VERSION ${CPPCHECK_VERSION}
-        )
-        message(STATUS "${CPPCHECK} : ${CPPCHECK_VERSION}")
+        message(STATUS "${CPPCHECK} : found")
+#        execute_process(
+#            COMMAND ${CPPCHECK} --version OUTPUT_VARIABLE CPPCHECK_VERSION
+#            OUTPUT_STRIP_TRAILING_WHITESPACE)
+#            string(REGEX REPLACE ".+([0-9]+\\.[0-9]+)" "\\1" CPPCHECK_VERSION ${CPPCHECK_VERSION}
+#        )
+#        message(STATUS "${CPPCHECK} : ${CPPCHECK_VERSION}")
         mark_as_advanced(UNCRUSTIFY)
         set(RUN_CPPCHECK ON)
     endif(CPPCHECK)
@@ -61,11 +65,13 @@ function(ADD_CPPCHECK_ANALYSIS target_name bin_folder)
         file(GLOB_RECURSE ALL_HEADER_FILES ${bin_folder} *.hpp)
 
         add_custom_target( ${target_name}-cppcheck
-            COMMAND ${CPPCHECK}  ${CPPCHECK_OPTIONS} ${CPPCHECK_TEMPLATE_ARG} ${ALL_SOURCE_FILES} ${ALL_HEADER_FILES} 
+#            COMMAND ${CPPCHECK}  ${CPPCHECK_OPTIONS} ${CPPCHECK_TEMPLATE_ARG} ${ALL_SOURCE_FILES} ${ALL_HEADER_FILES} 
+            COMMAND cppcheck  ${CPPCHECK_OPTIONS} ${CPPCHECK_TEMPLATE_ARG} ${ALL_SOURCE_FILES} ${ALL_HEADER_FILES} 
                     --cppcheck-build-dir=${WORKING_DIR} 2> ${WORKING_DIR}/cppcheck.xml
             COMMAND ${PYTHON_EXECUTABLE} ${CPPCHECK_HTMLREPORT_GENERATOR} --title=${target_name} --file=${WORKING_DIR}/cppcheck.xml
                     --source-dir=${bin_folder} --report-dir=${WORKING_DIR}
             WORKING_DIRECTORY ${bin_folder}
+            DEPENDS ${ALL_SOURCE_FILES} ${ALL_HEADER_FILES}
             COMMENT "[CPPCHECK-Target] ${bin_folder}"
         )
 
@@ -81,26 +87,7 @@ function(ADD_CPPCHECK_ANALYSIS target_name bin_folder)
             COMMENT "Static code analysis."
         )
     endif()
+
     add_dependencies(cppcheck ${target_name}-cppcheck)
 
 endfunction(ADD_CPPCHECK_ANALYSIS)
-
-#     add_cppcheck(<target>
-#                  [ALL]
-#                  [IGNORE_WARNINGS]
-#                  [IGNORE_STYLE]
-#                  [IGNORE_PERFORMANCE]
-#                  [IGNORE_PORTABILITY]
-#                  [IGNORE_INFORMATION]
-#                  [IGNORE_UNUSED_FUNC]
-#                  [IGNORE_MISSING_INCLUDE]
-#                  [WARNINGS]
-#                  [STYLE]
-#                  [PERFORMANCE]
-#                  [PORTABILITY]
-#                  [INFORMATION]
-#                  [UNUSED_FUNC]
-#                  [MISSING_INCLUDE]
-#                  [FORCE_CHECK]
-#                  [INCLUDES])
-

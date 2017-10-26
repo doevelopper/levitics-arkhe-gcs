@@ -12,16 +12,18 @@ class Application;
 class EXPORT_API ApplicationPrivate
 {
 public:
-    ApplicationPrivate();
-    ApplicationPrivate(ApplicationPrivate *q = Q_NULLPTR);
-    virtual ~ApplicationPrivate();
 
-    virtual void initialize(void);
-    void setApplication(QCoreApplication *app);
+    ApplicationPrivate( );
+    ApplicationPrivate( ApplicationPrivate * q = Q_NULLPTR );
+    virtual
+    ~ApplicationPrivate( );
 
-    QSettings *settings;
-    QCommandLineParser *parser;
-    QCoreApplication *app;
+    virtual void initialize ( void );
+    void setApplication ( QCoreApplication * app );
+
+    QSettings * settings;
+    QCommandLineParser * parser;
+    QCoreApplication * app;
 };
 
 #endif

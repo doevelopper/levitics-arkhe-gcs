@@ -13,25 +13,31 @@ class LogViewList : public QListView
     Q_OBJECT
 
 public:
-     LogViewList(QWidget *parent = 0);
-    ~LogViewList();
+
+    LogViewList( QWidget * parent = Q_NULLPTR );
+    ~LogViewList( );
 
 public slots:
-    void setRuntime(void);
-    void setFile(const QString& path);
-    void setAutoScroll(bool autoScroll);
+
+    void setRuntime ( void );
+    void setFile ( const QString & path );
+    void setAutoScroll ( bool autoScroll );
 
 public:
-    void setFilter(const QRegExp& expression);
+
+    void setFilter ( const QRegExp & expression );
 
 private:
-    LogModel *m_model;
+
+    LogModel * m_model;
 
 private:
+
     QHash<QString, QStringListModel *> m_models;
 
 private:
-    QSortFilterProxyModel *m_proxy;
+
+    QSortFilterProxyModel * m_proxy;
 
 };
 

@@ -10,20 +10,23 @@ class BackTrace
 {
 public:
 
-    BackTrace ();
-    BackTrace(const BackTrace& other);
-    virtual ~BackTrace() throw();
+    BackTrace ( );
+    BackTrace( const BackTrace & other );
+    virtual
+    ~BackTrace( ) throw ();
 
-    BackTrace(size_t framesNumber = DEFAULT_STACK_SIZE);
-    size_t stackSize() const;
-    void* returnAddress(unsigned frameNumber) const;
-    QString stackFrame(unsigned frameNumber) const;
-    QList<QString> stackTrace() const;
+    BackTrace( size_t framesNumber = DEFAULT_STACK_SIZE );
+    size_t stackSize ( ) const;
+    void * returnAddress ( unsigned frameNumber ) const;
+    QString stackFrame ( unsigned frameNumber ) const;
+    QList<QString> stackTrace ( ) const;
+
 protected:
 
 private:
-  QScopedPointer<BackTracePrivate> d;
-  static size_t const DEFAULT_STACK_SIZE;
+
+    QScopedPointer<BackTracePrivate> d;
+    static size_t const DEFAULT_STACK_SIZE;
 };
 
 #endif

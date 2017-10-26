@@ -1,34 +1,35 @@
-
 #include <iostream>
 #include <sstream>
 #include <locale>
 
 #include <levitics/arkhe/gcs/osgi/core/edac/private/BackTracePrivate.hpp>
 
-BackTracePrivate::BackTracePrivate ()
+BackTracePrivate::BackTracePrivate ( )
 {
 
 }
 
-BackTracePrivate::~BackTracePrivate ()
+BackTracePrivate::~BackTracePrivate ( )
 {
 
 }
 
-int BackTracePrivate::trace (void * * addresses ,
-                             size_t size) const
+int
+BackTracePrivate::trace( void * * addresses,
+    size_t size ) const
 {
     // return ::backtrace(array , n);
 }
 
 std::string
-BackTracePrivate::getSymbol (void * ptr) const
+BackTracePrivate::getSymbol( void * ptr ) const
 {
-    if (!ptr)
-        return std::string();
+    if( !ptr )
+        return std::string( );
 
     std::ostringstream res;
-    res.imbue(std::locale::classic());
+    res.imbue( std::locale::classic( ) );
     res << ptr;
-    return res.str();
+
+    return res.str( );
 }

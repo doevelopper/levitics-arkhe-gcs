@@ -27,7 +27,7 @@ set(LINT_FILTER) # basically everything Google C++ Style recommends. Except...
 
 #  set(LINT_FILTER ${LINT_FILTER}-build/class,)
 #  set(LINT_FILTER ${LINT_FILTER}-build/c++11,)
-#  set(LINT_FILTER ${LINT_FILTER}-build/c++14,)
+  set(LINT_FILTER ${LINT_FILTER}+build/c++14,)
 #  set(LINT_FILTER ${LINT_FILTER}-build/c++tr1,)
 #  set(LINT_FILTER ${LINT_FILTER}-build/deprecated,)
 #  set(LINT_FILTER ${LINT_FILTER}-build/endif_comment,)
@@ -38,7 +38,7 @@ set(LINT_FILTER) # basically everything Google C++ Style recommends. Except...
 #  set(LINT_FILTER ${LINT_FILTER}-build/include_subdir,)
 #  set(LINT_FILTER ${LINT_FILTER}-build/include_alpha,)
 #  set(LINT_FILTER ${LINT_FILTER}-build/include_order,)
-#  set(LINT_FILTER ${LINT_FILTER}-build/include_what_you_use,)
+  set(LINT_FILTER ${LINT_FILTER}+build/include_what_you_use,)
   set(LINT_FILTER ${LINT_FILTER}-build/namespaces_literals,)
   set(LINT_FILTER ${LINT_FILTER}-build/namespaces,)
 #  set(LINT_FILTER ${LINT_FILTER}-build/printf_format,)
@@ -140,16 +140,13 @@ set(LINT_FILTER) # basically everything Google C++ Style recommends. Except...
 
 mark_as_advanced(LINT_FILTER)
 
-#set(LINT_SCRIPT "${CMAKE_CURRENT_LIST_DIR}/cpplint.py")
-#set(LINT_SCRIPT "${PROJECT_SOURCE_DIR}/src/main/resources/scripts/stylecheck/cpplint.py")
+
 set(LINT_SCRIPT "${PROJECT_SOURCE_DIR}/src/main/resources/scripts/cpplint-1.3.0/cpplint.py")
 mark_as_advanced(LINT_SCRIPT)
-#set(LINT_WRAPPER "${CMAKE_CURRENT_LIST_DIR}/cpplint-wrapper.py")
-set(LINT_WRAPPER "${PROJECT_SOURCE_DIR}/src/main/resources/scripts/stylecheck/cpplint-wrapper.py")
+set(LINT_WRAPPER "${PROJECT_SOURCE_DIR}/src/main/resources/scripts/cpplint-wrapper.py")
 mark_as_advanced(LINT_WRAPPER)
-#message(STATUS "LINT_SCRIPT ${LINT_SCRIPT}")
-#message(STATUS "LINT_WRAPPER ${LINT_WRAPPER}")
-# 100 chars per line, which is suggested as an option in the style guide
+
+# 120 chars per line, which is suggested as an option in the style guide
 set(LINT_LINELENGTH 120)
 mark_as_advanced(LINT_LINELENGTH)
 
@@ -163,9 +160,9 @@ mark_as_advanced(LINT_LINELENGTH)
 #    The root folder used to determine desired include-guard comments.
 #  bin_folder:
 #    The temporary build folder to store a cpplint history file.
-function(CPPLINT_RECURSIVE target_name src_folder root_folder)
+function(CPPLINT_RECURSIVE target_name src_folder top_level_directory)
     if(RUN_CPPLINT)
-#        message(STATUS "${target_name}: src=${src_folder}, root=${root_folder}, bin=${bin_folder}")
+#        message(STATUS "${target_name}: src=${src_folder}, rootpository=${top_level_directory}")
         if(NOT TARGET ${target_name}-lint)
             set(WORKING_DIR "${TARGET_BUILD_DIRECTORY}/qa/cpplint/${target_name}")
             file(MAKE_DIRECTORY ${WORKING_DIR})
@@ -175,10 +172,13 @@ function(CPPLINT_RECURSIVE target_name src_folder root_folder)
                             --cpplint-file=${LINT_SCRIPT}
                             --history-file=${WORKING_DIR}/lint_history
                             --linelength=${LINT_LINELENGTH}
+                            --exclude=${top_level_directory}/src/test/*.cpp 
+                            --exclude=${top_level_directory}/src/test/*.hpp
+#                            --headers=hpp
 #                            --extensions=cpp,hpp
                             --filter=${LINT_FILTER}
-                            --root=cpp
-#                            --repository=didactics #${src_folder}
+#                            --root=cpp
+#                            --repository=${top_level_directory}
                             --output=junit
 #                            --style-error
 #                            --recursive
@@ -187,13 +187,13 @@ function(CPPLINT_RECURSIVE target_name src_folder root_folder)
                             --verbose=5
 #                            --root=DIDACTICS
                             ${src_folder}
-#                            > ${WORKING_DIR}/lint.xml 2>&1
+                            > ${WORKING_DIR}/lint.xml 2>&1
                          WORKING_DIRECTORY ${WORKING_DIR}
-                         COMMENT "[CPPLINT-Target:${target_name}] ${WORKING_DIR}"
+                         COMMENT "[CPPLINT-Target:${target_name}] ${src_folder}"
             )
         endif()
     else(RUN_CPPLINT)
-        add_custom_target(${target_name} COMMAND ${CMAKE_COMMAND} -E echo NoLint)
+        add_custom_target(${target_name}-lint COMMAND ${CMAKE_COMMAND} -E echo NoLint)
     endif(RUN_CPPLINT)
 
     if(NOT TARGET lint)
@@ -205,4 +205,3 @@ function(CPPLINT_RECURSIVE target_name src_folder root_folder)
     add_dependencies(lint ${target_name}-lint)
 
 endfunction(CPPLINT_RECURSIVE)
-

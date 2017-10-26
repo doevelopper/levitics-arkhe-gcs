@@ -7,9 +7,9 @@ class BackTraceTest
 {
 public:
 
-    BackTraceTest ();
-    BackTraceTest(const BackTraceTest& other);
-    ~BackTraceTest ();
+    BackTraceTest ( );
+    BackTraceTest( const BackTraceTest & other );
+    ~BackTraceTest ( );
 
 protected:
 

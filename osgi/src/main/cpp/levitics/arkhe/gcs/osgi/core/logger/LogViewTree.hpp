@@ -6,21 +6,26 @@
 class LogViewTree : public QTreeWidget
 {
     Q_OBJECT
+
 public:
-    LogViewTree(QWidget *parent = Q_NULLPTR);
-    ~LogViewTree();
+
+    LogViewTree( QWidget * parent = Q_NULLPTR );
+    ~LogViewTree( );
 
 signals:
-    void runtimeClicked(void);
-    void fileClicked(const QString& path);
+
+    void runtimeClicked ( void );
+    void fileClicked ( const QString & path );
 
 protected slots:
-    void onItemClicked(QTreeWidgetItem *, int);
+
+    void onItemClicked ( QTreeWidgetItem *,
+                         int );
 
 private:
-    QTreeWidgetItem *runtime;
-    QTreeWidgetItem *file;
+
+    QTreeWidgetItem * runtime;
+    QTreeWidgetItem * file;
 };
 
 #endif
-

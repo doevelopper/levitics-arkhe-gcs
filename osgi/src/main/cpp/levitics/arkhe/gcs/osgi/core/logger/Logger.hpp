@@ -1,4 +1,3 @@
-
 #ifndef LEVITICS_ARKHE_GCS_OSGI_CORE_LOGGER_LOGGER_HPP
 #define LEVITICS_ARKHE_GCS_OSGI_CORE_LOGGER_LOGGER_HPP
 
@@ -15,65 +14,63 @@
 // #define LOG_INFO     6       /* informational */
 // #define LOG_DEBUG    7       /* debug-level messages. A message useful for debugging programs.  */
 
-#define DEBUG_LOG(msg) \
-    if (true) \
+#define DEBUG_LOG( msg ) \
+    if( true ) \
     { \
-        LOG4CXX_DEBUG(log4cxx::Logger::getLogger("development") , qPrintable(QString(msg))) \
+        LOG4CXX_DEBUG( log4cxx::Logger::getLogger( "development" ), qPrintable( QString( msg ) ) ) \
     } \
-    else (void)0
+    else (void) 0
 
-#define INFO_LOG(msg) \
-    if (true) \
+#define INFO_LOG( msg ) \
+    if( true ) \
     { \
-        LOG4CXX_INFO(log4cxx::Logger::getLogger("info.release") , QString(msg).toUtf8().constData()) \
+        LOG4CXX_INFO( log4cxx::Logger::getLogger( "info.release" ), QString( msg ).toUtf8( ).constData( ) ) \
     } \
-    else (void)0
+    else (void) 0
 
-#define WARN_LOG(msg) \
-    if (true) \
+#define WARN_LOG( msg ) \
+    if( true ) \
     { \
-        LOG4CXX_WARN(log4cxx::Logger::getLogger("info.release") , QString(msg).toUtf8().constData()) \
+        LOG4CXX_WARN( log4cxx::Logger::getLogger( "info.release" ), QString( msg ).toUtf8( ).constData( ) ) \
     } \
-    else (void)0
+    else (void) 0
 
-#define ERROR_LOG(msg) \
-    if (true) \
+#define ERROR_LOG( msg ) \
+    if( true ) \
     { \
-        LOG4CXX_ERROR(log4cxx::Logger::getLogger("errors.release") , QString(msg).toUtf8().constData()) \
+        LOG4CXX_ERROR( log4cxx::Logger::getLogger( "errors.release" ), QString( msg ).toUtf8( ).constData( ) ) \
     } \
-    else (void)0
+    else (void) 0
 
-
-#define FATAL_LOG(msg) \
-    if (true) \
+#define FATAL_LOG( msg ) \
+    if( true ) \
     { \
-        LOG4CXX_FATAL(log4cxx::Logger::getLogger("errors.release") , QString(msg).toUtf8().constData()) \
+        LOG4CXX_FATAL( log4cxx::Logger::getLogger( "errors.release" ), QString( msg ).toUtf8( ).constData( ) ) \
     } \
-    else (void)0
+    else (void) 0
 
-
-#define DEBUG(message) \
+#define DEBUG( message ) \
     ( \
-        (qDebug() << Q_FUNC_INFO << ":" << QString(message).toStdString().c_str()) , \
-        (void)0 \
+        (qDebug( ) << Q_FUNC_INFO << ":" << QString( message ).toStdString( ).c_str( ) ), \
+        (void) 0 \
     )
 
-#define WARN(message) \
+#define WARN( message ) \
     ( \
-        (qWarning() << Q_FUNC_INFO << ":" << QString(message).toStdString().c_str()) , \
-        (void)0 \
+        (qWarning( ) << Q_FUNC_INFO << ":" << QString( message ).toStdString( ).c_str( ) ), \
+        (void) 0 \
     )
 
-#define CRITICAL(message) \
+#define CRITICAL( message ) \
     ( \
-        (qCritical() << Q_FUNC_INFO << ":" << QString(message).toStdString().c_str()) , \
-        (void)0 \
+        (qCritical( ) << Q_FUNC_INFO << ":" << QString( message ).toStdString( ).c_str( ) ), \
+        (void) 0 \
     )
 
-#define FATAL(message) \
+#define FATAL( message ) \
     ( \
-        (qFatal("%s : %s" , Q_FUNC_INFO , QString(message).toStdString().c_str())) , \
-        (void)0 \
+        (qFatal( "%s : %s", Q_FUNC_INFO, QString( message ).toStdString( ).c_str( ) ) ), \
+        (void) 0 \
     )
 
 // class LoggerPrivate;
@@ -83,22 +80,24 @@ class Logger : public QObject
 public:
 
     using Superclass = QObject;
-    explicit Logger (QObject * parent = Q_NULLPTR);
-    virtual ~Logger ();
+    explicit
+    Logger ( QObject * parent = Q_NULLPTR );
+    virtual
+    ~Logger ( );
 
-    void configure ();
-    [[deprecated]]
-    void trace (const QString & s);
-    [[deprecated]]
-    void debug (const QString & s);
-    [[deprecated]]
-    void info (const QString & s);
-    [[deprecated]]
-    void warn (const QString & s);
-    [[deprecated]]
-    void error (const QString & s);
-    [[deprecated]]
-    void fatal (const QString & s);
+    void configure ( );
+    [ [deprecated]]
+    void trace ( const QString & s );
+    [ [deprecated]]
+    void debug ( const QString & s );
+    [ [deprecated]]
+    void info ( const QString & s );
+    [ [deprecated]]
+    void warn ( const QString & s );
+    [ [deprecated]]
+    void error ( const QString & s );
+    [ [deprecated]]
+    void fatal ( const QString & s );
 
 protected:
 
@@ -106,8 +105,8 @@ protected:
 
 private:
 
-    Q_DECLARE_PRIVATE(Logger)
-    Q_DISABLE_COPY(Logger)
+    Q_DECLARE_PRIVATE( Logger )
+    Q_DISABLE_COPY( Logger )
 };
 
 #endif

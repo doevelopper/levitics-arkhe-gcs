@@ -1,9 +1,9 @@
-
 #ifndef LEVITICS_ARKHE_GCS_OSGI_CORE_EDAC_EXCEPTION_HPP
 #define LEVITICS_ARKHE_GCS_OSGI_CORE_EDAC_EXCEPTION_HPP
 
 #include <QObject>
 #include <QException>
+
 // #include <expected>
 
 #include <levitics/arkhe/gcs/osgi/core/edac/BackTrace.hpp>
@@ -14,12 +14,12 @@ public:
 
     class TraceManipulator
     {
-	public:
+public:
 
-        TraceManipulator(const Exception * e);
-        QDebug print (QDebug dbg) const;
+        TraceManipulator( const Exception * e );
+        QDebug print ( QDebug dbg ) const;
 
-	private:
+private:
 
         const Exception * Exc;
 
@@ -27,33 +27,38 @@ public:
 
     using Superclass = QException;
 
-    Exception ();
-    Exception(const QString & msg);
-    Exception(const QString & msg , const Exception & cause);
-    Exception(const Exception & o);
-    Exception & operator = (const Exception & o);
-    virtual ~Exception () throw ();
+    Exception ( );
+    Exception( const QString & msg );
+    Exception( const QString & msg,
+        const Exception & cause );
+    Exception( const Exception & o );
+    Exception & operator = ( const Exception & o );
+    virtual
+    ~Exception ( ) throw ();
 
-    // virtual const char * name () const throw ();
-    // virtual const char * className () const throw ();
-    // virtual const char * what () const throw ();
+// virtual const char * name () const throw ();
+// virtual const char * className () const throw ();
+// virtual const char * what () const throw ();
 
-    TraceManipulator printStackTrace () const;
+    TraceManipulator printStackTrace ( ) const;
 
-    const Exception * cause () const throw ();
-    void setCause (const Exception & cause);
-    virtual Exception * clone () const;
-    virtual void rethrow () const;
-    QString message () const throw ();
-    std::system_error make_syserr (int e , const char * msg);
-    std::system_error make_syserr (int e , const std::string & msg);
-    std::system_error make_syserr (const std::string & msg);
-    std::system_error make_syserr (const char * msg);
-	// std::expected<void*, std::error_code> createErrc();
+    const Exception * cause ( ) const throw ();
+    void setCause ( const Exception & cause );
+    virtual Exception * clone ( ) const;
+    virtual void rethrow ( ) const;
+    QString message ( ) const throw ();
+    std::system_error make_syserr ( int e,
+                                    const char * msg );
+    std::system_error make_syserr ( int e,
+                                    const std::string & msg );
+    std::system_error make_syserr ( const std::string & msg );
+    std::system_error make_syserr ( const char * msg );
+
+// std::expected<void*, std::error_code> createErrc();
 
 protected:
 
-    virtual QDebug printStackTrace (QDebug dbg) const;
+    virtual QDebug printStackTrace ( QDebug dbg ) const;
 
 private:
 
@@ -61,52 +66,55 @@ private:
     mutable std::string m_hatMsg;
     Exception * m_nestedException;
 
-    void printEnclosedStackTrace (QDebug dbg , const QList<QString> & enclosingTrace ,
-                                  const QString & caption , const QString & prefix ,
-                                  QSet<const Exception *> & dejaVu);
+    void printEnclosedStackTrace ( QDebug dbg,
+                                   const QList<QString> & enclosingTrace,
+                                   const QString & caption,
+                                   const QString & prefix,
+                                   QSet<const Exception *> & dejaVu );
 };
 
-#define DECLARE_EXCEPTION(API , CLS , BASE)             	\
-    class API CLS : public BASE                         	\
-    {                                                   	\
-public:                                             		\
-        explicit CLS(const QString &msg);                 	\
-        CLS(const QString &msg , const Exception &exc); 	\
-        CLS(const CLS &exc);                              	\
-        ~CLS() throw ();                                   	\
-        CLS & operator = (const CLS & exc);                 \
-        const char * name() const throw ();                 \
-        CLS * clone() const;                               	\
-        void rethrow() const;                            	\
+#define DECLARE_EXCEPTION( API, CLS, BASE )                     \
+    class API CLS : public BASE                                 \
+    {                                                           \
+public:                                                         \
+        explicit CLS( const QString &msg );                       \
+        CLS( const QString &msg, const Exception &exc );         \
+        CLS( const CLS &exc );                                    \
+        ~CLS( ) throw ();                                        \
+        CLS & operator = ( const CLS & exc );                 \
+        const char * name( ) const throw ();                 \
+        CLS * clone( ) const;                                    \
+        void rethrow( ) const;                                   \
     };
 
-#define IMPLEMENT_EXCEPTION(CLS , BASE , NAME)              \
-    CLS::CLS(const QString & msg)                           \
-        : BASE(msg)                                         \
+#define IMPLEMENT_EXCEPTION( CLS, BASE, NAME )              \
+    CLS::CLS( const QString & msg )                           \
+        :   BASE( msg )                                         \
     { }                                                     \
-    CLS::CLS(const QString & msg , 							\
-             const Exception & exc)                   		\
-        : BASE(msg , exc)                                   \
+    CLS::CLS( const QString & msg,                                                      \
+    const Exception & exc )                             \
+        :   BASE( msg, exc )                                   \
     { }                                                     \
-    CLS::CLS(const CLS & exc)                              	\
-        : BASE(exc)                                         \
+    CLS::CLS( const CLS & exc )                                   \
+        :   BASE( exc )                                         \
     { }                                                     \
-    CLS::~CLS() throw ()                                    \
+    CLS::~CLS( ) throw ()                                    \
     { }                                                     \
-    CLS & CLS::operator = (const CLS & exc)                 \
+    CLS & \
+    CLS::operator =( const CLS & exc )                 \
     {                                                       \
-        BASE::operator = (exc);                             \
+        BASE::operator = ( exc );                             \
         return *this;                                       \
     }                                                       \
-    const char * CLS::name() const throw ()                 \
+    const char * CLS::name( ) const throw ()                 \
           {                                                 \
               return NAME;                                  \
           }                                                 \
-          CLS * CLS::clone() const                          \
+          CLS * CLS::clone( ) const                          \
           {                                                 \
-              return new CLS(*this);                        \
+              return new CLS( *this );                      \
           }                                                 \
-          void CLS::rethrow() const                         \
+          void CLS::rethrow( ) const                         \
           {                                                 \
               throw *this;                                  \
           }
@@ -115,6 +123,5 @@ public:                                             		\
 // DECLARE_EXCEPTION(GCS_CORE_EXPORT, RuntimeException, Exception)
 // DECLARE_EXCEPTION(GCS_CORE_EXPORT, InvalidArgumentException, RuntimeException)
 // DECLARE_EXCEPTION(GCS_CORE_EXPORT, IllegalStateException, RuntimeException)
-
 
 #endif

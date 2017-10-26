@@ -1,4 +1,3 @@
-
 #ifndef LEVITICS_ARKHE_GCS_OSGI_CORE_SETTINGS_HPP
 #define LEVITICS_ARKHE_GCS_OSGI_CORE_SETTINGS_HPP
 
@@ -7,16 +6,19 @@ class CpuidPrivate;
 class Cpuid : public QSettings
 {
 public:
-    explicit Cpuid();
-    virtual ~Cpuid();
-	
-	QString vendor();
-	
+
+    explicit
+    Cpuid( );
+    virtual
+    ~Cpuid( );
+
+    QString vendor ( );
+
 private:
 
-	void load(unsigned i);
+    void load ( unsigned i );
 
-	CpuidPrivate *d;
+    CpuidPrivate * d;
 };
 
 #endif

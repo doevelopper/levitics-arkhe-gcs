@@ -26,6 +26,12 @@ target_link_libraries( ${PROJECT_NAME}-osgi ${THIRD_PARTY_LIB}
     Qt5::Network Qt5::Core Qt5::Widgets Qt5::Svg
     Qt5::Quick Qt5::Xml Qt5::OpenGL Qt5::WebKit Qt5::WebKitWidgets
 )
+target_compile_features(${PROJECT_NAME}-osgi PUBLIC
+    cxx_constexpr
+    cxx_variadic_templates
+    cxx_final
+    cxx_override
+    )
 target_include_directories(${PROJECT_NAME}-osgi PUBLIC ${CMAKE_CURRENT_SOURCE_DIR} )
 
 # target_include_directories(${PROJECT_NAME}-osgi PUBLIC 
