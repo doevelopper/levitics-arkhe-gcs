@@ -1,23 +1,29 @@
 
 set(cppsrc
     levitics/arkhe/gcs/osgi/core/logger/private/LoggerPrivate
+    levitics/arkhe/gcs/osgi/core/logger/Logger
     levitics/arkhe/gcs/osgi/core/logger/private/LogViewPrivate
     levitics/arkhe/gcs/osgi/core/logger/LogView
     levitics/arkhe/gcs/osgi/core/logger/LogModel
     levitics/arkhe/gcs/osgi/core/logger/LogViewBar
     levitics/arkhe/gcs/osgi/core/logger/LogViewList
-    levitics/arkhe/gcs/osgi/core/logger/Logger
     levitics/arkhe/gcs/osgi/core/edac/private/BackTracePrivate
+    levitics/arkhe/gcs/osgi/core/edac/BackTrace
     levitics/arkhe/gcs/osgi/core/edac/Exception
     levitics/arkhe/gcs/osgi/core/edac/Demangler
-    levitics/arkhe/gcs/osgi/core/edac/BackTrace
 
-    levitics/arkhe/gcs/osgi/core/private/ApplicationPrivate
+
+    levitics/arkhe/gcs/osgi/core/private/OSGIApplicationPrivate
+    levitics/arkhe/gcs/osgi/core/OSGIApplication
     levitics/arkhe/gcs/osgi/core/private/CpuidPrivate
-    levitics/arkhe/gcs/osgi/core/private/AbstractObjectPrivate
     levitics/arkhe/gcs/osgi/core/Cpuid
+    levitics/arkhe/gcs/osgi/core/private/AbstractObjectPrivate
     levitics/arkhe/gcs/osgi/core/AbstractObject
     levitics/arkhe/gcs/osgi/core/Settings
+    levitics/arkhe/gcs/osgi/core/PimplPtr
+    levitics/arkhe/gcs/osgi/core/SharedPimplPtr
+	
+	levitics/arkhe/gcs/osgi/core/widgets/style/Style
 #    levitics/app/Version
  )
 

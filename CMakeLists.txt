@@ -6,9 +6,7 @@ set(PROJECT_NAME_MAJOR_VERSION       3)
 set(PROJECT_NAME_MINOR_VERSION       7)
 set(PROJECT_NAME_MICRO_VERSION       0)
 set(PROJECT_NAME_PATCH_VERSION       0)
-set(PROJECT_NAME_REVISION_VERSION    "dev")
 
-set(PROJECT_DESCRIPTION "dev")
 set(PROJECT_VERSION_MAJOR       1)
 set(PROJECT_VERSION_MINOR       5)
 set(PROJECT_VERSION_PATCH       2)
@@ -115,6 +113,13 @@ if(BUILD_MUDULE_LIKE)
 else(BUILD_MUDULE_LIKE)
     add_subdirectory(osgi)
 endif(BUILD_MUDULE_LIKE)
+
+#if(ENABLE_FORMATING_STYLE)
+#    apply_style_targets(
+#        ${PROJECT_NAME}
+#        ${CMAKE_CURRENT_BINARY_DIR}
+#    )
+#endif(ENABLE_FORMATING_STYLE)
 
 add_subdirectory(src/main/cpp)
 # add_subdirectory(src/test/cpp)

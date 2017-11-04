@@ -8,12 +8,12 @@ class Cpuid;
 
 class EXPORT_API CpuidPrivate
 {
-public:
+    public:
 
-    CpuidPrivate( );
-    virtual ~CpuidPrivate( );
+        CpuidPrivate( );
+        virtual ~CpuidPrivate( );
 
-    uint32_t regs [4];
+        uint32_t regs [4];
 };
 
 #endif

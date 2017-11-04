@@ -7,23 +7,23 @@ class AbstractObject;
 
 class AbstractObjectPrivate
 {
-public:
+    public:
 
-    AbstractObjectPrivate( );
-    AbstractObjectPrivate( AbstractObject * q = Q_NULLPTR );
-    AbstractObjectPrivate( const AbstractObjectPrivate & other,
+        AbstractObjectPrivate( );
+        AbstractObjectPrivate( AbstractObject * q = Q_NULLPTR );
+        AbstractObjectPrivate( const AbstractObjectPrivate & other,
         AbstractObject * q = Q_NULLPTR );
-    virtual
-    ~AbstractObjectPrivate( );
+        virtual
+        ~AbstractObjectPrivate( );
 
-    friend class AbstractObject;
+        friend class AbstractObject;
 
-    AbstractObject * q_ptr;
-    QAtomicInt count;
-    QHash<QString, QStringList> values;
-    QHash<QString, QString> properties;
-    QHash<QString, QStringList> metadatas;
-    bool isDeferredDeletionEnabled;
+        AbstractObject * q_ptr;
+        QAtomicInt count;
+        QHash<QString, QStringList> values;
+        QHash<QString, QString> properties;
+        QHash<QString, QStringList> metadatas;
+        bool isDeferredDeletionEnabled;
 };
 
 #endif

@@ -33,4 +33,4 @@ endif(ENABLE_CYCLOMATIC_COMPLEXITY)
 
 add_subdirectory(src/main/cpp)
 add_subdirectory(src/test/cpp)
-# add_subdirectory(src/it)
+add_subdirectory(src/it)

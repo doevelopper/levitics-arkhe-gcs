@@ -2,16 +2,21 @@
 #define LEVITICS_ARKHE_GCS_OSGI_CORE_EDAC_DEMANGLERTEST_HPP
 
 #include <levitics/arkhe/gcs/osgi/core/edac/Demangler.hpp>
-class DemanglerTest
+#include <gmock/gmock.h>
+#include <benchmark/benchmark.h>
+
+namespace levitics::arkhe::gcs::osgi::core::edac::test
 {
-public:
+    class DemanglerTest : public ::testing::Test
+    {
+        public:
 
-    DemanglerTest( );
-    virtual
-    ~DemanglerTest( );
+            DemanglerTest( );
+            virtual
+            ~DemanglerTest( );
 
-private:
+        private:
 
-};
-
+    };
+}
 #endif

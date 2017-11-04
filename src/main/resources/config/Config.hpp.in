@@ -11,6 +11,9 @@
 #define @NAMESPACE@CONFIG_HPP
 
 #include <QtCore>
+#include <QHash>
+#include <QStringList>
+#include <QVariant>
 #include <QtGlobal>
 #include <QtCore/QtGlobal>
 
@@ -188,6 +191,7 @@ inline std::size_t GcsHash::operator()(const std::complex<T>& c) const
     return seed;
 }
 
-
+using GcsProperties = QHash<QString, QVariant> ;
+using GcsDictionary = GcsProperties ;
 }
 #endif

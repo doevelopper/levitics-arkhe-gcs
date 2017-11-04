@@ -7,21 +7,21 @@ class LogViewBar : public QFrame
 {
     Q_OBJECT
 
-public:
+    public:
 
-    LogViewBar( QWidget * parent = Q_NULLPTR );
-    ~LogViewBar( );
+        LogViewBar( QWidget * parent = Q_NULLPTR );
+        ~LogViewBar( );
 
-signals:
+    signals:
 
-    void displayTrace ( bool display );
-    void displayDebug ( bool display );
-    void displayInfo ( bool display );
-    void displayWarn ( bool display );
-    void displayError ( bool display );
-    void displayFatal ( bool display );
+        void displayTrace ( bool display );
+        void displayDebug ( bool display );
+        void displayInfo ( bool display );
+        void displayWarn ( bool display );
+        void displayError ( bool display );
+        void displayFatal ( bool display );
 
-private:
+    private:
 
 };
 

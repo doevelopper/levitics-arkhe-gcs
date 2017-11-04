@@ -6,12 +6,12 @@
 #include <QDesktopWidget>
 // #include <QHighDpiScaling>
 // #include <qpa/qplatformwindow.h>
-#include <levitics/app/MultiScreenManagement.hpp>
+#include <levitics/arkhe/gcs/app/MultiScreenManagement.hpp>
 
 log4cxx::LoggerPtr MultiScreenManagement::logger =
     log4cxx::Logger::getLogger(std::string("levitics.app.MultiScreenManagement"));
 
-MultiScreenManagement::MultiScreenManagement(QWidget *       parent ,
+MultiScreenManagement::MultiScreenManagement(QWidget * parent ,
                                              Qt::WindowFlags f)
     : MULTIPLEWINDOWS (QGuiApplication::arguments().contains(QStringLiteral("--multiple")))
     , MULTIPLESCREENS (QGuiApplication::arguments().contains(QStringLiteral("--multiscreen")))
@@ -47,7 +47,6 @@ void MultiScreenManagement::resizeTopLevelWindow (QWindow * w ,
 
 }
 
-// Move a window to a new virtual screen, accounting for varying sizes.
 void MultiScreenManagement::moveToVirtualScreen (QWindow * w ,
                                                  const QScreen * newScreen)
 {
@@ -226,7 +225,7 @@ QRect MultiScreenManagement::monitorGeometry (quint32 monitor )
     auto ppi = QApplication::primaryScreen()->logicalDotsPerInch();
 }
 
-quint16 MultiScreenManagement::monitorCount () const
+qint32 MultiScreenManagement::monitorCount() const
 {
     LOG4CXX_TRACE(logger , __LOG4CXX_FUNC__);
 

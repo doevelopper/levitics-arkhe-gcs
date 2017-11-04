@@ -1,6 +1,6 @@
 
-#ifndef LEVITICS_APP_MULTISCREENMANAGEMENT_HPP
-#define LEVITICS_APP_MULTISCREENMANAGEMENT_HPP
+#ifndef LEVITICS_ARKHE_GCS_APP_MULTISCREENMANAGEMENT_HPP
+#define LEVITICS_ARKHE_GCS_APP_MULTISCREENMANAGEMENT_HPP
 
 #include <QPoint>
 #include <QRect>
@@ -12,7 +12,7 @@
 #include <QMap>
 #include <QVariant>
 #include <QByteArray>
-#include <levitics/osgi/core/logger/Logger.hpp>
+#include <levitics/arkhe/gcs/osgi/core/logger/Logger.hpp>
 
 #define MAIN_DISPLAY_WIDTH  (qApp->desktop()->screenGeometry(qApp->desktop()->primaryScreen()).width())
 #define MAIN_DISPLAY_HEIGHT (qApp->desktop()->screenGeometry(qApp->desktop()->primaryScreen()).height())
@@ -37,7 +37,7 @@ public:
     void sreensInfo ();
     void centerWidgetOnGivenScreen (QWidget * w , quint8 screenIndex = 0);
     QRect monitorGeometry (quint32 monitor );
-    quint16 monitorCount () const;
+    qint32 monitorCount () const;
     auto const primaryScreen ();
     void setScreenGeometry (QWidget &wnd);
     void screenAdded (QScreen * screen);
@@ -57,7 +57,9 @@ public:
     {
         return m_currentGeometry;
     }
-
+    /*!
+     * @brief Move a window to a new virtual screen, accounting for varying sizes.
+     */
     static void  moveToVirtualScreen (QWindow * w , const QScreen * newScreen);
     void removeScreen (int index);
 
@@ -67,7 +69,7 @@ private:
 
     const bool MULTIPLEWINDOWS;
     const bool MULTIPLESCREENS;
-    qint16 m_numberOfScreens;
+    qint32 m_numberOfScreens;
     QRect m_currentGeometry;
     QScreen * m_screen;
     static log4cxx::LoggerPtr logger;

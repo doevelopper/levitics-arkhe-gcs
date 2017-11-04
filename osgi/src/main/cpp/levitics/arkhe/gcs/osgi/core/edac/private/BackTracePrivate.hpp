@@ -30,20 +30,20 @@
 
 class BackTracePrivate
 {
-public:
+    public:
 
-    BackTracePrivate ( );
-    virtual
-    ~BackTracePrivate ( );
+        BackTracePrivate ( );
+        virtual
+        ~BackTracePrivate ( );
 
-    std::vector<void *> Frames;
-    int trace ( void * * addresses,
-                size_t size ) const;
-    std::string getSymbol ( void * address ) const;
+        std::vector<void *> Frames;
+        int trace ( void * * addresses,
+                    size_t size ) const;
+        std::string getSymbol ( void * address ) const;
 
-protected:
+    protected:
 
-private:
+    private:
 
 };
 

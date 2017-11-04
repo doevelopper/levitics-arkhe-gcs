@@ -9,18 +9,18 @@
 #include <levitics/arkhe/gcs/osgi/core/logger/LogViewTree.hpp>
 class LogViewPrivate
 {
-public:
+    public:
 
-    LogViewPrivate( );
-    ~LogViewPrivate( );
+        LogViewPrivate( );
+        ~LogViewPrivate( );
 
-    QRegExp expression ( void );
+        QRegExp expression ( void );
 
-    QStringList exclude;
-    QCheckBox * autoScroll;
-    LogViewBar * bar;
-    LogViewTree * tree;
-    LogViewList * list;
+        QStringList exclude;
+        QCheckBox * autoScroll;
+        LogViewBar * bar;
+        LogViewTree * tree;
+        LogViewList * list;
 };
 
 #endif

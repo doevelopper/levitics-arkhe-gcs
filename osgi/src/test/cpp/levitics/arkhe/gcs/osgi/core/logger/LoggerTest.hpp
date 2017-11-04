@@ -15,23 +15,23 @@ namespace levitics::arkhe::gcs::osgi::core::logger::test
 
     class LoggerTest : public ::testing::Test
     {
-public:
+        public:
 
-        explicit
-        LoggerTest ( );
-        virtual
-        ~LoggerTest ( );
+            explicit
+            LoggerTest ( );
+            virtual
+            ~LoggerTest ( );
 
-        virtual void SetUp ( );
-        virtual void TearDown ( );
+            virtual void SetUp ( );
+            virtual void TearDown ( );
 
-protected:
+        protected:
 
-        static log4cxx::LoggerPtr logger;
+            static log4cxx::LoggerPtr logger;
 
-private:
+        private:
 
-        Logger * objectToTest;
+            Logger * objectToTest;
     };
 
 }

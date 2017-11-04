@@ -3,12 +3,12 @@
 #include <QStringList>
 class LogModelPrivate
 {
-public:
+    public:
 
-    LogModelPrivate( );
-    ~LogModelPrivate( );
+        LogModelPrivate( );
+        ~LogModelPrivate( );
 
-    QStringList logs;
+        QStringList logs;
 };
 
 #endif

@@ -5,20 +5,20 @@
 class CpuidPrivate;
 class Cpuid : public QSettings
 {
-public:
+    public:
 
-    explicit
-    Cpuid( );
-    virtual
-    ~Cpuid( );
+        explicit
+        Cpuid( );
+        virtual
+        ~Cpuid( );
 
-    QString vendor ( );
+        QString vendor ( );
 
-private:
+    private:
 
-    void load ( unsigned i );
+        void load ( unsigned i );
 
-    CpuidPrivate * d;
+        CpuidPrivate * d;
 };
 
 #endif

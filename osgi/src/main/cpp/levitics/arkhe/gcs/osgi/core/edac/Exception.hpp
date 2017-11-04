@@ -10,81 +10,81 @@
 
 class Exception : public QException
 {
-public:
+    public:
 
-    class TraceManipulator
-    {
-public:
+        class TraceManipulator
+        {
+            public:
 
-        TraceManipulator( const Exception * e );
-        QDebug print ( QDebug dbg ) const;
+                TraceManipulator( const Exception * e );
+                QDebug print ( QDebug dbg ) const;
 
-private:
+            private:
 
-        const Exception * Exc;
+                const Exception * Exc;
 
-    };
+        };
 
-    using Superclass = QException;
+        using Superclass = QException;
 
-    Exception ( );
-    Exception( const QString & msg );
-    Exception( const QString & msg,
+        Exception ( );
+        Exception( const QString & msg );
+        Exception( const QString & msg,
         const Exception & cause );
-    Exception( const Exception & o );
-    Exception & operator = ( const Exception & o );
-    virtual
-    ~Exception ( ) throw ();
+        Exception( const Exception & o );
+        Exception & operator = ( const Exception & o );
+        virtual
+        ~Exception ( ) throw ();
 
 // virtual const char * name () const throw ();
 // virtual const char * className () const throw ();
 // virtual const char * what () const throw ();
 
-    TraceManipulator printStackTrace ( ) const;
+        TraceManipulator printStackTrace ( ) const;
 
-    const Exception * cause ( ) const throw ();
-    void setCause ( const Exception & cause );
-    virtual Exception * clone ( ) const;
-    virtual void rethrow ( ) const;
-    QString message ( ) const throw ();
-    std::system_error make_syserr ( int e,
-                                    const char * msg );
-    std::system_error make_syserr ( int e,
-                                    const std::string & msg );
-    std::system_error make_syserr ( const std::string & msg );
-    std::system_error make_syserr ( const char * msg );
+        const Exception * cause ( ) const throw ();
+        void setCause ( const Exception & cause );
+        virtual Exception * clone ( ) const;
+        virtual void rethrow ( ) const;
+        QString message ( ) const throw ();
+        std::system_error make_syserr ( int e,
+                                        const char * msg );
+        std::system_error make_syserr ( int e,
+                                        const std::string & msg );
+        std::system_error make_syserr ( const std::string & msg );
+        std::system_error make_syserr ( const char * msg );
 
 // std::expected<void*, std::error_code> createErrc();
 
-protected:
+    protected:
 
-    virtual QDebug printStackTrace ( QDebug dbg ) const;
+        virtual QDebug printStackTrace ( QDebug dbg ) const;
 
-private:
+    private:
 
-    QString m_msg;
-    mutable std::string m_hatMsg;
-    Exception * m_nestedException;
+        QString m_msg;
+        mutable std::string m_hatMsg;
+        Exception * m_nestedException;
 
-    void printEnclosedStackTrace ( QDebug dbg,
-                                   const QList<QString> & enclosingTrace,
-                                   const QString & caption,
-                                   const QString & prefix,
-                                   QSet<const Exception *> & dejaVu );
+        void printEnclosedStackTrace ( QDebug dbg,
+                                       const QList<QString> & enclosingTrace,
+                                       const QString & caption,
+                                       const QString & prefix,
+                                       QSet<const Exception *> & dejaVu );
 };
 
 #define DECLARE_EXCEPTION( API, CLS, BASE )                     \
     class API CLS : public BASE                                 \
     {                                                           \
-public:                                                         \
-        explicit CLS( const QString &msg );                       \
-        CLS( const QString &msg, const Exception &exc );         \
-        CLS( const CLS &exc );                                    \
-        ~CLS( ) throw ();                                        \
-        CLS & operator = ( const CLS & exc );                 \
-        const char * name( ) const throw ();                 \
-        CLS * clone( ) const;                                    \
-        void rethrow( ) const;                                   \
+        public:                                                         \
+            explicit CLS( const QString &msg );                       \
+            CLS( const QString &msg, const Exception &exc );         \
+            CLS( const CLS &exc );                                    \
+            ~CLS( ) throw ();                                        \
+            CLS & operator = ( const CLS & exc );                 \
+            const char * name( ) const throw ();                 \
+            CLS * clone( ) const;                                    \
+            void rethrow( ) const;                                   \
     };
 
 #define IMPLEMENT_EXCEPTION( CLS, BASE, NAME )              \

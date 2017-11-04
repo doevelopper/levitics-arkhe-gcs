@@ -5,12 +5,12 @@
 
 class Settings : public QSettings
 {
-public:
+    public:
 
-    explicit
-    Settings( );
-    virtual
-    ~Settings( );
+        explicit
+        Settings( );
+        virtual
+        ~Settings( );
 };
 
 #endif

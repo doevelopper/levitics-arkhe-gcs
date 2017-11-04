@@ -5,7 +5,8 @@ set(SOURCE_FILES
     # levitics/app/Version
     # levitics/app/View
     # levitics/app/mainwindow
-    # levitics/app/MultiScreenManagement
+    levitics/arkhe/gcs/app/MultiScreenManagement
+    levitics/arkhe/gcs/app/ScreensDimensions
     # levitics/app/private/MainWindowPrivate
     # levitics/app/private/GCSApplicationPrivate
     # levitics/arkhe/gcs/EnvironmentVariablesManager
@@ -31,3 +32,16 @@ target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME}-osgi ${THIRD_PARTY_LIB} )
 # target_link_libraries(${PROJECT_NAME}.bin ${PROJECT_NAME} ${TEST_THIRD_PARTY_LIB})
 # target_link_libraries(${PROJECT_NAME}.bin ${PROJECT_NAME} )
 # target_compile_definitions(${PROJECT_NAME}.bin PRIVATE "EXPORT_API=Q_DECL_EXPORT")
+
+#add_library(${PROJECT_NAME}-osgi STATIC ${cppsrc})
+#target_link_libraries( ${PROJECT_NAME}-osgi ${THIRD_PARTY_LIB}
+#    Qt5::Network Qt5::Core Qt5::Widgets Qt5::Svg
+#    Qt5::Quick Qt5::Xml Qt5::OpenGL Qt5::WebKit Qt5::WebKitWidgets
+#)
+#target_compile_features(${PROJECT_NAME}-osgi PUBLIC
+#    cxx_constexpr
+#    cxx_variadic_templates
+#    cxx_final
+#    cxx_override
+#    )
+#target_include_directories(${PROJECT_NAME}-osgi PUBLIC ${CMAKE_CURRENT_SOURCE_DIR} )

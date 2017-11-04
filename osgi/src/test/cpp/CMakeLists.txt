@@ -4,6 +4,10 @@ set(cppsrc
     levitics/arkhe/gcs/osgi/core/edac/BackTraceTest
     levitics/arkhe/gcs/osgi/core/edac/DemanglerTest
     levitics/arkhe/gcs/osgi/core/edac/ExceptionTest
+    levitics/arkhe/gcs/osgi/core/private/PimplPtrTestPrivate
+    levitics/arkhe/gcs/osgi/core/PimplPtrTest
+    levitics/arkhe/gcs/osgi/core/private/SharedPimplPtrTestPrivate
+    levitics/arkhe/gcs/osgi/core/SharedPimplPtrTest
  )
 
 add_library(${PROJECT_NAME}-osgiTest STATIC ${cppsrc})
