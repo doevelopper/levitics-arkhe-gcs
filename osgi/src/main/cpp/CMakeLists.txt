@@ -22,10 +22,13 @@ set(cppsrc
     levitics/arkhe/gcs/osgi/core/Settings
     levitics/arkhe/gcs/osgi/core/PimplPtr
     levitics/arkhe/gcs/osgi/core/SharedPimplPtr
-	
+    levitics/arkhe/gcs/osgi/core/private/ValueProxyPrivate
+    levitics/arkhe/gcs/osgi/core/ValueProxy
+
 	levitics/arkhe/gcs/osgi/core/widgets/style/Style
 #    levitics/app/Version
  )
+# aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR} SUB_SOURCES)
 
 add_library(${PROJECT_NAME}-osgi STATIC ${cppsrc})
 target_link_libraries( ${PROJECT_NAME}-osgi ${THIRD_PARTY_LIB}

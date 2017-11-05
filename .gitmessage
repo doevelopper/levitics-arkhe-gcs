@@ -1,6 +1,22 @@
+# Type(<scope>): <subject>
 
-#
-# Please provide your commit's subject above this line.
+# Type should be one of the following:
+# * feat (new feature)
+# * fix (bug fix)
+# * docs (changes to documentation)
+# * style (formatting, missing semi colons, etc; no code change)
+# * refactor (refactoring production code)
+# * test (adding missing tests, refactoring tests; no production code change)
+# * chore (updating grunt tasks etc; no production code change)
+# * wip(wip on feature branch)
+
+# Scope is just the scope of the change. Something like (admin) or (teacher).
+
+# Subject should use impertivite tone and say what you did.
+
+# ---------------------------------------------------------------------------------
+# <body>
+# The body should go into detail about changes made.
 #
 #   1. Separate subject from body with a blank line
 #   2. Limit the subject line to 50 characters
@@ -10,60 +26,24 @@
 #   6. Wrap the body at 72 characters
 #   7. Use the body to explain what and why vs. how
 #
-# Description of your commit should go below. Make sure to leave
-# one empty line after your description.
-#
-# Title:<here goes nice good short title, gives highlight of what changes are >
-Some awesome title
 
-# Details : <More details on why for need of changes, >
-Why:
-
-* ...
-
-# Issue no : <if it issue no. , an issue raised if any >
-This change addresses the need by:
-
-# Feature no : <Feature no. if working as Agile >
-
-* ...
-
-# Please enter the commit message for your changes. Lines starting
-
-# with '#' will be ignored, and an empty message aborts the commit.
-
-# On branch master
-# Changes to be committed:
-#
+# ---------------------------------------------------------------------------------
+# <footer>
+# The footer should contain any JIRA (or other tool) issue references or actions.
+# References #1, #4, and #2.
+# Resolves #2
+# Fix #1. note this marks the item as accepted in Sprintly
+# Closes #1 and #2. note this marks the item as accepted in Sprintly
+# See also
 
 
-#
-# Finally, please add a reference to other issues or pull
-# request on GitHub here below.
-#
-# Example
-# -------
-#
-#   Resolves #1
-#   Resolves #2
-#   Closes #3
-#
-# Accepted keywords are:
-#
-#   * Resolves
-#   * Closes
-#   * See also
-#
+# ---------------------------------------------------------------------------------
+# Jira Issue Processing
+# ISSUE_KEY #comment This is a comment
+# ISSUE_KEY #done 
+# ---------------------------------------------------------------------------------
 
-#feat:
-#fix:
-#docs:
-#style (formatting, missing semi colons, etc; no code change):
-#refactor:
-#test (adding missing tests, refactoring tests; no production code change):
-#chore (updating grunt tasks etc; no production code change):
-#wip(wip on feature branch)
-
+# Consider prefixing your commit messages with a relevant emoji for great good:
 # :art: `:art:` when improving the format/structure of the code
 # :racehorse: `:racehorse:` when improving performance
 # :non-potable_water: `:non-potable_water:` when plugging memory leaks

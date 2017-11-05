@@ -106,7 +106,7 @@ set(LINT_FILTER) # basically everything Google C++ Style recommends. Except...
 
 # We use C++11 with some restrictions.
 # set(LINT_FILTER ${LINT_FILTER},-build/c++11)
-# 
+#
 
 # Consider disabling them if they cause too many false positives.
 # set(LINT_FILTER ${LINT_FILTER},-build/include_what_you_use)
@@ -172,7 +172,7 @@ function(CPPLINT_RECURSIVE target_name src_folder top_level_directory)
                             --cpplint-file=${LINT_SCRIPT}
                             --history-file=${WORKING_DIR}/lint_history
                             --linelength=${LINT_LINELENGTH}
-                            --exclude=${top_level_directory}/src/test/*.cpp 
+                            --exclude=${top_level_directory}/src/test/*.cpp
                             --exclude=${top_level_directory}/src/test/*.hpp
 #                            --headers=hpp
 #                            --extensions=cpp,hpp

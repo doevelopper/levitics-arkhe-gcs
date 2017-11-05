@@ -13,26 +13,26 @@
 // #define LOG_NOTICE   5       /* normal but significant condition. A condition requiring special handling.  */
 // #define LOG_INFO     6       /* informational */
 // #define LOG_DEBUG    7       /* debug-level messages. A message useful for debugging programs.  */
-#define LOG_TRACE(message)   	LOG4CXX_TRACE(logger, message)
-#define LOG_DEBUG(message)   	LOG4CXX_DEBUG(logger, message)
-#define LOG_INFO(message)   	LOG4CXX_INFO(logger, message)
-#define LOG_WARNING(message)   	LOG4CXX_WARN(logger, message)
-#define LOG_ERROR(message)   	LOG4CXX_ERROR(logger, message)
+#define LOG_TRACE(message)      LOG4CXX_TRACE(logger, message)
+#define LOG_DEBUG(message)      LOG4CXX_DEBUG(logger, message)
+#define LOG_INFO(message)       LOG4CXX_INFO(logger, message)
+#define LOG_WARNING(message)    LOG4CXX_WARN(logger, message)
+#define LOG_ERROR(message)      LOG4CXX_ERROR(logger, message)
 #define LOG_FATAL(message)      LOG4CXX_FATAL(logger, message)
-#define LOG_ASSERT(cond,message)        LOG4CXX_ASSERT(logger, condition, message)
+#define LOG_ASSERT(cond, message)        LOG4CXX_ASSERT(logger, condition, message)
 #define LOG_ASSERT_X(cond, msg) ((!(cond)) ? cuteLoggerInstance()->writeAssert(__FILE__, __LINE__, Q_FUNC_INFO, msg) : qt_noop())
 
 #define LOG_CATEGORY(category) \
-  private:\
-    Logger* cuteLoggerInstance()\
-    {\
-      static Logger customCuteLoggerInstance(category);\
-      return &customCuteLoggerInstance;\
-    }\
+    private: \
+        Logger * cuteLoggerInstance() \
+        { \
+            static Logger customCuteLoggerInstance(category); \
+            return &customCuteLoggerInstance; \
+        } \
 
 #define LOG_GLOBAL_CATEGORY(category) \
-  private:\
-      static static log4cxx::LoggerPtr logger;\
+    private: \
+        static static log4cxx::LoggerPtr logger; \
 
 
 #define DEBUG_LOG( msg ) \

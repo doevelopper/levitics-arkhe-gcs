@@ -10,18 +10,18 @@ class Style  //: public QAbstractListModel
     public:
 
         // Constructors
-        constexpr Style() noexcept 
-		: ptr(Q_NULLPTR) 
-		{
+        constexpr Style() noexcept
+            : ptr(Q_NULLPTR)
+        {
         }
 
-        constexpr Style(T * p) noexcept 
-		: ptr(p) 
-		{
+        constexpr Style(T * p) noexcept
+            : ptr(p)
+        {
         }
 
-        ~Style() 
-		{
+        ~Style()
+        {
             ::delete ptr;
         }
 
