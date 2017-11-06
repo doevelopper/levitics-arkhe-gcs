@@ -13,7 +13,19 @@ set(SOURCE_FILES
 )
 
 add_library(${PROJECT_NAME} STATIC ${SOURCE_FILES})
-target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME}-osgi ${THIRD_PARTY_LIB} )
+target_link_libraries(${PROJECT_NAME}
+    ${PROJECT_NAME}-osgi
+    ${THIRD_PARTY_LIB}
+    Qt5::Network Qt5::Core Qt5::Widgets Qt5::Svg
+    Qt5::Quick Qt5::Xml Qt5::OpenGL Qt5::WebKit Qt5::WebKitWidgets
+)
+
+add_executable(${PROJECT_NAME}.bin
+    main.cpp
+)
+target_link_libraries(${PROJECT_NAME}.bin ${PROJECT_NAME})
+
+
 #https://cmake.org/Wiki/CMake/Tutorials/Object_Library
 ## A/CMakeLists.txt
 # add_library(A OBJECT ${A_srcs})
@@ -24,10 +36,6 @@ target_link_libraries(${PROJECT_NAME} ${PROJECT_NAME}-osgi ${THIRD_PARTY_LIB} )
 # add_subdirectory(B)
 # add_library(big ${other_srcs} $<TARGET_OBJECTS:A> $<TARGET_OBJECTS:B>)
 
-
-# add_executable(${PROJECT_NAME}.bin
-    # main.cpp
-# )
 # set_target_properties(${PROJECT_NAME}.bin PROPERTIES DEBUG_POSTFIX ${CMAKE_DEBUG_POSTFIX})
 # target_link_libraries(${PROJECT_NAME}.bin ${PROJECT_NAME} ${TEST_THIRD_PARTY_LIB})
 # target_link_libraries(${PROJECT_NAME}.bin ${PROJECT_NAME} )

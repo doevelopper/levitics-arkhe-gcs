@@ -107,18 +107,12 @@ class Logger : public QObject
         ~Logger ( );
 
         void configure ( );
-        [ [deprecated]]
-        void trace ( const QString & s );
-        [ [deprecated]]
-        void debug ( const QString & s );
-        [ [deprecated]]
-        void info ( const QString & s );
-        [ [deprecated]]
-        void warn ( const QString & s );
-        [ [deprecated]]
-        void error ( const QString & s );
-        [ [deprecated]]
-        void fatal ( const QString & s );
+        Q_DECL_DEPRECATED void trace ( const QString & s );
+        Q_DECL_DEPRECATED void debug ( const QString & s );
+        Q_DECL_DEPRECATED void info ( const QString & s );
+        Q_DECL_DEPRECATED void warn ( const QString & s );
+        Q_DECL_DEPRECATED void error ( const QString & s );
+        Q_DECL_DEPRECATED void fatal ( const QString & s );
 
     protected:
 

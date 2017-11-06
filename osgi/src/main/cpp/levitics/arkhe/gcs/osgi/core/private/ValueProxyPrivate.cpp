@@ -1,5 +1,6 @@
 #include <levitics/arkhe/gcs/osgi/core/private/ValueProxyPrivate.hpp>
 #include <levitics/arkhe/gcs/osgi/core/ValueProxy.hpp>
+
 ValueProxyPrivate::ValueProxyPrivate(ValueProxy & object)
     : q_ptr(&object)
 {

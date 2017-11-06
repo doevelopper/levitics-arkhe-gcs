@@ -24,8 +24,10 @@ set(cppsrc
     levitics/arkhe/gcs/osgi/core/SharedPimplPtr
     levitics/arkhe/gcs/osgi/core/private/ValueProxyPrivate
     levitics/arkhe/gcs/osgi/core/ValueProxy
+    levitics/arkhe/gcs/osgi/core/private/LinearValueProxyPrivate
+    levitics/arkhe/gcs/osgi/core/LinearValueProxy
 
-	levitics/arkhe/gcs/osgi/core/widgets/style/Style
+    levitics/arkhe/gcs/osgi/core/widgets/style/Style
 #    levitics/app/Version
  )
 # aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR} SUB_SOURCES)

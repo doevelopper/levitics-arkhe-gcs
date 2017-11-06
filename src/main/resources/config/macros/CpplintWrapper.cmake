@@ -141,9 +141,9 @@ set(LINT_FILTER) # basically everything Google C++ Style recommends. Except...
 mark_as_advanced(LINT_FILTER)
 
 
-set(LINT_SCRIPT "${PROJECT_SOURCE_DIR}/src/main/resources/scripts/cpplint-1.3.0/cpplint.py")
+set(LINT_SCRIPT "${PROJECT_SOURCE_DIR}/src/main/scripts/cpplint-1.3.0/cpplint.py")
 mark_as_advanced(LINT_SCRIPT)
-set(LINT_WRAPPER "${PROJECT_SOURCE_DIR}/src/main/resources/scripts/cpplint-wrapper.py")
+set(LINT_WRAPPER "${PROJECT_SOURCE_DIR}/src/main/scripts/stylecheck/cpplint-wrapper.py")
 mark_as_advanced(LINT_WRAPPER)
 
 # 120 chars per line, which is suggested as an option in the style guide
@@ -167,25 +167,25 @@ function(CPPLINT_RECURSIVE target_name src_folder top_level_directory)
             set(WORKING_DIR "${TARGET_BUILD_DIRECTORY}/qa/cpplint/${target_name}")
             file(MAKE_DIRECTORY ${WORKING_DIR})
             add_custom_target(${target_name}-lint
-                         COMMAND
-                            ${PYTHON_EXECUTABLE} ${LINT_WRAPPER}
+                         COMMAND ${PYTHON_EXECUTABLE} --version
+                          COMMAND ${PYTHON_EXECUTABLE} ${LINT_WRAPPER}
                             --cpplint-file=${LINT_SCRIPT}
                             --history-file=${WORKING_DIR}/lint_history
                             --linelength=${LINT_LINELENGTH}
                             --exclude=${top_level_directory}/src/test/*.cpp
                             --exclude=${top_level_directory}/src/test/*.hpp
-#                            --headers=hpp
-#                            --extensions=cpp,hpp
+##                            --headers=hpp
+##                            --extensions=cpp,hpp
                             --filter=${LINT_FILTER}
-#                            --root=cpp
-#                            --repository=${top_level_directory}
+##                            --root=cpp
+##                            --repository=${top_level_directory}
                             --output=junit
-#                            --style-error
-#                            --recursive
-#                            --counting=total
+##                            --style-error
+##                            --recursive
+                            --counting=total
                             --counting=detailed
                             --verbose=5
-#                            --root=DIDACTICS
+##                            --root=DIDACTICS
                             ${src_folder}
                             > ${WORKING_DIR}/lint.xml 2>&1
                          WORKING_DIRECTORY ${WORKING_DIR}

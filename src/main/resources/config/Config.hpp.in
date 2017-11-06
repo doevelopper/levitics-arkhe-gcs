@@ -44,6 +44,15 @@
 #endif
 namespace levitics
 {
+
+template<typename T>
+inline bool isinf(T value)
+{
+    return (value == std::numeric_limits<T>::infinity()
+            || (-1*value) == std::numeric_limits<T>::infinity())
+            && std::numeric_limits<T>::has_infinity;
+}
+
 template<typename T>
 struct IsObjectSerializable
 {

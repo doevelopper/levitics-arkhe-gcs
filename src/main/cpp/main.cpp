@@ -1,5 +1,4 @@
 
-#include <QPixmapCache>
 #include <cstdlib>
 // #include <levitics/app/GCSApplication.hpp>
 
@@ -7,18 +6,16 @@
 int main (int argc ,
           char * * argv)
 {
- #if defined (Q_OS_WINRT) \
-    && !defined (Q_OS_WINPHONE)
+
+ #if defined (Q_OS_WINRT) && !defined (Q_OS_WINPHONE)
 
  #endif
 
- #if defined (Q_OS_ANDROID) \
-    && !defined (Q_OS_WINPHONE)
+ #if defined (Q_OS_ANDROID)
 
  #endif
 
- #if defined (Q_OS_LINUX) \
-    && !defined (Q_OS_WINPHONE)
+ #if defined (Q_OS_LINUX)
 
  #endif
 

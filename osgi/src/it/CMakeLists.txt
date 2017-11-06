@@ -1,14 +1,14 @@
 
-# set(cppsrc
-    # gfs/hal/SystemInfo
- # )
+set(cppsrc
+    levitics/arkhe/gcs/features/step_definitions/step_definitions
+ )
 
 # set(CMAKE_INCLUDE_CURRENT_DIR ON)
 # set(CMAKE_INCLUDE_CURRENT_DIR_IN_INTERFACE ON)
 
 # include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
-# add_library(${PROJECT_NAME}-osgi STATIC ${cppsrc})
+#add_library(${PROJECT_NAME}-osgi-it STATIC ${cppsrc})
 
 # setup include directories 
 # target_include_directories(${PROJECT_NAME}-osgi PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
