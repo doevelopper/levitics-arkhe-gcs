@@ -9,11 +9,11 @@ set(cppsrc
 
 add_library(${PROJECT_NAME}-it STATIC ${cppsrc})
 
-#target_link_libraries(${PROJECT_NAME}Test
-#    ${PROJECT_NAME}
+target_link_libraries(${PROJECT_NAME}-it
+    ${PROJECT_NAME}
 #    ${THIRD_PARTY_LIB}
 #    ${TEST_THIRD_PARTY_LIB}
-#)
+)
 
 #add_executable(${PROJECT_NAME}-itTest.bin runTest ${SOURCE_FILES} )
 #target_link_libraries(${PROJECT_NAME}-itTest.bin
