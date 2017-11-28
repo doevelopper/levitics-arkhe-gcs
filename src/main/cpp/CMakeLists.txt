@@ -1,5 +1,15 @@
 include_directories(.)
 
+qt5_add_resources(resource_headers ${CMAKE_CURRENT_LIST_DIR}/../resources/resources.qrc)
+qt5_wrap_ui(resource_headers_forms
+    ${CMAKE_CURRENT_LIST_DIR}/../resources/uis/connectionnotificationwidget.ui
+)
+# qt5_wrap_cpp
+# qt5_wrap_ui
+# qt5_add_binary_resources
+# qt5_add_resources
+# qt5_add_translation
+
 set(SOURCE_FILES
     # levitics/app/GCSApplication
     # levitics/app/Version
@@ -10,7 +20,11 @@ set(SOURCE_FILES
     # levitics/app/private/MainWindowPrivate
     # levitics/app/private/GCSApplicationPrivate
     # levitics/arkhe/gcs/EnvironmentVariablesManager
+	${resource_headers_forms}
+	${resource_headers}
 )
+
+# qt5_add_resources(resource_headers ${SRC_DIR}/src/main/resources/resources.qrc)
 
 add_library(${PROJECT_NAME} STATIC ${SOURCE_FILES})
 target_link_libraries(${PROJECT_NAME}
