@@ -11,14 +11,14 @@ qt5_wrap_ui(resource_headers_forms
 # qt5_add_translation
 
 set(SOURCE_FILES
-    # levitics/app/GCSApplication
+    levitics/arkhe/gcs/app/GCSApplication
+    levitics/arkhe/gcs/app/private/GCSApplicationPrivate
     # levitics/app/Version
     # levitics/app/View
     # levitics/app/mainwindow
     levitics/arkhe/gcs/app/MultiScreenManagement
     levitics/arkhe/gcs/app/ScreensDimensions
     # levitics/app/private/MainWindowPrivate
-    # levitics/app/private/GCSApplicationPrivate
     # levitics/arkhe/gcs/EnvironmentVariablesManager
 	${resource_headers_forms}
 	${resource_headers}
@@ -30,8 +30,20 @@ add_library(${PROJECT_NAME} STATIC ${SOURCE_FILES})
 target_link_libraries(${PROJECT_NAME}
     ${PROJECT_NAME}-osgi
     ${THIRD_PARTY_LIB}
-    Qt5::Network Qt5::Core Qt5::Widgets Qt5::Svg
-    Qt5::Quick Qt5::Xml Qt5::OpenGL Qt5::WebKit Qt5::WebKitWidgets
+    Qt5::Concurrent Qt5::Core Qt5::Charts
+	Qt5::DataVisualization
+	Qt5::Gui
+	# Qt5::Gamepad
+	# Qt5::Help
+	Qt5::Location
+	Qt5::Network Qt5::NetworkAuth
+	Qt5::Multimedia	Qt5::MultimediaWidgets
+	Qt5::OpenGL Qt5::OpenGLExtensions
+	Qt5::Positioning Qt5::Purchasing
+	Qt5::Quick Qt5::Qml Qt5::Quick Qt5::QuickControls2 Qt5::QuickWidgets
+	Qt5::Svg
+	Qt5::WebKit Qt5::WebKitWidgets Qt5::Widgets 
+    Qt5::Xml 
 )
 
 add_executable(${PROJECT_NAME}.bin

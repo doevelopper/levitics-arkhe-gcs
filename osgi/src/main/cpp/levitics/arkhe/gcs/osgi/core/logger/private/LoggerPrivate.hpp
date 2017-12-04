@@ -38,29 +38,24 @@ class LoggerPrivate
 {
     enum Level
     {
-        EMERGENCY = (1 << 0),
+		SCHRODINBUG = (1 << 0),
+		HEISENBUG 	= (1 << 0),
+		BOHRBUG 	= (1 << 0),
+		MANDELBUG 	= (1 << 0),
+		HINDENBUG 	= (1 << 0),
 
+        LEVEL_EMERGENCY = (1 << 0),
         /* system is unusable. A panic condition was reported to all processes. */
-        CRITICAL = (1 << 1),
-
-        /* critical conditions */
-        FATAL = (1 << 2),
-        ALERT = (1 << 3),
-
+        LEVEL_CRITICAL = (1 << 1),
+        LEVEL_FATAL = (1 << 2), /* critical conditions */
+        LEVEL_ALERT = (1 << 3),
         /* action must be taken immediately. A condition that should be corrected immediately.  */
-        ERROR = (1 << 4),
-
-        /* error conditions */
-        WARNING = (1 << 5),
-
-        /* warning conditions */
-        INFO = (1 << 6),
-
-        /* informational */
-        TRACE = (1 << 7),
-
+        LEVEL_ERROR = (1 << 4),
+        LEVEL_WARNING = (1 << 5),	/* error conditions */
+        LEVEL_INFO = (1 << 6), 		/* warning conditions */
+        LEVEL_TRACE = (1 << 7), 	/* informational */
         /* normal but significant condition. A condition requiring special handling.  */
-        DEBUG = (1 << 8)         /* debug-level messages. A message useful for debugging programs.  */
+        LEVEL_DEBUG = (1 << 8)         /* debug-level messages. A message useful for debugging programs.  */
 
     };
 

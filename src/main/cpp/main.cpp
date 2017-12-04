@@ -3,8 +3,7 @@
 // #include <levitics/app/GCSApplication.hpp>
 
 // [[using CC:opt(1) , debug]]
-int main (int argc ,
-          char * * argv)
+int main (int argc , char * * argv)
 {
 
  #if defined (Q_OS_WINRT) && !defined (Q_OS_WINPHONE)

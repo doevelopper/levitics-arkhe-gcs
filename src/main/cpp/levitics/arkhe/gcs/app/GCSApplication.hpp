@@ -1,6 +1,6 @@
 
-#ifndef LEVITICS_APP_GCSAPPLICATION_HPP
-#define LEVITICS_APP_GCSAPPLICATION_HPP
+#ifndef LEVITICS_ARKHE_GCS_APP_GCSAPPLICATION_HPP
+#define LEVITICS_ARKHE_GCS_APP_GCSAPPLICATION_HPP
 
 #include <QtCore/QObject>
 #include <QtGlobal>
@@ -9,13 +9,18 @@
 #include <QException>
 #include <functional>
 #include <QFontDatabase>
-#include <levitics/app/Mainwindow.hpp>
-#include <levitics/app/View.hpp>
-#include <levitics/app/Version.hpp>
-#include <levitics/osgi/core/logger/Logger.hpp>
+// #include <levitics/app/Mainwindow.hpp>
+// #include <levitics/app/View.hpp>
+// #include <levitics/app/Version.hpp>
+#include <levitics/arkhe/gcs/osgi/core/logger/Logger.hpp>
 
-class GCSApplicationPrivate;
-class MultiScreenManagement;
+#define gcsApp (static_cast<GCSApplication *>(QGuiApplication::instance()))
+
+// namespace levitics::arkhe::gcs::app
+// {
+
+	class GCSApplicationPrivate;
+	class MultiScreenManagement;
 
 #ifndef GCS_NO_GUI
     class GCSApplication : public QApplication
@@ -55,34 +60,37 @@ public:
         QUrl documentsPath ();
         QStringList applicationCurrentPath ();
 
-signals:
-
-public slots:
-
 protected:
 
         //        bool event (QEvent * event);
 
 private:
-
-        View * m_view { };
-        MainWindow * m_MainWindow{ };
+		//Q_DECLARE_PRIVATE(GCSApplication);
+        // View * m_view { };
+        // MainWindow * m_MainWindow{ };
         GCSApplicationPrivate * d;
-        MultiScreenManagement * m_multiScreenManagement;
-        QUrl m_applicationPath;
-        QUrl m_userPath;
-        QUrl m_imagePath;
-        QUrl m_videoPath;
-        QUrl m_homePath;
-        QUrl m_desktopPath;
-        QUrl m_tempFolderPath;
-        QUrl m_documentsPath;
-        Version m_versionInfo;
-        QFontDatabase m_fontDatabase;
-        const QString m_fontFileName;           ///< Font file is part of the QRC file and compiled into the app.
-        const QString m_fontFamilyName;
-        bool m_isMultiScreen;
+        // MultiScreenManagement * m_multiScreenManagement;
+        // QUrl m_applicationPath;
+        // QUrl m_userPath;
+        // QUrl m_imagePath;
+        // QUrl m_videoPath;
+        // QUrl m_homePath;
+        // QUrl m_desktopPath;
+        // QUrl m_tempFolderPath;
+        // QUrl m_documentsPath;
+        // Version m_versionInfo;
+        // QFontDatabase m_fontDatabase;
+        // const QString m_fontFileName;           ///< Font file is part of the QRC file and compiled into the app.
+        // const QString m_fontFamilyName;
+        // bool m_isMultiScreen;
+		/*!
+		*
+		*/
+	    // LoggingService * m_loggerService;
+		static const long FILE_MONITOR_DELAY = 5000UL;
+		static const std::string LOGGER_CONFIGURATION_LOCATION;
         static log4cxx::LoggerPtr logger;
     };
+// }
 
 #endif

@@ -110,3 +110,6 @@ CMakeLists.txt.user*
 # *.config
 # *.creator
 # *.files
+
+# temprary work to exlude
+osgi/src/test/cpp/levitics/arkhe/gcs/osgi/core/workflow/

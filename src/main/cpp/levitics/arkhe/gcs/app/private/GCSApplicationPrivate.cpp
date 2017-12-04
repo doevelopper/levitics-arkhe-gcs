@@ -16,6 +16,8 @@
 
 #include <levitics/arkhe/gcs/app/private/GCSApplicationPrivate.hpp>
 
+// using namespace levitics::arkhe::gcs::app::private;
+ 
 log4cxx::LoggerPtr GCSApplicationPrivate::logger =
     log4cxx::Logger::getLogger(std::string("levitics.arkhe.gcs.app.private.GCSApplicationPrivate"));
 
