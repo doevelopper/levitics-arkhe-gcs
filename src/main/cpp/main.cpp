@@ -2,7 +2,7 @@
 #include <cstdlib>
 // #include <levitics/app/GCSApplication.hpp>
 
-// [[using CC:opt(1) , debug]]
+[[using CC:opt(1) , debug]]
 int main (int argc , char * * argv)
 {
 
@@ -29,4 +29,5 @@ int main (int argc , char * * argv)
     // GCSApplication app (argc , argv);
     // app.init();
     // return (app.exec ());
+    return (EXIT_SUCCESS);
 }

@@ -1,3 +1,0 @@
-[console_scripts]
-doxygen_junit = doxygen_junit:main
-

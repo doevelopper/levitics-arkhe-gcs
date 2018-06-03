@@ -11,20 +11,32 @@ set(cppsrc
 
 )
 
-add_library(${PROJECT_NAME}Test STATIC ${cppsrc})
-target_include_directories(${PROJECT_NAME}Test PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+if (NOT TARGET GTest::GTest AND NOT TARGET GMock::GMock)
+    find_package(GoogleTestFwk REQUIRED)
+endif()
 
-target_link_libraries(${PROJECT_NAME}Test
-    ${PROJECT_NAME}
-    ${THIRD_PARTY_LIB}
-    ${TEST_THIRD_PARTY_LIB}
+add_library(levitics.arkhe.gcs.test STATIC 
+    GcsTest
+)
+target_include_directories(levitics.arkhe.gcs.test 
+    PUBLIC 
+        ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
-add_executable(${PROJECT_NAME}Test.bin runTest ${SOURCE_FILES} )
+target_link_libraries(levitics.arkhe.gcs.test
+    PUBLIC
+        levitics.arkhe.gcs.main
+        GTest::Main
+        GMock::GMock
+)
+
+add_executable(levitics.arkhe.gcs.test.bin runTest 
+    ${SOURCE_FILES} 
+)
 
 ### set_target_properties(${PROJECT_NAME}Test.bin PROPERTIES DEBUG_POSTFIX ${CMAKE_DEBUG_POSTFIX})
-target_link_libraries(${PROJECT_NAME}Test.bin
-    ${PROJECT_NAME}Test
+target_link_libraries(levitics.arkhe.gcs.test.bin
+    levitics.arkhe.gcs.test
 )
 
 ## setup include directories

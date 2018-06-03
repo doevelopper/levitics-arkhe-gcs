@@ -54,6 +54,14 @@ endif()
 
 # for Linux, BSD, Solaris, Minix
 if(UNIX AND NOT APPLE)
+    # set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} $ENV{QT5_DIR} )
+    set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH}
+        "/opt/Qt5.11.0/5.11.0/gcc_64"
+        "${CMAKE_ARCHIVE_OUTPUT_DIRECTORY}/lib"
+        "${CMAKE_LIBRARY_OUTPUT_DIRECTORY}/lib"
+        "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/bin"
+    )
+
     set(CMAKE_INCLUDE_CURRENT_DIR ON )
     # set(CMAKE_INCLUDE_DIRECTORIES_BEFORE ON )
     set(CMAKE_AUTOMOC ON )
@@ -90,9 +98,9 @@ find_package( Qt5Xml REQUIRED )
 find_package( Qt5XmlPatterns REQUIRED )
 find_package( Qt5Scxml REQUIRED )
 find_package( Qt5Positioning REQUIRED )
-find_package( Qt5WebKit REQUIRED )
+#find_package( Qt5WebKit REQUIRED )
 find_package( Qt5SerialPort REQUIRED )
-find_package( Qt5WebKitWidgets REQUIRED )
+#find_package( Qt5WebKitWidgets REQUIRED )
 find_package( Qt5TextToSpeech REQUIRED )
 find_package( Qt5UiTools REQUIRED )
 find_package( Qt5Script REQUIRED )

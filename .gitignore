@@ -60,6 +60,18 @@ dist/
 nbdist/
 .nb-gradle/
 
+target/
+AMD64.*/
+build-wrapper-linux-x86-32
+build-wrapper-win-x86-32.exe
+build-wrapper-linux-x86-64
+build-wrapper-win-x86-64.exe
+libinterceptor-*
+build-wrapper-linux-x86/
+build-wrapper-win-x86/
+sonar-scanner-3.0.3.778-linux/
+sonar-scanner-3.0.3.778-windows
+
 # Add any directories, files, or patterns you don't want to be tracked by version control
 CMakeCache.txt
 CMakeFiles

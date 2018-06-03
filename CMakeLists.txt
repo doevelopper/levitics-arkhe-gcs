@@ -1,5 +1,7 @@
+
 project(levitics-arkhe-gcs CXX)
-cmake_minimum_required( VERSION 3.7 FATAL_ERROR)
+
+cmake_minimum_required( VERSION 3.11.3 FATAL_ERROR)
 
 
 set(PROJECT_NAME_MAJOR_VERSION       3)
@@ -13,12 +15,15 @@ set(PROJECT_VERSION_PATCH       2)
 set(PROJECT_VERSION_TWEAK       1101)
 set(PROJECT_VERSION "${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}")
 
+set("BUILD_SHARED_LIBS" OFF CACHE INTERNAL "If enabled, shared libs will be built by default, otherwise static libs")
+
 add_definitions(-DPROJECT_VERSION_MAJOR=1)
 add_definitions(-DPROJECT_VERSION_MINOR=0)
 add_definitions(-DPROJECT_VERSION_MICRO=0)
 add_definitions(-DPROJECT_VERSION_PATCH=${PROJECT_NAME})
 
 add_definitions(-DRELEASE_LEVEL="SNAPSHOOT") # SNAPSHOOT ,ALPHA , BETA , CANDIDATE , FINAL.
+set(RELEASE_LEVEL "SNAPSHOOT")
 
 add_definitions(-DAPPLICATIONNAME="${PROJECT_NAME} ${PROJECT_VERSION_PATCH}")
 add_definitions(-DAPP_VERSION_STR="${${PROJECT_NAME}_MAJOR_VERSION}.${${PROJECT_NAME}_MINOR_VERSION}.${${PROJECT_NAME}_MICRO_VERSION}")
@@ -56,27 +61,28 @@ list(APPEND CMAKE_MODULE_PATH
 set (NAMESPACE "GCS")
 
 include(DefinePlatformSpecfic)
-include(aol)
 include(CompilerOption)
 include(goals)
-include(CMakeSettings)
 include(qt)
 include(macros)
 include(PreventInSourceBuilds)
-include(PreventInSourceBuilds)
-include(CodingStyle)
-include(CpplintWrapper)
-include(Cucumber)
+#include(CodingStyle)
+#include(CpplintWrapper)
+#include(Cucumber)
 #include(DocumentationTargets)
 # include(PrintVariables)
 getGitInfo()
 TODAY(APP_BUILD_DATE)
 
-set(THIRD_PARTY_LIB ${CMAKE_THREAD_LIBS_INIT} apr-1 expat aprutil-1 log4cxx )
-set(TEST_THIRD_PARTY_LIB gmock gtest benchmark)
-set(TEST_THIRD_PARTY_LIB_MAIN ${TEST_THIRD_PARTY_LIB} gmock_main)
-set(INTEG_TEST_THIRD_PARTY_LIB ${TEST_THIRD_PARTY_LIB} cucumber-cpp-nomain)
-set(INTEG_TEST_THIRD_PARTY_LIB_MAIN ${TEST_THIRD_PARTY_LIB} cucumber-cpp)
+include(TestBigEndian)
+TEST_BIG_ENDIAN(IS_BIG_ENDIAN)
+
+if(IS_BIG_ENDIAN)
+     message(FATAL_ERROR "Big endian isn't supported !!!")
+endif(IS_BIG_ENDIAN)
+
+include(ProcessorCount)
+ProcessorCount(NProc)
 
 set(COPYRIGHT_YEAR ${APP_BUILD_DATE})
 
@@ -108,21 +114,6 @@ configure_file("${PROJECT_SOURCE_DIR}/src/main/resources/config/GitRevision.hpp.
                "${CMAKE_BINARY_DIR}/levitics/app/GitRevision.hpp"
                @ONLY)
 
-include_directories(${CMAKE_BINARY_DIR})
-
-if(BUILD_MUDULE_LIKE)
-
-else(BUILD_MUDULE_LIKE)
-    add_subdirectory(osgi)
-endif(BUILD_MUDULE_LIKE)
-
-#if(ENABLE_FORMATING_STYLE)
-#    apply_style_targets(
-#        ${PROJECT_NAME}
-#        ${CMAKE_CURRENT_BINARY_DIR}
-#    )
-#endif(ENABLE_FORMATING_STYLE)
-
 add_subdirectory(src/main/cpp)
 add_subdirectory(src/test/cpp)
-add_subdirectory(src/it)
+#add_subdirectory(src/it)

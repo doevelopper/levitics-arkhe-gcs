@@ -10,8 +10,7 @@ GcsTest::GcsTest(std::string suite ,
 
 }
 
-int GcsTest::run (int argc ,
-                  char * argv[])
+int GcsTest::run (int argc ,  char * argv[])
 {
     const std::string name = !m_testSuites.empty() ? m_testSuites : "AllTests";
 
