@@ -3,7 +3,7 @@
 #define LEVITICS_ARKHE_GCS_APP_SCREENSDIMENSIONS_HPP
 
 #include <QRect>
-#include <levitics/arkhe/gcs/osgi/core/logger/Logger.hpp>
+#include <levitics/arkhe/gcs/app/logger/Logger.hpp>
 
 template <typename T>
 class ScreensDimensions

@@ -37,6 +37,52 @@ if(APR_FOUND AND APRU_FOUND)
 	    ${CMAKE_ARCHIVE_OUTPUT_DIRECTORY}
     )
 
+    find_library(APR_CRYPTO_OPENSSL_LIB
+        NAMES
+            libapr_crypto_openssl.a apr_crypto_openssl.a
+        HINTS
+            /home/happyman/gcs_installs/lib//apr-util-1
+            /usr/local/lib/
+            /usr/lib/
+            /usr/lib/x86_64-linux-gnu
+            ${CMAKE_ARCHIVE_OUTPUT_DIRECTORY}
+    )
+
+    find_library(APR_DBD_ODBC_LIB
+        NAMES
+            libapr_dbd_odbc.a apr_dbd_odbc.a
+        HINTS
+            /home/happyman/gcs_installs/lib//apr-util-1
+            /usr/local/lib/
+            /usr/lib/
+            /usr/lib/x86_64-linux-gnu
+            ${CMAKE_ARCHIVE_OUTPUT_DIRECTORY}
+    )
+
+
+    find_library(APR_DBD_SQLITE3_LIB
+        NAMES
+            libapr_dbd_sqlite3.a apr_dbd_sqlite3.a
+        HINTS
+            /home/happyman/gcs_installs/lib/apr-util-1
+            /usr/local/lib/
+            /usr/lib/
+            /usr/lib/x86_64-linux-gnu
+            ${CMAKE_ARCHIVE_OUTPUT_DIRECTORY}
+    )
+
+
+    find_library(APR_DBM_GDBM_LIB
+        NAMES
+            libapr_dbm_gdbm.a apr_dbm_gdbm.a
+        HINTS
+            /home/happyman/gcs_installs/lib/apr-util-1
+            /usr/local/lib/
+            /usr/lib/
+            /usr/lib/x86_64-linux-gnu
+            ${CMAKE_ARCHIVE_OUTPUT_DIRECTORY}
+    )
+    
     find_path(LOG4CXX_INCLUDE_DIR 
         NAMES 
             log4cxx/log4cxx.h
@@ -47,14 +93,18 @@ if(APR_FOUND AND APRU_FOUND)
             ${CMAKE_INSTALL_INCLUDEDIR}
    )
 
-#   message(STATUS "LOG4CXX_LIBRARY ${LOG4CXX_LIBRARY}")
-#   message(STATUS "LOG4CXX_INCLUDE_DIR ${LOG4CXX_INCLUDE_DIR}")
+   message(STATUS "LOG4CXX_LIBRARY ${LOG4CXX_LIBRARY}")
+   message(STATUS "LOG4CXX_INCLUDE_DIR ${LOG4CXX_INCLUDE_DIR}")
+   message(STATUS "APR_CRYPTO_OPENSSL_LIB ${APR_CRYPTO_OPENSSL_LIB}")
+   message(STATUS "APR_DBD_ODBC_LIB  ${APR_DBD_ODBC_LIB}")
+   message(STATUS "APR_DBD_SQLITE3_LIB ${APR_DBD_SQLITE3_LIB}")
+   message(STATUS "APR_DBM_GDBM_LIB ${APR_DBM_GDBM_LIB}")
 
    include(FindPackageHandleStandardArgs)
    find_package_handle_standard_args(log4cxx
        REQUIRED_VARS LOG4CXX_LIBRARY  LOG4CXX_INCLUDE_DIR
    )
-set(LOG4CXX_DEFINITIONS "HAVE_LOG4CXX")
+   set(LOG4CXX_DEFINITIONS "HAVE_LOG4CXX")
    if(LOG4CXX_FOUND)
 
       set(LOG4CXX_LIBRARIES ${LOG4CXX_LIBRARY})
@@ -67,7 +117,7 @@ set(LOG4CXX_DEFINITIONS "HAVE_LOG4CXX")
               IMPORTED_LINK_INTERFACE_LANGUAGES "CXX"
               IMPORTED_LOCATION "${LOG4CXX_LIBRARY}"
 	      INTERFACE_INCLUDE_DIRECTORIES "${LOG4CXX_INCLUDE_DIRS}"
-	      INTERFACE_LINK_LIBRARIES ${APR_LIBRARY};${EXPAT_LIBRARY};${APRUTIL_LIBRARY})
+	      INTERFACE_LINK_LIBRARIES "${APR_LIBRARY};${EXPAT_LIBRARY};${APRUTIL_LIBRARY};${APR_CRYPTO_OPENSSL_LIB};${APR_DBD_ODBC_LIB};${APR_DBD_SQLITE3_LIB};${APR_DBM_GDBM_LIB}")
       endif(NOT TARGET LOG4CXX::LOG4CXX)
 
    endif(LOG4CXX_FOUND)

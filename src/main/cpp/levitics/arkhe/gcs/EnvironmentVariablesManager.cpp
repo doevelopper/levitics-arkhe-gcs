@@ -5,10 +5,6 @@ EnvironmentVariablesManager::EnvironmentVariablesManager()
 {
 }
 
-EnvironmentVariablesManager::EnvironmentVariablesManager(const EnvironmentVariablesManager & orig)
-{
-}
-
 EnvironmentVariablesManager::~EnvironmentVariablesManager()
 {
 }

@@ -9,18 +9,20 @@
 #include <QException>
 #include <functional>
 #include <QFontDatabase>
+
+#include <levitics/arkhe/gcs/app/logger/Logger.hpp>
+
 // #include <levitics/app/Mainwindow.hpp>
 // #include <levitics/app/View.hpp>
 // #include <levitics/app/Version.hpp>
-#include <levitics/arkhe/gcs/osgi/core/logger/Logger.hpp>
 
 #define gcsApp (static_cast<GCSApplication *>(QGuiApplication::instance()))
 
-// namespace levitics::arkhe::gcs::app
-// {
+namespace levitics::arkhe::gcs::app
+{
 
-	class GCSApplicationPrivate;
-	class MultiScreenManagement;
+    class GCSApplicationPrivate;
+    class MultiScreenManagement;
 
 #ifndef GCS_NO_GUI
     class GCSApplication : public QApplication
@@ -87,10 +89,10 @@ private:
 		*
 		*/
 	    // LoggingService * m_loggerService;
-		static const long FILE_MONITOR_DELAY = 5000UL;
-		static const std::string LOGGER_CONFIGURATION_LOCATION;
+        static const long FILE_MONITOR_DELAY = 5000UL;
+        static const std::string LOGGER_CONFIGURATION_LOCATION;
         static log4cxx::LoggerPtr logger;
     };
-// }
+}
 
 #endif

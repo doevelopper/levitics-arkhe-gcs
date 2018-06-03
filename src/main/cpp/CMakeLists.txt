@@ -34,16 +34,25 @@ qt5_wrap_ui(resource_headers_forms
 # qt5_wrap_ui
 # qt5_add_binary_resources
 # qt5_add_resources
-# qt5_add_translation
+qt5_add_translation( translation_resoiurces
+    ${CMAKE_CURRENT_LIST_DIR}/../resources/I18n/Translation_fr.ts
+    ${CMAKE_CURRENT_LIST_DIR}/../resources/I18n/Translation_en.ts
+    ${CMAKE_CURRENT_LIST_DIR}/../resources/I18n/Translation_de.ts
+    ${CMAKE_CURRENT_LIST_DIR}/../resources/I18n/Translation_es.ts
+    ${CMAKE_CURRENT_LIST_DIR}/../resources/I18n/Translation_jp.ts
+    ${CMAKE_CURRENT_LIST_DIR}/../resources/I18n/Translation_cn.ts
+)
 
 set(SOURCE_FILES
-#    levitics/arkhe/gcs/app/GCSApplication
-#    levitics/arkhe/gcs/app/private/GCSApplicationPrivate
-    # levitics/app/Version
+    levitics/arkhe/gcs/app/logger/private/LoggerPrivate
+    levitics/arkhe/gcs/app/logger/Logger
+    levitics/arkhe/gcs/app/GCSApplication
+    levitics/arkhe/gcs/app/private/GCSApplicationPrivate
+    #levitics/app/Version
     # levitics/app/View
     # levitics/app/mainwindow
-#    levitics/arkhe/gcs/app/MultiScreenManagement
-#    levitics/arkhe/gcs/app/ScreensDimensions
+    levitics/arkhe/gcs/app/MultiScreenManagement
+    levitics/arkhe/gcs/app/ScreensDimensions
     # levitics/app/private/MainWindowPrivate
      levitics/arkhe/gcs/EnvironmentVariablesManager
 #    ${resource_headers_forms}
@@ -58,6 +67,18 @@ endif()
 
 add_library(levitics.arkhe.gcs.main STATIC ${SOURCE_FILES}
 )
+
+set_target_properties(levitics.arkhe.gcs.main PROPERTIES 
+    COMPILE_FLAGS "-I${CMAKE_BINARY_DIR}"
+)
+
+#set_property(TARGET levitics.arkhe.gcs.main 
+#    APPEND PROPERTY INTERFACE_INCLUDE_DIRECTORIES "${CMAKE_BINARY_DIR}/levitics/app/"
+#)
+
+#set_property(TARGET levitics.arkhe.gcs.main 
+#    APPEND PROPERTY INCLUDE_DIRECTORIES "$<TARGET_PROPERTY:levitics.arkhe.gcs.main,INTERFACE_INCLUDE_DIRECTORIES>"
+#)
 
 option(EXCLUDE_DEPRECATED "Exclude deprecated parts of the library" TRUE)
 if (EXCLUDE_DEPRECATED)
@@ -142,6 +163,10 @@ add_executable(levitics.arkhe.gcs.main.bin
 target_link_libraries(levitics.arkhe.gcs.main.bin 
     levitics.arkhe.gcs.main
 )
+
+#set_target_properties(levitics.arkhe.gcs.main.bin PROPERTIES 
+#    DEBUG_POSTFIX ${CMAKE_DEBUG_POSTFIX}
+#)
 
 target_include_directories(levitics.arkhe.gcs.main
     PUBLIC

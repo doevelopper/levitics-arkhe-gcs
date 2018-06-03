@@ -3,7 +3,6 @@ project(levitics-arkhe-gcs CXX)
 
 cmake_minimum_required( VERSION 3.11.3 FATAL_ERROR)
 
-
 set(PROJECT_NAME_MAJOR_VERSION       3)
 set(PROJECT_NAME_MINOR_VERSION       7)
 set(PROJECT_NAME_MICRO_VERSION       0)
@@ -87,7 +86,8 @@ ProcessorCount(NProc)
 set(COPYRIGHT_YEAR ${APP_BUILD_DATE})
 
 configure_file("${PROJECT_SOURCE_DIR}/src/main/resources/config/Config.hpp.in"
-               "${CMAKE_BINARY_DIR}/levitics/Config.hpp"
+	       #"${CMAKE_CURRENT_BINARY_DIR}/levitics/arkhe/gcs/Config.hpp"
+	       "${CMAKE_BINARY_DIR}/levitics/app/Config.hpp"
                 @ONLY)
 
 configure_file("${PROJECT_SOURCE_DIR}/src/main/resources/config/Api.hpp.in"
@@ -95,7 +95,7 @@ configure_file("${PROJECT_SOURCE_DIR}/src/main/resources/config/Api.hpp.in"
                 @ONLY)
 
 configure_file("${PROJECT_SOURCE_DIR}/src/main/resources/config/Defines.hpp.in"
-               "${CMAKE_BINARY_DIR}/levitics/Defines.hpp"
+               "${CMAKE_BINARY_DIR}/levitics/app/Defines.hpp"
                 @ONLY)
 
 configure_file("${PROJECT_SOURCE_DIR}/src/main/resources/config/AppInfo.hpp.in"
@@ -115,5 +115,5 @@ configure_file("${PROJECT_SOURCE_DIR}/src/main/resources/config/GitRevision.hpp.
                @ONLY)
 
 add_subdirectory(src/main/cpp)
-add_subdirectory(src/test/cpp)
+#add_subdirectory(src/test/cpp)
 #add_subdirectory(src/it)

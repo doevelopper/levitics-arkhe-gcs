@@ -3,10 +3,10 @@
 #define GCSTEST_HPP
 
 #include <QtCore/qglobal.h>
-
 #include <QtWidgets/QApplication>
 #include <vector>
 #include <gmock/gmock.h>
+#include <levitics/arkhe/gcs/app/logger/Logger.hpp>
 
 class GcsTest
 {

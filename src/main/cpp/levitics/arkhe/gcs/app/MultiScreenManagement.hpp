@@ -12,7 +12,8 @@
 #include <QMap>
 #include <QVariant>
 #include <QByteArray>
-#include <levitics/arkhe/gcs/osgi/core/logger/Logger.hpp>
+
+#include <levitics/arkhe/gcs/app/logger/Logger.hpp>
 
 #define MAIN_DISPLAY_WIDTH  (qApp->desktop()->screenGeometry(qApp->desktop()->primaryScreen()).width())
 #define MAIN_DISPLAY_HEIGHT (qApp->desktop()->screenGeometry(qApp->desktop()->primaryScreen()).height())

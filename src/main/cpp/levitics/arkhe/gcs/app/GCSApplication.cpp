@@ -9,7 +9,7 @@
 #include <levitics/arkhe/gcs/app/MultiScreenManagement.hpp>
 #include <levitics/arkhe/gcs/app/private/GCSApplicationPrivate.hpp>
 
-// using namespace levitics::arkhe::gcs::app;
+using namespace levitics::arkhe::gcs::app;
 
 const std::string GCSApplication::LOGGER_CONFIGURATION_LOCATION = "LOG4CXX_CONFIGURATION_PATH =/etc/cfg/log4cxx.xml";
 log4cxx::LoggerPtr GCSApplication::logger = log4cxx::Logger::getLogger(std::string("levitics.arkhe.gcs.app.GCSApplication"));
@@ -18,11 +18,11 @@ GCSApplication::GCSApplication(int &  argc ,
                                char * *  argv ,
                                Qt::WindowFlags f)
 #ifndef GCS_NO_GUI
-    : QApplication(argc , argv , f)
+  : QApplication(argc , argv , f)
 #else
-	: QCoreApplication(argc, argv)
+  : QCoreApplication(argc, argv)
 #endif
-    , d(new GCSApplicationPrivate(this))
+  //, d(new ::internal::GCSApplicationPrivate(this))
     // , m_multiScreenManagement(new MultiScreenManagement())
 {
     LOG4CXX_TRACE(logger , __LOG4CXX_FUNC__);
@@ -55,10 +55,10 @@ GCSApplication::~GCSApplication()
 {
     // LOG4CXX_TRACE(logger , __LOG4CXX_FUNC__);
 
-	if(d)
-    {
-       delete d²;
-    }
+//    if(d)
+  //  {
+    //   delete d;
+    //}
 
     // if ( m_multiScreenManagement )
     // {

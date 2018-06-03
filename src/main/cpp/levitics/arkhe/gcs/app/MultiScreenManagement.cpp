@@ -180,8 +180,8 @@ void MultiScreenManagement::centerWidgetOnGivenScreen (QWidget * w ,
     if ( !QGuiApplication::styleHints()->showIsFullScreen() )
     {
         const QSize size   = geometry.size() * 4 / 5;
-        const QSize offset = (geometry.size() - size) / 2;
-        const QPoint pos   = geometry.topLeft() + QPoint(offset.width() , offset.height());
+        const QSize offst = (geometry.size() - size) / 2;
+        const QPoint pos   = geometry.topLeft() + QPoint(offst.width() , offst.height());
         geometry = QRect(pos , size);
     }
 

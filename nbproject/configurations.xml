@@ -61,7 +61,16 @@ Contributor(s):
               <df name="arkhe">
                 <df name="gcs">
                   <df name="app">
+                    <df name="logger">
+                      <df name="private">
+                        <in>LoggerPrivate.cpp</in>
+                      </df>
+                      <in>Logger.cpp</in>
+                      <in>Logger.hpp</in>
+                    </df>
                     <in>GCSApplication.cpp</in>
+                    <in>MultiScreenManagement.cpp</in>
+                    <in>ScreensDimensions.cpp</in>
                   </df>
                   <in>EnvironmentVariablesManager.cpp</in>
                 </df>
@@ -72,6 +81,16 @@ Contributor(s):
         </df>
         <df name="test">
           <df name="cpp">
+            <df name="levitics">
+              <df name="arkhe">
+                <df name="gcs">
+                  <df name="app">
+                    <in>GCSApplicationTest.cpp</in>
+                    <in>GCSApplicationTest.hpp</in>
+                  </df>
+                </df>
+              </df>
+            </df>
             <in>GcsTest.cpp</in>
             <in>runTest.cpp</in>
           </df>
@@ -94,6 +113,7 @@ Contributor(s):
     <itemPath>src/main/resources/config/modules/FindCucumber-cpp.cmake</itemPath>
     <itemPath>src/main/resources/config/modules/FindGoogleBenchmark</itemPath>
     <itemPath>src/main/resources/config/modules/FindGoogleTestFwk.cmake</itemPath>
+    <itemPath>src/main/resources/I18n/Translation_de.ts</itemPath>
   </logicalFolder>
   <sourceFolderFilter>^(nbproject|build)$</sourceFolderFilter>
   <sourceRootList>
@@ -132,7 +152,9 @@ Contributor(s):
       <item path="/opt/cmake/share/cmake-3.11/Modules/CMakeCXXCompilerABI.cpp"
             ex="false"
             tool="1"
-            flavor2="0">
+            flavor2="11">
+        <ccTool flags="2">
+        </ccTool>
       </item>
       <item path="build/Debug/src/main/cpp/levitics.arkhe.gcs.main_autogen/mocs_compilation.cpp"
             ex="false"
@@ -324,6 +346,41 @@ Contributor(s):
           </preprocessorList>
         </ccTool>
       </folder>
+      <folder path="0/src/test/cpp/levitics">
+        <ccTool>
+          <incDir>
+            <pElem>build/Debug/src/test/cpp/levitics.arkhe.gcs.test_autogen/include</pElem>
+            <pElem>src/main/cpp/levitics/arkhe/gcs</pElem>
+            <pElem>build/Debug/src/main/cpp</pElem>
+            <pElem>src/main/cpp</pElem>
+            <pElem>../gcs_installs/include</pElem>
+            <pElem>../gcs_installs/include/apr-1</pElem>
+            <pElem>/opt/Qt5.11.0/5.11.0/gcc_64/include</pElem>
+            <pElem>/opt/Qt5.11.0/5.11.0/gcc_64/include/QtConcurrent</pElem>
+            <pElem>/opt/Qt5.11.0/5.11.0/gcc_64/include/QtCore</pElem>
+            <pElem>/opt/Qt5.11.0/5.11.0/gcc_64/mkspecs/linux-g++</pElem>
+            <pElem>/opt/Qt5.11.0/5.11.0/gcc_64/include/QtCharts</pElem>
+            <pElem>/opt/Qt5.11.0/5.11.0/gcc_64/include/QtWidgets</pElem>
+            <pElem>/opt/Qt5.11.0/5.11.0/gcc_64/include/QtGui</pElem>
+            <pElem>/opt/Qt5.11.0/5.11.0/gcc_64/include/QtDataVisualization</pElem>
+            <pElem>/opt/Qt5.11.0/5.11.0/gcc_64/include/QtLocation</pElem>
+            <pElem>/opt/Qt5.11.0/5.11.0/gcc_64/include/QtPositioning</pElem>
+            <pElem>/opt/Qt5.11.0/5.11.0/gcc_64/include/QtQuick</pElem>
+            <pElem>/opt/Qt5.11.0/5.11.0/gcc_64/include/QtQml</pElem>
+            <pElem>/opt/Qt5.11.0/5.11.0/gcc_64/include/QtNetwork</pElem>
+            <pElem>/opt/Qt5.11.0/5.11.0/gcc_64/include/QtNetworkAuth</pElem>
+            <pElem>/opt/Qt5.11.0/5.11.0/gcc_64/include/QtMultimedia</pElem>
+            <pElem>/opt/Qt5.11.0/5.11.0/gcc_64/include/QtMultimediaWidgets</pElem>
+            <pElem>/opt/Qt5.11.0/5.11.0/gcc_64/include/QtOpenGL</pElem>
+            <pElem>/opt/Qt5.11.0/5.11.0/gcc_64/include/QtOpenGLExtensions</pElem>
+            <pElem>/opt/Qt5.11.0/5.11.0/gcc_64/include/QtPurchasing</pElem>
+            <pElem>/opt/Qt5.11.0/5.11.0/gcc_64/include/QtQuickControls2</pElem>
+            <pElem>/opt/Qt5.11.0/5.11.0/gcc_64/include/QtQuickWidgets</pElem>
+            <pElem>/opt/Qt5.11.0/5.11.0/gcc_64/include/QtSvg</pElem>
+            <pElem>/opt/Qt5.11.0/5.11.0/gcc_64/include/QtXml</pElem>
+          </incDir>
+        </ccTool>
+      </folder>
       <folder path="Modules">
         <ccTool>
           <incDir>
@@ -408,6 +465,34 @@ Contributor(s):
         <ccTool flags="0">
         </ccTool>
       </item>
+      <item path="src/main/cpp/levitics/arkhe/gcs/app/MultiScreenManagement.cpp"
+            ex="false"
+            tool="1"
+            flavor2="11">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="src/main/cpp/levitics/arkhe/gcs/app/ScreensDimensions.cpp"
+            ex="false"
+            tool="1"
+            flavor2="11">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="src/main/cpp/levitics/arkhe/gcs/app/logger/Logger.cpp"
+            ex="false"
+            tool="1"
+            flavor2="11">
+        <ccTool flags="2">
+        </ccTool>
+      </item>
+      <item path="src/main/cpp/levitics/arkhe/gcs/app/logger/private/LoggerPrivate.cpp"
+            ex="false"
+            tool="1"
+            flavor2="11">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
       <item path="src/main/cpp/main.cpp" ex="false" tool="1" flavor2="11">
         <ccTool flags="1">
           <incDir>
@@ -440,6 +525,11 @@ Contributor(s):
             <pElem>/opt/Qt5.11.0/5.11.0/gcc_64/include/QtXml</pElem>
           </incDir>
         </ccTool>
+      </item>
+      <item path="src/main/resources/I18n/Translation_de.ts"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
       <item path="src/test/cpp/GcsTest.cpp" ex="false" tool="1" flavor2="11">
         <ccTool flags="1">
@@ -475,6 +565,16 @@ Contributor(s):
             <pElem>/opt/Qt5.11.0/5.11.0/gcc_64/include/QtXml</pElem>
           </incDir>
         </ccTool>
+      </item>
+      <item path="src/test/cpp/levitics/arkhe/gcs/app/GCSApplicationTest.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/test/cpp/levitics/arkhe/gcs/app/GCSApplicationTest.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
       </item>
       <item path="src/test/cpp/runTest.cpp" ex="false" tool="1" flavor2="11">
         <ccTool flags="1">
@@ -551,6 +651,21 @@ Contributor(s):
           <preBuildFirst>true</preBuildFirst>
         </preBuild>
       </makefileType>
+      <item path="src/main/cpp/levitics/arkhe/gcs/app/logger/Logger.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/main/cpp/levitics/arkhe/gcs/app/logger/Logger.hpp"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="src/main/resources/I18n/Translation_de.ts"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="src/main/resources/config/modules/FindCucumber-cpp.cmake"
             ex="false"
             tool="3"
@@ -562,6 +677,16 @@ Contributor(s):
             flavor2="0">
       </item>
       <item path="src/main/resources/config/modules/FindGoogleTestFwk.cmake"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="src/test/cpp/levitics/arkhe/gcs/app/GCSApplicationTest.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="src/test/cpp/levitics/arkhe/gcs/app/GCSApplicationTest.hpp"
             ex="false"
             tool="3"
             flavor2="0">
