@@ -27,27 +27,6 @@ set(RELEASE_LEVEL "SNAPSHOOT")
 add_definitions(-DAPPLICATIONNAME="${PROJECT_NAME} ${PROJECT_VERSION_PATCH}")
 add_definitions(-DAPP_VERSION_STR="${${PROJECT_NAME}_MAJOR_VERSION}.${${PROJECT_NAME}_MINOR_VERSION}.${${PROJECT_NAME}_MICRO_VERSION}")
 
-option(ENABLE_QA_CHECK                  "Software quality. Conformance to one or more standards"    OFF)
-option(ENABLE_COVERAGE                  "Build the project with coverage support"                   OFF)
-option(ENABLE_CPPLINT                   "Ensure that code conforms to Google's coding style guides" OFF)
-option(ENABLE_FORMATING_STYLE           "Code Beautifier"                                           OFF)
-option(ENABLE_CYCLOMATIC_COMPLEXITY     "Cyclomatic Complexity Analyzer"                            OFF)
-option(ENABLE_CPPCHECK                  "Static code analysis tool "                                OFF)
-option(ANALYZE_MEMORY                   "Dynamic analyzer: detector of uninitialized reads."        OFF)
-option(ANALYZE_ADDRESS                  "Dynamic analyzer: fast memory error detector. "            OFF)
-option(ANALYZE_THREAD                   "Dynamic analyzer: tool that detects data races. "          OFF)
-option(ANALYZE_UNDEFINED                "Dynamic analyzer: undefined behavior checker. "            OFF)
-option(ANALYZE_DATAFLOW                 "Dynamic analyzer: general dynamic dataflow analysis."      OFF)
-option(WARNINGS_ARE_ERRORS              "Treat warnings as errors"                                  OFF)
-option(WARNINGS_ANSI_ISO                "Issue all the mandatory diagnostics Listed in C standard"  ON)
-option(ENABLE_SANITIZE                  "Sanitize build"                                            OFF)
-option(ENABLE_TIDY                      "Use clang-tidy"                                            OFF)
-option(ENABLE_STATIC                    "Make a static build"                                       OFF)
-option(ENABLE_COVERAGE                  "Run code coverage"                                         OFF)
-option(ENABLE_EXAMPLES                  "Build examples"                                            OFF)
-option(ENABLE_CI                        "Continuous integration run"                                OFF)
-option(ENABLE_LTO                       "Link-time optimizations. Fails on Windows."                OFF)
-
 
 list(APPEND CMAKE_MODULE_PATH
     "${CMAKE_SOURCE_DIR}/src/main/resources/config/modules"
@@ -114,6 +93,33 @@ configure_file("${PROJECT_SOURCE_DIR}/src/main/resources/config/GitRevision.hpp.
                "${CMAKE_BINARY_DIR}/levitics/app/GitRevision.hpp"
                @ONLY)
 
+get_property(cxx_known_features GLOBAL PROPERTY CMAKE_CXX_KNOWN_FEATURES)
+get_property(c_known_features GLOBAL PROPERTY CMAKE_C_KNOWN_FEATURES)
+
+include(WriteCompilerDetectionHeader)
+write_compiler_detection_header(
+    FILE ${CMAKE_BINARY_DIR}/levitics/app/CompilerDetection.hpp
+    PREFIX GCS
+#              [OUTPUT_FILES_VAR <output_files_var> OUTPUT_DIR <output_dir>]
+    COMPILERS GNU 
+    #    FEATURES  ${cxx_known_features} cxx_variadic_templates cxx_constexpr cxx_deleted_functions 
+    #              cxx_final cxx_noexcept cxx_override cxx_alignas cxx_alignof
+    #	      cxx_nullptr cxx_sizeof_member cxx_thread_local
+    FEATURES  ${cxx_known_features}
+    VERSION   "${CMAKE_VERSION}"
+    PROLOG "//<prolog>"
+    EPILOG "//<epilog>"
+#              [ALLOW_UNKNOWN_COMPILERS]
+#              [ALLOW_UNKNOWN_COMPILER_VERSIONS]
+)
+
+
+#find_package(Doxygen  
+#   REQUIRED  dot
+#   OPTIONAL_COMPONENTS mscgen dia
+#)
+
+
 add_subdirectory(src/main/cpp)
-#add_subdirectory(src/test/cpp)
+add_subdirectory(src/test/cpp)
 #add_subdirectory(src/it)

@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 #include <cucumber-cpp/autodetect.hpp>
-#include <levitics/arkhe/gcs/app/ScreensDimensions.hpp>
+//#include <levitics/arkhe/gcs/app/ScreensDimensions.hpp>
 namespace
 {
 

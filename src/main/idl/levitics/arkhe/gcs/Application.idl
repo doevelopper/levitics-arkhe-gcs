@@ -1,0 +1,5 @@
+
+struct ApplicationInformation 
+{
+    string<256> ID; //@key
+};

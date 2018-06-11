@@ -46,13 +46,13 @@ qt5_add_translation( translation_resoiurces
 set(SOURCE_FILES
     levitics/arkhe/gcs/app/logger/private/LoggerPrivate
     levitics/arkhe/gcs/app/logger/Logger
-    levitics/arkhe/gcs/app/GCSApplication
+    #levitics/arkhe/gcs/app/GCSApplication
     levitics/arkhe/gcs/app/private/GCSApplicationPrivate
     #levitics/app/Version
     # levitics/app/View
     # levitics/app/mainwindow
-    levitics/arkhe/gcs/app/MultiScreenManagement
-    levitics/arkhe/gcs/app/ScreensDimensions
+    #levitics/arkhe/gcs/app/MultiScreenManagement
+    #levitics/arkhe/gcs/app/ScreensDimensions
     # levitics/app/private/MainWindowPrivate
      levitics/arkhe/gcs/EnvironmentVariablesManager
 #    ${resource_headers_forms}
@@ -71,6 +71,8 @@ add_library(levitics.arkhe.gcs.main STATIC ${SOURCE_FILES}
 set_target_properties(levitics.arkhe.gcs.main PROPERTIES 
     COMPILE_FLAGS "-I${CMAKE_BINARY_DIR}"
 )
+
+add_dependencies(levitics.arkhe.gcs.main compile)
 
 #set_property(TARGET levitics.arkhe.gcs.main 
 #    APPEND PROPERTY INTERFACE_INCLUDE_DIRECTORIES "${CMAKE_BINARY_DIR}/levitics/app/"
@@ -97,43 +99,41 @@ generate_export_header(levitics.arkhe.gcs.main
     ${NO_BUILD_DEPRECATED}
 )
 
-target_compile_options(levitics.arkhe.gcs.main
-    INTERFACE
-        #-std=c++17
-        $<$<CONFIG:Debug>:-g3 -O0 -fstack-protector>
-        $<$<CONFIG:Release>:-g0 -O2>
-    PUBLIC 
-        $<$<COMPILE_LANGUAGE:CXX>: -W -Wall -Wextra -Weffc++ -Wpedantic -fmax-errors=5 -Werror=shadow -fdiagnostics-parseable-fixits>
-        $<$<CONFIG:Debug>: -O0 -g -D_DEBUG -D_FORTIFY_SOURCE=2 -fno-strict-aliasing -fno-omit-frame-pointer>
-        $<$<CONFIG:Release>:-g0 -O2>
-        $<$<CONFIG:Coverage>:-O0  -fprofile-arcs -ftest-coverage --coverage>
-        $<$<CONFIG:Profile>:-fsanitize=memory -fsanitize-memory-track-origins=2 -fno-omit-frame-pointer>
-       
-)
+#target_compile_options(levitics.arkhe.gcs.main
+#    INTERFACE
+#        $<$<CONFIG:Debug>:-g3 -O0 -fstack-protector>
+#        $<$<CONFIG:Release>:-g0 -O2>
+#    PUBLIC 
+#        $<$<COMPILE_LANGUAGE:CXX>: -W -Wall -Wextra -Weffc++ -Wpedantic -fmax-errors=5 -Werror=shadow -fdiagnostics-parseable-fixits>
+#        $<$<CONFIG:Debug>: -O0 -g -D_DEBUG -D_FORTIFY_SOURCE=2 -fno-strict-aliasing -fno-omit-frame-pointer>
+#        $<$<CONFIG:Release>:-g0 -O2>
+#        $<$<CONFIG:Coverage>:-O0  -fprofile-arcs -ftest-coverage --coverage>
+#        $<$<CONFIG:Profile>:-fsanitize=memory -fsanitize-memory-track-origins=2 -fno-omit-frame-pointer>
+#)
 
-target_compile_features(levitics.arkhe.gcs.main
-    PUBLIC
-        cxx_std_17
-        cxx_strong_enums
-        cxx_variadic_templates
-        cxx_nullptr
-        cxx_alias_templates
-        cxx_auto_type
-        cxx_constexpr
-        cxx_defaulted_functions
-        cxx_final
-        cxx_lambdas
-        cxx_noexcept
-        cxx_nullptr
-        cxx_rvalue_references
-        cxx_thread_local
-        cxx_variadic_templates
-        cxx_override
-    PRIVATE
-        cxx_lambdas
-        cxx_range_for
-        $<$<CXX_COMPILER_ID:GNU>:cxx_attributes>
-)
+#target_compile_features(levitics.arkhe.gcs.main
+#    PUBLIC
+#        cxx_std_17
+#        cxx_strong_enums
+#        cxx_variadic_templates
+#        cxx_nullptr
+#        cxx_alias_templates
+#        cxx_auto_type
+#        cxx_constexpr
+#        cxx_defaulted_functions
+#        cxx_final
+#        cxx_lambdas
+#        cxx_noexcept
+#        cxx_nullptr
+#        cxx_rvalue_references
+#        cxx_thread_local
+#        cxx_variadic_templates
+#        cxx_override
+#    PRIVATE
+#        cxx_lambdas
+#        cxx_range_for
+#        $<$<CXX_COMPILER_ID:GNU>:cxx_attributes>
+#)
 
 
 target_link_libraries(levitics.arkhe.gcs.main

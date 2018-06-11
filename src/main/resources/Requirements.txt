@@ -1,0 +1,16 @@
+cd libexpat
+
+./configure --prefix=/home/happyman/gcs_installs
+
+cd apr-1.6.3
+./configure --prefix=/home/happyman/gcs_installs --enable-threads --enable-posix-shm \
+            --enable-allocator-guard-pages --enable-pool-concurrency-check --enable-other-child
+
+cd apr-util-1.6.1
+./configure --prefix=/home/happyman/gcs_installs --with-apr=../apr-1.6.3 --with-expat=../expat-2.1.0
+
+cd log4cxx<dir>
+
+./configure --prefix=/home/happyman/gcs_installs --with-apr=../apr-1.6.3 --with-apr-util=../apr-util-1.6.1 \
+            --with-ODBC=no --with-SMTP=no --enable-char --enable-wchar_t --with-charset=utf-8 --with-logchar=utf-8
+
