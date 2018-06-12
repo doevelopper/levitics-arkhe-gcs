@@ -14,8 +14,8 @@ namespace Ui
     class MainWindow;
 }
 
+QT_FORWARD_DECLARE_CLASS(QSplashScreen)
 class MainWindowPrivate;
-class QSplashScreen;
 /*!
  * @brief Main window class
  *
@@ -91,11 +91,11 @@ protected:
     QScopedPointer<MainWindowPrivate> const d_ptr;
     explicit MainWindow(MainWindowPrivate & d , QWidget * parent);
 
-    void dragEnterEvent (QDragEnterEvent * evt);
-    void dropEvent (QDropEvent * evt);
-    void showEvent (QShowEvent * evt);
-    void closeEvent (QCloseEvent * evt);
-    void wheelEvent (QWheelEvent * ev);
+    void dragEnterEvent (QDragEnterEvent * evt) Q_DECL_OVERRIDE;
+    void dropEvent (QDropEvent * evt) Q_DECL_OVERRIDE;
+    void showEvent (QShowEvent * evt) Q_DECL_OVERRIDE;
+    void closeEvent (QCloseEvent * evt) Q_DECL_OVERRIDE;
+    void wheelEvent (QWheelEvent * ev) Q_DECL_OVERRIDE;
 
     /*!
      * @brief Called when a mouse button is pressed over the window
@@ -117,7 +117,9 @@ protected:
      * @param event Event's attributes
      */
     virtual void keyPressEvent (QKeyEvent * event);
-
+private slots:
+    void commitData(QSessionManager &);
+    void about();
 private:
 
     bool saveLayout ();

@@ -31,6 +31,9 @@ MainWindow::MainWindow(QWidget *       parent ,
      //resize(800 , 700);
 
     // m_statusBar = new StatusBar(this);
+    QGuiApplication::setFallbackSessionManagementEnabled(false);
+    //connect(qApp, &QGuiApplication::commitDataRequest,this, &MainWindow::commitData);
+    connect(qApp, SIGNAL(commitDataRequest(QSessionManager)), SLOT(commitData(QSessionManager)));
 }
 
 MainWindow::~MainWindow()
@@ -52,6 +55,48 @@ MainWindow::~MainWindow()
     // return theMainwindowManager;
    }
  */
+
+void MainWindow::commitData(QSessionManager& manager)
+{
+    LOG4CXX_TRACE(logger , __LOG4CXX_FUNC__);
+    if (manager.allowsInteraction()) 
+    {
+        int ret = QMessageBox::warning(
+                    mainWindow,
+                    tr("My Application"),
+                    tr("Save changes to document?"),
+                    QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel);
+
+        switch (ret) 
+	{
+            case QMessageBox::Save:
+                manager.release();
+                if (!saveDocument())
+		{
+                    manager.cancel();
+		}
+                break;
+            case QMessageBox::Discard:
+                break;
+            case QMessageBox::Cancel:
+            default:
+                manager.cancel();
+        }	
+    }
+    else 
+    {
+        LOG4CXX_WARN(logger , "we did not get permission to interact, then do something reasonable instead");
+    }
+}
+
+void MainWindow::about()
+{
+   QMessageBox::about(this, tr("About Application"),
+            tr("The <b>Application</b> example demonstrates how to "
+               "write modern GUI applications using Qt, with a menu bar, "
+               "toolbars, and a status bar."));
+
+}
 
 void MainWindow::setFrameless (QWidget * w)
 {
@@ -153,7 +198,19 @@ void MainWindow::closeEvent (QCloseEvent * evt)
             // pqSaveStateReaction::saveState();
         }
     }
-    evt->accept();
+
+    if (0/*maybeSave()*/) 
+     
+    {
+        //writeSettings();
+        evt->accept();
+	LOG4CXX_TRACE(logger , "Evt accpted");
+    } 
+    else 
+    {
+       evt->ignore();
+       LOG4CXX_TRACE(logger , "Evt Ignored");
+    }
 }
 
 void MainWindow::showWelcomeDialog ()

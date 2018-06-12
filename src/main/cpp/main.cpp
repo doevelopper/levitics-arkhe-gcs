@@ -1,5 +1,10 @@
 
+
 #include <cstdlib>
+#include <QCoreApplication>
+#include <QApplication>
+#include <QScopedPointer>
+
 // #include <levitics/app/GCSApplication.hpp>
 
 
@@ -54,7 +59,7 @@ int main (int argc , char * * argv)
        // start non-GUI version...
     }
     
-    return (app.exec ());
+//    return (app.exec ());
 #endif
 
     return (EXIT_SUCCESS);

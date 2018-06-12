@@ -121,5 +121,5 @@ write_compiler_detection_header(
 
 
 add_subdirectory(src/main/cpp)
-add_subdirectory(src/test/cpp)
+#add_subdirectory(src/test/cpp)
 #add_subdirectory(src/it)

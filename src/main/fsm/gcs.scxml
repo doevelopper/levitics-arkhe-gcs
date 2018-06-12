@@ -1,0 +1,63 @@
+
+<?xml version="1.0 encoding="UTF-8" ?>
+<!--
+/****************************************************************************
+**
+** Copyright (C) 2018 A.H.L.
+**    Have a look at https://www.w3.org/TR/scxml/#scxml
+**
+*****************************************************************************
+-->
+
+<scxml xmlns="http://www.w3.org/2005/07/scxml" version="1.0"
+       name="gcsfsm" xmlns:conf="http://www.w3.org/2005/scxml-conformance" datamodel="ecmascript"
+       initial="h">
+
+
+    <state id="main">
+
+        <history id="h">
+            <transition target="b2"/>
+        </history>
+
+        <onentry>
+            <send event="valid"/>
+            <send event="still.valid"/>
+            <send event="-valid-"/>
+        </onentry>
+
+        <transition event="init" target="active">
+        <transition event="valid"/>
+        <transition event="still.valid"/>
+        <transition event="also valid"/>
+
+    </state>
+
+    <state id="topState">
+        <invoke type="scxml" id="submachine.1" src="file:submachineA.scxml"/>
+        <invoke type="scxml" id="submachine.2" src="file:submachineA.scxml"/>
+        <invoke type="scxml" id="submachine.3" src="file:submachineB.scxml"/>
+        <transition event="done.invoke">
+            <assign location="doneCounter" expr="doneCounter + 1"/>
+            <if cond="doneCounter === 3">
+                <send event="goToFinal" delay="1s"/>
+            </if>
+        </transition>
+    <transition event="goToFinal" target="finalState"/>
+
+    <state id="anyplace">
+        <invoke type="http://www.w3.org/TR/scxml/">
+            <content>
+                <scxml name="änywhere" version="1.0">
+                    <state id="here">
+                        <transition event="goThere" target="there"/>
+                    </state>
+                    <state id="there">
+                        <transition event="goHere" target="here"/>
+                    </state>
+                </scxml>
+            </content>
+        </invoke>
+    </state>
+    <final id="finalState"/>
+</scxml>

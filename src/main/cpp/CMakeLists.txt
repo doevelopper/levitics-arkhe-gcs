@@ -21,6 +21,8 @@
 #        OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 #        WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+set(MODULE_NAME  "levitics.arkhe.gcs.main")
+string(TOLOWER ${MODULE_NAME} MODULE_NAME_LOWER)
 
 qt5_add_resources(resource_headers 
     ${CMAKE_CURRENT_LIST_DIR}/../resources/resources.qrc
@@ -49,12 +51,12 @@ set(SOURCE_FILES
     #levitics/arkhe/gcs/app/GCSApplication
     levitics/arkhe/gcs/app/private/GCSApplicationPrivate
     #levitics/app/Version
-    # levitics/app/View
-    # levitics/app/mainwindow
+    #levitics/app/View
+    #levitics/app/mainwindow
     #levitics/arkhe/gcs/app/MultiScreenManagement
     #levitics/arkhe/gcs/app/ScreensDimensions
-    # levitics/app/private/MainWindowPrivate
-     levitics/arkhe/gcs/EnvironmentVariablesManager
+    #levitics/app/private/MainWindowPrivate
+    levitics/arkhe/gcs/EnvironmentVariablesManager
 #    ${resource_headers_forms}
 #    ${resource_headers}
 )
@@ -111,9 +113,9 @@ generate_export_header(levitics.arkhe.gcs.main
 #        $<$<CONFIG:Profile>:-fsanitize=memory -fsanitize-memory-track-origins=2 -fno-omit-frame-pointer>
 #)
 
-#target_compile_features(levitics.arkhe.gcs.main
-#    PUBLIC
-#        cxx_std_17
+target_compile_features(levitics.arkhe.gcs.main
+    PUBLIC
+        cxx_std_17
 #        cxx_strong_enums
 #        cxx_variadic_templates
 #        cxx_nullptr
@@ -129,11 +131,11 @@ generate_export_header(levitics.arkhe.gcs.main
 #        cxx_thread_local
 #        cxx_variadic_templates
 #        cxx_override
-#    PRIVATE
+    PRIVATE
 #        cxx_lambdas
 #        cxx_range_for
-#        $<$<CXX_COMPILER_ID:GNU>:cxx_attributes>
-#)
+        $<$<CXX_COMPILER_ID:GNU>:cxx_attributes>
+)
 
 
 target_link_libraries(levitics.arkhe.gcs.main
@@ -154,7 +156,10 @@ target_link_libraries(levitics.arkhe.gcs.main
         Qt5::Svg
     #    Qt5::WebKit Qt5::WebKitWidgets 
         Qt5::Widgets 
-        Qt5::Xml 
+        Qt5::Xml
+	Qt5::XmlPatterns
+        Qt5::Scxml
+        Qt5::Concurrent
 )
 
 add_executable(levitics.arkhe.gcs.main.bin
@@ -164,6 +169,46 @@ target_link_libraries(levitics.arkhe.gcs.main.bin
     levitics.arkhe.gcs.main
 )
 
+install(FILES ${CMAKE_BINARY_DIR}/superglu.h 
+    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR} 
+    COMPONENT development
+)
+
+
+install(TARGETS levitics.arkhe.gcs.main EXPORT ${MODULE_NAME}
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR} COMPONENT runtime
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR} COMPONENT runtime NAMELINK_SKIP
+    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR} COMPONENT development
+)
+
+# Support find_package(<target> NO_MODULE).
+configure_package_config_file(${MODULE_NAME}-config.cmake.in ${MODULE_NAME_LOWER}-config.cmake
+	INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${MODULE_NAME}-${MODULE_VERSION}
+)
+
+write_basic_package_version_file(${CMAKE_BINARY_DIR}/${MODULE_NAME_LOWER}-config-version.cmake
+	VERSION ${MODULE_VERSION}
+	COMPATIBILITY ExactVersion
+)
+
+# To make the component usable not only from the install directory but also from the build directory
+export(
+    TARGETS levitics.arkhe.gcs.main.bin
+    FILE ${MODULE_NAME_LOWER}-export.cmake
+)
+
+install(FILES ${CMAKE_BINARY_DIR}/${MODULE_NAME_LOWER}-config.cmake ${CMAKE_BINARY_DIR}/${MODULE_NAME_LOWER}-config-version.cmake
+	DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${MODULE_NAME}-${MODULE_VERSION}
+	COMPONENT development
+)
+
+install(EXPORT ${PROJECT_NAME}
+	DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${MODULE_NAME}-${MODULE_VERSION}
+	NAMESPACE ${PROJECT_NAME}::
+	FILE ${MODULE_NAME_LOWER}-export.cmake
+	COMPONENT development
+)
+
 #set_target_properties(levitics.arkhe.gcs.main.bin PROPERTIES 
 #    DEBUG_POSTFIX ${CMAKE_DEBUG_POSTFIX}
 #)
@@ -171,7 +216,14 @@ target_link_libraries(levitics.arkhe.gcs.main.bin
 target_include_directories(levitics.arkhe.gcs.main
     PUBLIC
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/levitics/arkhe/gcs>
+        $<BUILD_INTERFACE:${CMAKE_BINARY_DIR}>
+	$<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include>
+	$<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/libnurbs/interface>
+	$<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/libnurbs/internals>
+	$<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/libnurbs/nurbtess>
+	$<INSTALL_INTERFACE:$<INSTALL_PREFIX>/${CMAKE_INSTALL_INCLUDEDIR}>
         $<INSTALL_INTERFACE:${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/levitics/arkhe/gcs>
+
 )
 
 if(NOT TARGET LEVITICS-ARKHE-GCS-MAIN::LEVITICS-ARKHE-GCS-MAIN)
