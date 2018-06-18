@@ -32,9 +32,12 @@ GCSApplicationPrivate::GCSApplicationPrivate(GCSApplication * q_ptr)
 {
     LOG4CXX_TRACE(logger , __LOG4CXX_FUNC__);
     //this->setApplicationName(APPLICATION_CODENAME);
+    //this->setApplicationDisplayName(APPLICATION_NAME);
     //this->setApplicationVersion(APP_VERSION_STR);
     //this->setOrganizationName(APP_ORG);
     //this->setOrganizationDomain(APP_DOMAIN);
+    //this->setWindowIcon(QIcon(":gcs.png"));
+    //qApp->setAttribute(Qt::AA_UseHighDpiPixmaps);
 }
 
 GCSApplicationPrivate::~GCSApplicationPrivate()

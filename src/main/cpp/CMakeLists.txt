@@ -45,6 +45,10 @@ qt5_add_translation( translation_resoiurces
     ${CMAKE_CURRENT_LIST_DIR}/../resources/I18n/Translation_cn.ts
 )
 
+
+#QML Compiler
+#qtquick_compiler_add_resources()
+
 set(SOURCE_FILES
     levitics/arkhe/gcs/app/logger/private/LoggerPrivate
     levitics/arkhe/gcs/app/logger/Logger
@@ -182,14 +186,14 @@ install(TARGETS levitics.arkhe.gcs.main EXPORT ${MODULE_NAME}
 )
 
 # Support find_package(<target> NO_MODULE).
-configure_package_config_file(${MODULE_NAME}-config.cmake.in ${MODULE_NAME_LOWER}-config.cmake
-	INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${MODULE_NAME}-${MODULE_VERSION}
-)
+#configure_package_config_file(${MODULE_NAME}-config.cmake.in ${MODULE_NAME_LOWER}-config.cmake
+#	INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${MODULE_NAME}-${MODULE_VERSION}
+#)
 
-write_basic_package_version_file(${CMAKE_BINARY_DIR}/${MODULE_NAME_LOWER}-config-version.cmake
-	VERSION ${MODULE_VERSION}
-	COMPATIBILITY ExactVersion
-)
+#write_basic_package_version_file(${CMAKE_BINARY_DIR}/${MODULE_NAME_LOWER}-config-version.cmake
+#	VERSION ${MODULE_VERSION}
+#	COMPATIBILITY ExactVersion
+#)
 
 # To make the component usable not only from the install directory but also from the build directory
 export(
@@ -202,7 +206,7 @@ install(FILES ${CMAKE_BINARY_DIR}/${MODULE_NAME_LOWER}-config.cmake ${CMAKE_BINA
 	COMPONENT development
 )
 
-install(EXPORT ${PROJECT_NAME}
+install(EXPORT levitics.arkhe.gcs.main
 	DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${MODULE_NAME}-${MODULE_VERSION}
 	NAMESPACE ${PROJECT_NAME}::
 	FILE ${MODULE_NAME_LOWER}-export.cmake

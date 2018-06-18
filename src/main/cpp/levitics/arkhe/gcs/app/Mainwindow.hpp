@@ -6,6 +6,12 @@
 #include <QtGlobal>
 #include <QMainWindow>
 
+#include <QGuiApplication>
+#include <QQmlEngine>
+#include <QQmlContext>
+#include <QQmlComponent>
+
+
 // #include <arkhe/widgets/StatusBar.hpp>
 #include <levitics/osgi/core/logger/Logger.hpp>
 
@@ -75,6 +81,10 @@ public:
     virtual void resizeEvent (QResizeEvent * event) Q_DECL_OVERRIDE;
     virtual bool eventFilter (QObject * watched , QEvent * event) Q_DECL_OVERRIDE;
 
+public slots:
+    
+    void loadQML(const QString & qmlFileName);
+
 signals:
 
     void mouseWheelUp ();
@@ -117,13 +127,18 @@ protected:
      * @param event Event's attributes
      */
     virtual void keyPressEvent (QKeyEvent * event);
+
 private slots:
+
     void commitData(QSessionManager &);
     void about();
+
 private:
 
     bool saveLayout ();
     bool loadLayout ();
+    
+    QQuickView* m_quickView;
 
     // StatusBar * m_statusBar;
     static log4cxx::LoggerPtr logger;

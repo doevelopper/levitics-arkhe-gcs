@@ -11,7 +11,7 @@
 
 using namespace levitics::arkhe::gcs::app;
 
-const std::string GCSApplication::LOGGER_CONFIGURATION_LOCATION = "LOG4CXX_CONFIGURATION_PATH =/etc/cfg/log4cxx.xml";
+const std::string GCSApplication::LOGGER_CONFIGURATION_LOCATION = "LOG4CXX_CONFIGURATION_PATH =" + QDir::currentPath() + "/etc/cfg/log4cxx.xml";
 log4cxx::LoggerPtr GCSApplication::logger = log4cxx::Logger::getLogger(std::string("levitics.arkhe.gcs.app.GCSApplication"));
 
 GCSApplication::GCSApplication(int &  argc ,
@@ -27,6 +27,14 @@ GCSApplication::GCSApplication(int &  argc ,
 {
     LOG4CXX_TRACE(logger , __LOG4CXX_FUNC__);
     LOG4CXX_INFO(logger , std::locale("").name().c_str());
+
+    QLocale::Language newLanguage = QLocale::system().language();
+    QLocale::Country newCountry= QLocale::system().country();
+
+    QLocale newLoc = QLocale(newLanguage,newCountry);
+    newLoc.setNumberOptions(QLocale::OmitGroupSeparator);
+    QLocale::setDefault(newLoc);
+
     // m_multiScreenManagement->sreensInfo();
 
     //    QLocale us(QLocale::English,QLocale::UnitedStates);

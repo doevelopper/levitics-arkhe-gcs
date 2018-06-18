@@ -21,6 +21,7 @@ log4cxx::LoggerPtr MainWindow::logger =
 MainWindow::MainWindow(QWidget *       parent ,
                        Qt::WindowFlags flags)
     : QMainWindow(parent , flags | Qt::FramelessWindowHint)
+    , m_quickView(new QQuickView())
 {
     LOG4CXX_TRACE(logger , __LOG4CXX_FUNC__);
 
@@ -34,6 +35,30 @@ MainWindow::MainWindow(QWidget *       parent ,
     QGuiApplication::setFallbackSessionManagementEnabled(false);
     //connect(qApp, &QGuiApplication::commitDataRequest,this, &MainWindow::commitData);
     connect(qApp, SIGNAL(commitDataRequest(QSessionManager)), SLOT(commitData(QSessionManager)));
+}
+
+void MainWindow::loadQML(const QString & qmlFileName)
+{
+    LOG4CXX_TRACE(logger , __LOG4CXX_FUNC__);
+    LOG4CXX_DEBUG(logger, "Requested loading new QML:" << qmlFileName.toStdString());
+    
+    QString path = "qrc:/qml/" + qmlFileName;
+    LOG4CXX_DEBUG(logger, "Requested loading new QML:" << path.toStdString());
+/*
+    m_quickView->setSource(QUrl(path));
+
+    auto qmlRootObject = m_quickView->rootObject();
+
+    //connect the the qml load signal
+    QObject::connect(qmlRootObject, SIGNAL(loadQML(QString)),
+                   this, SLOT(loadQML(const QString&)));
+*/
+/*  USAGE
+  //embed the QML view into main window
+  QWidget *container = QWidget::createWindowContainer(m_view, this);
+  m_ui->verticalLayout->addWidget(container);
+  m_view->setResizeMode(QQuickView::SizeRootObjectToView);
+  */  
 }
 
 MainWindow::~MainWindow()

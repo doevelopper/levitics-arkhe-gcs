@@ -88,7 +88,7 @@ include(CheckIncludeFile)
 include(CheckIncludeFiles)
 include(CMakePackageConfigHelpers)
 
-
+check_include_files(sys/time.h HAVE_SYS_TIME_H)
 check_include_file(inttypes.h HAVE_INTTYPES_H)
 check_include_file(stdint.h HAVE_STDINT_H)
 check_include_file(stddef.h HAVE_STDDEF_H)
@@ -103,4 +103,5 @@ check_include_file(unistd.h HAVE_UNISTD_H)
 check_include_file(dlfcn.h HAVE_DLFCN_H)
 check_include_file(windows.h HAVE_WINDOWS_H)
 check_include_files("stdlib.h;stdarg.h;string.h;float.h" STDC_HEADERS)
+check_include_files("assert.h;ctype.h;errno.h;float.h;limits.h;locale.h;math.h;setjmp.h;signal.h;stdarg.h;stddef.h;stdio.h;stdlib.h;string.h;time.h" STDC_HEADERS)
 

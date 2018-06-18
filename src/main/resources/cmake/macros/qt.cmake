@@ -73,6 +73,8 @@ if(UNIX AND NOT APPLE)
     set(CMAKE_CXX_COMPILER /usr/bin/g++)
 endif()
 
+find_package(Qt5QuickCompiler)
+
 
 find_package( Qt5Core    REQUIRED )
 find_package( Qt5Concurrent REQUIRED )
