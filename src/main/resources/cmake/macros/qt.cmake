@@ -119,3 +119,15 @@ find_package( Qt53DExtras REQUIRED )
 find_package( Qt53DRender REQUIRED )
 find_package( Qt53DInput REQUIRED )
 
+
+
+# http://doc.qt.io/qt-5/signalsandslots.html#using-qt-with-3rd-party-signals-and-slots
+add_definitions(
+    -DQT_NO_KEYWORDS
+    #    -DQT_NO_CAST_TO_ASCII
+    #    -DQT_NO_CAST_FROM_ASCII
+    #    -DQT_STRICT_ITERATORS
+    #    -DQT_NO_URL_CAST_FROM_STRING
+    #    -DQT_NO_CAST_FROM_BYTEARRAY
+    #   -DQT_USE_QSTRINGBUILDER
+)
